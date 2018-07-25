@@ -1,6 +1,7 @@
 [package]
 name = "webgl-rs"
 version = "0.1.0"
+description = "Safe Rust wrapper around the WebGL API "
 license = "MIT"
 authors = ["Theo Dedeken <theo.dedeken@telenet.be>"]
 
