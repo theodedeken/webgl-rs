@@ -4,6 +4,9 @@ version = "0.1.0"
 description = "Safe Rust wrapper around the WebGL API "
 license = "MIT"
 authors = ["Theo Dedeken <theo.dedeken@telenet.be>"]
+readme = "README.md"
+repository = "https://github.com/theozonebe/webgl-rs/"
+documentation = "https://theozonebe.github.io/webgl-rs/"
 
 [dependencies]
 wasm-bindgen = "^0.2.13"

@@ -1,9 +1,9 @@
 language: rust
 rust: nightly
+before_deploy:  cargo +nightly doc --no-deps
 deploy:
   cache: cargo
   provider: pages
-  script: cargo +nightly doc --no-deps
   local-dir: target/doc
   skip-cleanup: true
   github-token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
