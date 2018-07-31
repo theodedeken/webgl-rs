@@ -3,7 +3,7 @@ rust: nightly
 cache: cargo
 before_deploy: |
     cargo +nightly doc --no-deps \
-    && echo '<meta http-equiv=refresh content=0;url=YOURLIBNAME/index.html>' > target/doc/index.html
+    && echo '<meta http-equiv=refresh content=0;url=webgl_rs/index.html>' > target/doc/index.html
 deploy:  
   provider: pages
   local-dir: target/doc
