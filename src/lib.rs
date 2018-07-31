@@ -54,12 +54,12 @@ impl WebGL2RenderingContext {
     }
 
     /// Maps to `WebGL2RenderingContext.getQueryParameter()` when pname equals QUERY_RESULT_AVAILABLE
-    pub fn get_query_status(self, query: WebGLQuery) -> bool {
+    pub fn get_query_status(self, query: &WebGLQuery) -> bool {
         self._get_query_status(query, QueryParameter::ResultAvailable)
     }
 
     /// Maps to `WebGL2RenderingContext.getQueryParameter()` when pname equals QUERY_RESULT
-    pub fn get_query_result(&self, query: WebGLQuery) -> u32 {
+    pub fn get_query_result(&self, query: &WebGLQuery) -> u32 {
         self._get_query_result(query, QueryParameter::Result)
     }
 }
@@ -376,7 +376,7 @@ extern "C" {
     /// The `WebGLRenderingContext.deleteBuffer()` method of the WebGL API deletes a given WebGLBuffer.
     /// This method has no effect if the buffer has already been deleted.
     #[wasm_bindgen(method, js_name = deleteBuffer)]
-    pub fn delete_buffer(this: &WebGL2RenderingContext, buffer: WebGLBuffer);
+    pub fn delete_buffer(this: &WebGL2RenderingContext, buffer: &WebGLBuffer);
 
     /// The `WebGLRenderingContext.getBufferParameter()` method of the WebGL API returns information about the buffer.
     #[wasm_bindgen(method, js_name = getBufferParameter)]
@@ -395,7 +395,7 @@ extern "C" {
     /// The `WebGLRenderingContext.isBuffer()` method of the WebGL API returns true if the passed
     /// WebGLBuffer is valid and false otherwise.
     #[wasm_bindgen(method, js_name = isBuffer)]
-    pub fn is_buffer(this: &WebGL2RenderingContext, buffer: WebGLBuffer) -> bool;
+    pub fn is_buffer(this: &WebGL2RenderingContext, buffer: &WebGLBuffer) -> bool;
 
     /// The WebGLRenderingContext.bindFramebuffer() method of the WebGL API binds a given
     /// WebGLFramebuffer to a target.
@@ -403,7 +403,7 @@ extern "C" {
     pub fn bind_framebuffer(
         this: &WebGL2RenderingContext,
         target: FramebufferKind,
-        framebuffer: WebGLFramebuffer,
+        framebuffer: &WebGLFramebuffer,
     );
 
     /// The `WebGLRenderingContext.checkFramebufferStatus()` method of the WebGL API returns the completeness
@@ -419,7 +419,7 @@ extern "C" {
     /// The `WebGLRenderingContext.deleteFramebuffer()` method of the WebGL API deletes a given WebGLFramebuffer object.
     /// This method has no effect if the frame buffer has already been deleted.
     #[wasm_bindgen(method, js_name = deleteFramebuffer)]
-    pub fn delete_framebuffer(this: &WebGL2RenderingContext, framebuffer: WebGLFramebuffer);
+    pub fn delete_framebuffer(this: &WebGL2RenderingContext, framebuffer: &WebGLFramebuffer);
 
     /// The `WebGLRenderingContext.framebufferRenderbuffer()` method of the WebGL API attaches a WebGLRenderbuffer object
     /// to a WebGLFramebuffer object.
@@ -429,7 +429,7 @@ extern "C" {
         target: FramebufferKind,
         attachment: Attachment,
         renderbuffertarget: RenderbufferKind,
-        renderbuffer: WebGLRenderbuffer,
+        renderbuffer: &WebGLRenderbuffer,
     );
 
     /// The `WebGLRenderingContext.framebufferTexture2D()` method of the WebGL API attaches a texture to a
@@ -440,7 +440,7 @@ extern "C" {
         target: FramebufferKind,
         attachment: Attachment,
         textarget: TextureBindPoint,
-        texture: WebGLTexture,
+        texture: &WebGLTexture,
         level: i32,
     );
 
@@ -450,7 +450,7 @@ extern "C" {
     /// The `WebGLRenderingContext.isFramebuffer()` method of the WebGL API returns true if the passed
     /// WebGLFramebuffer is valid and false otherwise.
     #[wasm_bindgen(method, js_name = isFramebuffer)]
-    pub fn is_framebuffer(this: &WebGL2RenderingContext, framebuffer: WebGLFramebuffer) -> bool;
+    pub fn is_framebuffer(this: &WebGL2RenderingContext, framebuffer: &WebGLFramebuffer) -> bool;
 
     /// The `WebGLRenderingContext.readPixels()` method of the WebGL API reads a block of pixels from a
     /// specified rectangle of the current color framebuffer into an ArrayBufferView object.
@@ -474,7 +474,7 @@ extern "C" {
     pub fn bind_renderbuffer(
         this: &WebGL2RenderingContext,
         target: RenderbufferKind,
-        renderbuffer: WebGLRenderbuffer,
+        renderbuffer: &WebGLRenderbuffer,
     );
 
     /// The `WebGLRenderingContext.createRenderbuffer()` method of the WebGL API creates and initializes
@@ -485,7 +485,7 @@ extern "C" {
     /// The `WebGLRenderingContext.deleteRenderbuffer()` method of the WebGL API deletes a given WebGLRenderbuffer
     /// object. This method has no effect if the render buffer has already been deleted.
     #[wasm_bindgen(method, js_name = deleteRenderbuffer)]
-    pub fn delete_renderbuffer(this: &WebGL2RenderingContext, renderbuffer: WebGLRenderbuffer);
+    pub fn delete_renderbuffer(this: &WebGL2RenderingContext, renderbuffer: &WebGLRenderbuffer);
 
     /// The `WebGLRenderingContext.getRenderbufferParameter()` method of the WebGL API returns information
     /// about the renderbuffer.
@@ -505,7 +505,8 @@ extern "C" {
     /// The `WebGLRenderingContext.isRenderbuffer()` method of the WebGL API returns true if the passed
     /// WebGLRenderbuffer is valid and false otherwise.
     #[wasm_bindgen(method, js_name = isRenderbuffer)]
-    pub fn is_renderbuffer(this: &WebGL2RenderingContext, renderbuffer: WebGLRenderbuffer) -> bool;
+    pub fn is_renderbuffer(this: &WebGL2RenderingContext, renderbuffer: &WebGLRenderbuffer)
+        -> bool;
 
     /// The `WebGLRenderingContext.renderbufferStorage()` method of the WebGL API creates and initializes
     /// a renderbuffer object's data store.
@@ -521,7 +522,7 @@ extern "C" {
     /// The `WebGLRenderingContext.bindTexture()` method of the WebGL API binds a given WebGLTexture to a
     /// target (binding point).
     #[wasm_bindgen(method, js_name = bindTexture)]
-    pub fn bind_texture(this: &WebGL2RenderingContext, target: TextureKind, texture: WebGLTexture);
+    pub fn bind_texture(this: &WebGL2RenderingContext, target: TextureKind, texture: &WebGLTexture);
 
     /// The `WebGLRenderingContext.copyTexImage2D()` method of the WebGL API copies pixels from the current
     /// WebGLFramebuffer into a 2D texture image.
@@ -560,7 +561,7 @@ extern "C" {
     /// The `WebGLRenderingContext.deleteTexture()` method of the WebGL API deletes a given WebGLTexture object.
     /// This method has no effect if the texture has already been deleted.
     #[wasm_bindgen(method, js_name = deleteTexture)]
-    pub fn delete_texture(this: &WebGL2RenderingContext, texture: WebGLTexture);
+    pub fn delete_texture(this: &WebGL2RenderingContext, texture: &WebGLTexture);
 
     /// The `WebGLRenderingContext.generateMipmap()` method of the WebGL API generates a set of mipmaps for a
     /// WebGLTexture object.
@@ -576,7 +577,7 @@ extern "C" {
     /// The `WebGLRenderingContext.isTexture()` method of the WebGL API returns true if the passed WebGLTexture
     /// is valid and false otherwise.
     #[wasm_bindgen(method, js_name = isTexture)]
-    pub fn is_texture(this: &WebGL2RenderingContext, texture: WebGLTexture);
+    pub fn is_texture(this: &WebGL2RenderingContext, texture: &WebGLTexture);
 
     /// The `WebGLRenderingContext.texImage2D()` method of the WebGL API specifies a two-dimensional texture image.
     /// FIXME type safety for format, polymorphism of original, srcdata type, webgl2 extensions
@@ -629,7 +630,7 @@ extern "C" {
     #[wasm_bindgen(method, js_name = bindAttribLocation)]
     pub fn bind_attrib_location(
         this: &WebGL2RenderingContext,
-        program: WebGLProgram,
+        program: &WebGLProgram,
         index: u32,
         name: &str,
     );
@@ -651,19 +652,23 @@ extern "C" {
     /// The `WebGLRenderingContext.deleteProgram()` method of the WebGL API deletes a given WebGLProgram object. This method
     /// has no effect if the program has already been deleted.
     #[wasm_bindgen(method, js_name = deleteProgram)]
-    pub fn delete_program(this: &WebGL2RenderingContext, program: WebGLProgram);
+    pub fn delete_program(this: &WebGL2RenderingContext, program: &WebGLProgram);
 
     /// The `WebGLRenderingContext.deleteShader()` method of the WebGL API marks a given WebGLShader object for deletion.
     /// It will then be deleted whenever the shader is no longer in use. This method has no effect if the shader
     /// has already been deleted, and the WebGLShader is automatically marked for deletion when it is destroyed by the
     /// garbage collector.
     #[wasm_bindgen(method, js_name = deleteShader)]
-    pub fn delete_shader(this: &WebGL2RenderingContext, shader: WebGLShader);
+    pub fn delete_shader(this: &WebGL2RenderingContext, shader: &WebGLShader);
 
     /// The `WebGLRenderingContext.detachShader()` method of the WebGL API detaches a previously attached WebGLShader
     /// from a WebGLProgram.
     #[wasm_bindgen(method, js_name = detachShader)]
-    pub fn detach_shader(this: &WebGL2RenderingContext, program: WebGLProgram, shader: WebGLShader);
+    pub fn detach_shader(
+        this: &WebGL2RenderingContext,
+        program: &WebGLProgram,
+        shader: &WebGLShader,
+    );
 
     /// The `WebGLRenderingContext.getAttachedShaders()` method of the WebGL API returns a list of WebGLShader objects
     /// attached to a WebGLProgram.
@@ -680,7 +685,7 @@ extern "C" {
     /// The `WebGLRenderingContext.getProgramInfoLog` returns the information log for the specified WebGLProgram object.
     /// It contains errors that occurred during failed linking or validation of WebGLProgram objects.
     #[wasm_bindgen(method, js_name = getProgramInfoLog)]
-    pub fn get_program_info_log(this: &WebGL2RenderingContext, program: WebGLProgram) -> String;
+    pub fn get_program_info_log(this: &WebGL2RenderingContext, program: &WebGLProgram) -> String;
 
     //TODO getShaderParameter
 
@@ -696,7 +701,7 @@ extern "C" {
     /// The `WebGLRenderingContext.getShaderInfoLog` returns the information log for the specified WebGLShader object. It contains
     /// warnings, debugging and compile information.
     #[wasm_bindgen(method, js_name = getShaderInfoLog)]
-    pub fn get_shader_info_log(this: &WebGL2RenderingContext, shader: WebGLShader) -> String;
+    pub fn get_shader_info_log(this: &WebGL2RenderingContext, shader: &WebGLShader) -> String;
 
     /// The `WebGLRenderingContext.getShaderSource()` method of the WebGL API returns the source code of a WebGLShader as a DOMString.
     #[wasm_bindgen(method, js_name = getShaderSource)]
@@ -704,11 +709,11 @@ extern "C" {
 
     /// The `WebGLRenderingContext.isProgram()` method of the WebGL API returns true if the passed WebGLProgram is valid, false otherwise.
     #[wasm_bindgen(method, js_name = isProgram)]
-    pub fn is_program(this: &WebGL2RenderingContext, program: WebGLProgram) -> bool;
+    pub fn is_program(this: &WebGL2RenderingContext, program: &WebGLProgram) -> bool;
 
     /// The `WebGLRenderingContext.isShader()` method of the WebGL API returns true if the passed WebGLShader is valid, false otherwise.
     #[wasm_bindgen(method, js_name = isShader)]
-    pub fn is_shader(this: &WebGL2RenderingContext, shader: WebGLShader) -> bool;
+    pub fn is_shader(this: &WebGL2RenderingContext, shader: &WebGLShader) -> bool;
 
     /// The `WebGLRenderingContext.linkProgram()` method of the WebGL API links a given WebGLProgram to the attached vertex and fragment shaders.
     #[wasm_bindgen(method, js_name = linkProgram)]
@@ -725,7 +730,7 @@ extern "C" {
     /// The `WebGLRenderingContext.validateProgram()` method of the WebGL API validates a WebGLProgram.
     /// It checks if it is successfully linked and if it can be used in the current WebGL state.
     #[wasm_bindgen(method, js_name = validateProgram)]
-    pub fn validate_program(this: &WebGL2RenderingContext, program: WebGLProgram);
+    pub fn validate_program(this: &WebGL2RenderingContext, program: &WebGLProgram);
 
     /// The `WebGLRenderingContext.disableVertexAttribArray()` method of the WebGL API turns the generic
     /// vertex attribute array off at a given index position.
@@ -743,7 +748,7 @@ extern "C" {
     #[wasm_bindgen(method, js_name = getActiveAttrib)]
     pub fn get_active_attrib(
         this: &WebGL2RenderingContext,
-        program: WebGLProgram,
+        program: &WebGLProgram,
         index: u32,
     ) -> WebGLActiveInfo;
 
@@ -753,7 +758,7 @@ extern "C" {
     #[wasm_bindgen(method, js_name = getActiveUniform)]
     pub fn get_active_uniform(
         this: &WebGL2RenderingContext,
-        program: WebGLProgram,
+        program: &WebGLProgram,
         index: u32,
     ) -> WebGLActiveInfo;
 
@@ -780,7 +785,7 @@ extern "C" {
     #[wasm_bindgen(method, js_name = getUniformLocation)]
     pub fn get_uniform_location(
         this: &WebGL2RenderingContext,
-        program: WebGLProgram,
+        program: &WebGLProgram,
         name: &str,
     ) -> WebGLUniformLocation;
 
@@ -803,13 +808,13 @@ extern "C" {
 
     /// The `WebGLRenderingContext.uniform[1234][fi][v]()` methods of the WebGL API specify values of uniform variables.
     #[wasm_bindgen(method, js_name = uniform1f)]
-    pub fn uniform_1f(this: &WebGL2RenderingContext, location: WebGLUniformLocation, v0: f32);
+    pub fn uniform_1f(this: &WebGL2RenderingContext, location: &WebGLUniformLocation, v0: f32);
 
     /// The `WebGLRenderingContext.uniform[1234][fi][v]()` methods of the WebGL API specify values of uniform variables.
     #[wasm_bindgen(method, js_name = uniform2f)]
     pub fn uniform_2f(
         this: &WebGL2RenderingContext,
-        location: WebGLUniformLocation,
+        location: &WebGLUniformLocation,
         v0: f32,
         v1: f32,
     );
@@ -818,7 +823,7 @@ extern "C" {
     #[wasm_bindgen(method, js_name = uniform3f)]
     pub fn uniform_3f(
         this: &WebGL2RenderingContext,
-        location: WebGLUniformLocation,
+        location: &WebGLUniformLocation,
         v0: f32,
         v1: f32,
         v2: f32,
@@ -828,7 +833,7 @@ extern "C" {
     #[wasm_bindgen(method, js_name = uniform4f)]
     pub fn uniform_4f(
         this: &WebGL2RenderingContext,
-        location: WebGLUniformLocation,
+        location: &WebGLUniformLocation,
         v0: f32,
         v1: f32,
         v2: f32,
@@ -837,13 +842,13 @@ extern "C" {
 
     /// The `WebGLRenderingContext.uniform[1234][fi][v]()` methods of the WebGL API specify values of uniform variables.
     #[wasm_bindgen(method, js_name = uniform1i)]
-    pub fn uniform_1i(this: &WebGL2RenderingContext, location: WebGLUniformLocation, v0: i32);
+    pub fn uniform_1i(this: &WebGL2RenderingContext, location: &WebGLUniformLocation, v0: i32);
 
     /// The `WebGLRenderingContext.uniform[1234][fi][v]()` methods of the WebGL API specify values of uniform variables.
     #[wasm_bindgen(method, js_name = uniform2i)]
     pub fn uniform_2i(
         this: &WebGL2RenderingContext,
-        location: WebGLUniformLocation,
+        location: &WebGLUniformLocation,
         v0: i32,
         v1: i32,
     );
@@ -852,7 +857,7 @@ extern "C" {
     #[wasm_bindgen(method, js_name = uniform3i)]
     pub fn uniform_3i(
         this: &WebGL2RenderingContext,
-        location: WebGLUniformLocation,
+        location: &WebGLUniformLocation,
         v0: i32,
         v1: i32,
         v2: i32,
@@ -862,7 +867,7 @@ extern "C" {
     #[wasm_bindgen(method, js_name = uniform4i)]
     pub fn uniform_4i(
         this: &WebGL2RenderingContext,
-        location: WebGLUniformLocation,
+        location: &WebGLUniformLocation,
         v0: i32,
         v1: i32,
         v2: i32,
@@ -873,7 +878,7 @@ extern "C" {
     #[wasm_bindgen(method, js_name = uniform1fv)]
     pub fn uniform_1fv(
         this: &WebGL2RenderingContext,
-        location: WebGLUniformLocation,
+        location: &WebGLUniformLocation,
         value: Vec<f32>,
     );
 
@@ -881,7 +886,7 @@ extern "C" {
     #[wasm_bindgen(method, js_name = uniform2fv)]
     pub fn uniform_2fv(
         this: &WebGL2RenderingContext,
-        location: WebGLUniformLocation,
+        location: &WebGLUniformLocation,
         value: Vec<f32>,
     );
 
@@ -889,7 +894,7 @@ extern "C" {
     #[wasm_bindgen(method, js_name = uniform3fv)]
     pub fn uniform_3fv(
         this: &WebGL2RenderingContext,
-        location: WebGLUniformLocation,
+        location: &WebGLUniformLocation,
         value: Vec<f32>,
     );
 
@@ -897,7 +902,7 @@ extern "C" {
     #[wasm_bindgen(method, js_name = uniform4fv)]
     pub fn uniform_4fv(
         this: &WebGL2RenderingContext,
-        location: WebGLUniformLocation,
+        location: &WebGLUniformLocation,
         value: Vec<f32>,
     );
 
@@ -905,7 +910,7 @@ extern "C" {
     #[wasm_bindgen(method, js_name = uniform1iv)]
     pub fn uniform_1iv(
         this: &WebGL2RenderingContext,
-        location: WebGLUniformLocation,
+        location: &WebGLUniformLocation,
         value: Vec<i32>,
     );
 
@@ -913,7 +918,7 @@ extern "C" {
     #[wasm_bindgen(method, js_name = uniform2iv)]
     pub fn uniform_2iv(
         this: &WebGL2RenderingContext,
-        location: WebGLUniformLocation,
+        location: &WebGLUniformLocation,
         value: Vec<i32>,
     );
 
@@ -921,7 +926,7 @@ extern "C" {
     #[wasm_bindgen(method, js_name = uniform3iv)]
     pub fn uniform_3iv(
         this: &WebGL2RenderingContext,
-        location: WebGLUniformLocation,
+        location: &WebGLUniformLocation,
         value: Vec<i32>,
     );
 
@@ -929,7 +934,7 @@ extern "C" {
     #[wasm_bindgen(method, js_name = uniform4iv)]
     pub fn uniform_4iv(
         this: &WebGL2RenderingContext,
-        location: WebGLUniformLocation,
+        location: &WebGLUniformLocation,
         value: Vec<i32>,
     );
 
@@ -938,7 +943,7 @@ extern "C" {
     #[wasm_bindgen(method, js_name = uniformMatrix2fv)]
     pub fn uniform_matrix_2fv(
         this: &WebGL2RenderingContext,
-        location: WebGLUniformLocation,
+        location: &WebGLUniformLocation,
         transpose: bool,
         value: Vec<f32>,
     );
@@ -948,7 +953,7 @@ extern "C" {
     #[wasm_bindgen(method, js_name = uniformMatrix3fv)]
     pub fn uniform_matrix_3fv(
         this: &WebGL2RenderingContext,
-        location: WebGLUniformLocation,
+        location: &WebGLUniformLocation,
         transpose: bool,
         value: Vec<f32>,
     );
@@ -958,7 +963,7 @@ extern "C" {
     #[wasm_bindgen(method, js_name = uniformMatrix4fv)]
     pub fn uniform_matrix_4fv(
         this: &WebGL2RenderingContext,
-        location: WebGLUniformLocation,
+        location: &WebGLUniformLocation,
         transpose: bool,
         value: Vec<f32>,
     );
@@ -1105,7 +1110,7 @@ extern "C" {
         this: &WebGL2RenderingContext,
         target: FramebufferKind,
         attachment: Attachment,
-        texture: WebGLTexture,
+        texture: &WebGLTexture,
         level: i32,
         layer: i32,
     );
@@ -1238,19 +1243,19 @@ extern "C" {
     #[wasm_bindgen(method, js_name = getFragDataLocation)]
     pub fn get_frag_data_location(
         this: &WebGL2RenderingContext,
-        program: WebGLProgram,
+        program: &WebGLProgram,
         name: &str,
     ) -> i32;
 
     /// The `WebGL2RenderingContext.uniform[1234][uif][v]()` methods of the WebGL API specify values of uniform variables.
     #[wasm_bindgen(method, js_name = uniform1ui)]
-    pub fn uniform_1ui(this: &WebGL2RenderingContext, location: WebGLUniformLocation, v0: u32);
+    pub fn uniform_1ui(this: &WebGL2RenderingContext, location: &WebGLUniformLocation, v0: u32);
 
     /// The `WebGL2RenderingContext.uniform[1234][uif][v]()` methods of the WebGL API specify values of uniform variables.
     #[wasm_bindgen(method, js_name = uniform2ui)]
     pub fn uniform_2ui(
         this: &WebGL2RenderingContext,
-        location: WebGLUniformLocation,
+        location: &WebGLUniformLocation,
         v0: u32,
         v1: u32,
     );
@@ -1259,7 +1264,7 @@ extern "C" {
     #[wasm_bindgen(method, js_name = uniform3ui)]
     pub fn uniform_3ui(
         this: &WebGL2RenderingContext,
-        location: WebGLUniformLocation,
+        location: &WebGLUniformLocation,
         v0: u32,
         v1: u32,
         v2: u32,
@@ -1269,7 +1274,7 @@ extern "C" {
     #[wasm_bindgen(method, js_name = uniform4ui)]
     pub fn uniform_4ui(
         this: &WebGL2RenderingContext,
-        location: WebGLUniformLocation,
+        location: &WebGLUniformLocation,
         v0: u32,
         v1: u32,
         v2: u32,
@@ -1280,7 +1285,7 @@ extern "C" {
     #[wasm_bindgen(method, js_name = uniform1uiv)]
     pub fn uniform_1uiv(
         this: &WebGL2RenderingContext,
-        location: WebGLUniformLocation,
+        location: &WebGLUniformLocation,
         value: Vec<u32>,
     );
 
@@ -1288,7 +1293,7 @@ extern "C" {
     #[wasm_bindgen(method, js_name = uniform2uiv)]
     pub fn uniform_2uiv(
         this: &WebGL2RenderingContext,
-        location: WebGLUniformLocation,
+        location: &WebGLUniformLocation,
         value: Vec<u32>,
     );
 
@@ -1296,7 +1301,7 @@ extern "C" {
     #[wasm_bindgen(method, js_name = uniform3uiv)]
     pub fn uniform_3uiv(
         this: &WebGL2RenderingContext,
-        location: WebGLUniformLocation,
+        location: &WebGLUniformLocation,
         value: Vec<u32>,
     );
 
@@ -1304,7 +1309,7 @@ extern "C" {
     #[wasm_bindgen(method, js_name = uniform4uiv)]
     pub fn uniform_4uiv(
         this: &WebGL2RenderingContext,
-        location: WebGLUniformLocation,
+        location: &WebGLUniformLocation,
         value: Vec<u32>,
     );
 
@@ -1315,7 +1320,7 @@ extern "C" {
     #[wasm_bindgen(method, js_name = uniformMatrix2x3fv)]
     pub fn uniform_matrix_2x3fv(
         this: &WebGL2RenderingContext,
-        location: WebGLUniformLocation,
+        location: &WebGLUniformLocation,
         transpose: bool,
         data: Vec<f32>,
         srcOffset: u32,
@@ -1327,7 +1332,7 @@ extern "C" {
     #[wasm_bindgen(method, js_name = uniformMatrix2x4fv)]
     pub fn uniform_matrix_2x4fv(
         this: &WebGL2RenderingContext,
-        location: WebGLUniformLocation,
+        location: &WebGLUniformLocation,
         transpose: bool,
         data: Vec<f32>,
         srcOffset: u32,
@@ -1339,7 +1344,7 @@ extern "C" {
     #[wasm_bindgen(method, js_name = uniformMatrix3x2fv)]
     pub fn uniform_matrix_3x2fv(
         this: &WebGL2RenderingContext,
-        location: WebGLUniformLocation,
+        location: &WebGLUniformLocation,
         transpose: bool,
         data: Vec<f32>,
         srcOffset: u32,
@@ -1351,7 +1356,7 @@ extern "C" {
     #[wasm_bindgen(method, js_name = uniformMatrix3x4fv)]
     pub fn uniform_matrix_3x4fv(
         this: &WebGL2RenderingContext,
-        location: WebGLUniformLocation,
+        location: &WebGLUniformLocation,
         transpose: bool,
         data: Vec<f32>,
         srcOffset: u32,
@@ -1363,7 +1368,7 @@ extern "C" {
     #[wasm_bindgen(method, js_name = uniformMatrix4x2fv)]
     pub fn uniform_matrix_4x2fv(
         this: &WebGL2RenderingContext,
-        location: WebGLUniformLocation,
+        location: &WebGLUniformLocation,
         transpose: bool,
         data: Vec<f32>,
         srcOffset: u32,
@@ -1375,7 +1380,7 @@ extern "C" {
     #[wasm_bindgen(method, js_name = uniformMatrix4x3fv)]
     pub fn uniform_matrix_4x3fv(
         this: &WebGL2RenderingContext,
-        location: WebGLUniformLocation,
+        location: &WebGLUniformLocation,
         transpose: bool,
         data: Vec<f32>,
         srcOffset: u32,
@@ -1534,17 +1539,17 @@ extern "C" {
 
     /// The `WebGL2RenderingContext.deleteQuery()` method of the WebGL 2 API deletes a given WebGLQuery object.
     #[wasm_bindgen(method, js_name = deleteQuery)]
-    pub fn delete_query(this: &WebGL2RenderingContext, query: WebGLQuery);
+    pub fn delete_query(this: &WebGL2RenderingContext, query: &WebGLQuery);
 
     /// The `WebGL2RenderingContext.isQuery()` method of the WebGL 2 API returns true if the passed object is a valid
     /// WebGLQuery object.
     #[wasm_bindgen(method, js_name = isQuery)]
-    pub fn is_query(this: &WebGL2RenderingContext, query: WebGLQuery);
+    pub fn is_query(this: &WebGL2RenderingContext, query: &WebGLQuery);
 
     /// The `WebGL2RenderingContext.beginQuery()` method of the WebGL 2 API starts an asynchronous query. The target
     /// parameter indicates which kind of query to begin.
     #[wasm_bindgen(method, js_name = beginQuery)]
-    pub fn begin_query(this: &WebGL2RenderingContext, target: QueryTarget, query: WebGLQuery);
+    pub fn begin_query(this: &WebGL2RenderingContext, target: QueryTarget, query: &WebGLQuery);
 
     /// The `WebGL2RenderingContext.endQuery()` method of the WebGL 2 API marks the end of a given query target.
     #[wasm_bindgen(method, js_name = endQuery)]
@@ -1564,13 +1569,13 @@ extern "C" {
     #[wasm_bindgen(method, js_name = getQueryParameter)]
     fn _get_query_status(
         this: &WebGL2RenderingContext,
-        query: WebGLQuery,
+        query: &WebGLQuery,
         pname: QueryParameter,
     ) -> bool;
     #[wasm_bindgen(method, js_name = getQueryParameter)]
     fn _get_query_result(
         this: &WebGL2RenderingContext,
-        query: WebGLQuery,
+        query: &WebGLQuery,
         pname: QueryParameter,
     ) -> u32;
 
@@ -1582,17 +1587,17 @@ extern "C" {
     /// The `WebGL2RenderingContext.deleteSampler()` method of the WebGL 2 API deletes a given WebGLSampler
     /// object.
     #[wasm_bindgen(method, js_name = deleteSampler)]
-    pub fn delete_sampler(this: &WebGL2RenderingContext, sampler: WebGLSampler);
+    pub fn delete_sampler(this: &WebGL2RenderingContext, sampler: &WebGLSampler);
 
     /// The `WebGL2RenderingContext.bindSampler()` method of the WebGL 2 API binds a passed WebGLSampler object to
     /// the texture unit at the passed index.
     #[wasm_bindgen(method, js_name = bindSampler)]
-    pub fn bind_sampler(this: &WebGL2RenderingContext, unit: u32, sampler: WebGLSampler);
+    pub fn bind_sampler(this: &WebGL2RenderingContext, unit: u32, sampler: &WebGLSampler);
 
     /// The WebGL2RenderingContext.isSampler() method of the WebGL 2 API returns true if the passed object is a valid
     /// WebGLSampler object.
     #[wasm_bindgen(method, js_name = isSampler)]
-    pub fn is_sampler(this: &WebGL2RenderingContext, sampler: WebGLSampler);
+    pub fn is_sampler(this: &WebGL2RenderingContext, sampler: &WebGLSampler);
 
     //TODO samplerParameter[if] and getSamplerParameter
 
@@ -1605,18 +1610,18 @@ extern "C" {
     /// The `WebGL2RenderingContext.isSync()` method of the WebGL 2 API returns true if the passed object is a valid
     /// WebGLSync object.
     #[wasm_bindgen(method, js_name = isSync)]
-    pub fn is_sync(this: &WebGL2RenderingContext, sync: WebGLSync) -> bool;
+    pub fn is_sync(this: &WebGL2RenderingContext, sync: &WebGLSync) -> bool;
 
     /// The WebGL2RenderingContext.deleteSync() method of the WebGL 2 API deletes a given WebGLSync object.
     #[wasm_bindgen(method, js_name = deleteSync)]
-    pub fn delete_sync(this: &WebGL2RenderingContext, sync: WebGLSync);
+    pub fn delete_sync(this: &WebGL2RenderingContext, sync: &WebGLSync);
 
     /// The `WebGL2RenderingContext.clientWaitSync()` method of the WebGL 2 API blocks and waits for a WebGLSync object to
     /// become signaled or a given timeout to be passed.
     #[wasm_bindgen(method, js_name = clientWaitSync)]
     pub fn client_wait_sync(
         this: &WebGL2RenderingContext,
-        sync: WebGLSync,
+        sync: &WebGLSync,
         flags: u32,
         timeout: i64,
     ) -> SyncStatus;
@@ -1627,7 +1632,7 @@ extern "C" {
     /// The method is a no-op in the absence of the possibility of synchronizing between multiple GL contexts.
     /// FIXME: timeout must be gl.TIMEOUT_IGNORED.
     #[wasm_bindgen(method, js_name = waitSync)]
-    pub fn wait_sync(this: &WebGL2RenderingContext, sync: WebGLSync, flags: u32, timeout: i64);
+    pub fn wait_sync(this: &WebGL2RenderingContext, sync: &WebGLSync, flags: u32, timeout: i64);
 
     //TODO: getSyncParameter
 
@@ -1641,7 +1646,7 @@ extern "C" {
     #[wasm_bindgen(method, js_name = deleteTransformFeedback)]
     pub fn delete_transform_feedback(
         this: &WebGL2RenderingContext,
-        transform_feedback: WebGLTransformFeedback,
+        transform_feedback: &WebGLTransformFeedback,
     );
 
     /// The `WebGL2RenderingContext.isTransformFeedback()` method of the WebGL 2 API returns true if the passed object is a
@@ -1649,7 +1654,7 @@ extern "C" {
     #[wasm_bindgen(method, js_name = isTransformFeedback)]
     pub fn is_transform_feedback(
         this: &WebGL2RenderingContext,
-        transform_feedback: WebGLTransformFeedback,
+        transform_feedback: &WebGLTransformFeedback,
     ) -> bool;
 
     /// The `WebGL2RenderingContext.bindTransformFeedback()` method of the WebGL 2 API binds a passed WebGLTransformFeedback
@@ -1658,7 +1663,7 @@ extern "C" {
     pub fn bind_transform_feedback(
         this: &WebGL2RenderingContext,
         target: TransformFeedback,
-        transform_feedback: WebGLTransformFeedback,
+        transform_feedback: &WebGLTransformFeedback,
     );
 
     /// The WebGL2RenderingContext.beginTransformFeedback() method of the WebGL 2 API starts a transform feedback operation.
@@ -1688,7 +1693,7 @@ extern "C" {
     #[wasm_bindgen(method, js_name = getTransfromFeedbackVarying)]
     pub fn get_transform_feedback_varying(
         this: &WebGL2RenderingContext,
-        program: WebGLProgram,
+        program: &WebGLProgram,
         index: u32,
     ) -> WebGLActiveInfo;
 
@@ -1707,7 +1712,7 @@ extern "C" {
         this: &WebGL2RenderingContext,
         target: BufferBase,
         index: u32,
-        buffer: WebGLBuffer,
+        buffer: &WebGLBuffer,
     );
 
     /// The `WebGL2RenderingContext.bindBufferRange()` method of the WebGL 2 API binds a range of a given WebGLBuffer to a given
@@ -1717,7 +1722,7 @@ extern "C" {
         this: &WebGL2RenderingContext,
         target: BufferBase,
         index: u32,
-        buffer: WebGLBuffer,
+        buffer: &WebGLBuffer,
         offset: u32,
         size: u32,
     );
@@ -1736,7 +1741,7 @@ extern "C" {
     #[wasm_bindgen(method, js_name = getUniformBlockIndex)]
     pub fn get_uniform_block_index(
         this: &WebGL2RenderingContext,
-        program: WebGLProgram,
+        program: &WebGLProgram,
         uniform_block_name: &str,
     ) -> u32;
 
@@ -1747,7 +1752,7 @@ extern "C" {
     #[wasm_bindgen(method, js_name = getActiveUniformBlockName)]
     pub fn get_active_uniform_block_name(
         this: &WebGL2RenderingContext,
-        program: WebGLProgram,
+        program: &WebGLProgram,
         uniform_block_index: u32,
     ) -> String;
 
@@ -1756,7 +1761,7 @@ extern "C" {
     #[wasm_bindgen(method, js_name = uniformBlockBinding)]
     pub fn uniform_block_binding(
         this: &WebGL2RenderingContext,
-        program: WebGL2RenderingContext,
+        program: &WebGLProgram,
         uniform_block_index: u32,
         uniform_block_binding: u32,
     );
@@ -1770,12 +1775,15 @@ extern "C" {
     /// The `WebGL2RenderingContext.deleteVertexArray()` method of the WebGL 2 API deletes a given WebGLVertexArrayObject
     /// object.
     #[wasm_bindgen(method, js_name = deleteVertexArray)]
-    pub fn delete_vertex_array(this: &WebGL2RenderingContext, vertex_array: WebGLVertexArrayObject);
+    pub fn delete_vertex_array(
+        this: &WebGL2RenderingContext,
+        vertex_array: &WebGLVertexArrayObject,
+    );
 
     /// The `WebGL2RenderingContext.isVertexArray()` method of the WebGL API returns true if the passed object is a valid
     /// WebGLVertexArrayObject object.
     #[wasm_bindgen(method, js_name = isVertexArray)]
-    pub fn is_vertex_array(this: &WebGL2RenderingContext, vertex_array: WebGLVertexArrayObject);
+    pub fn is_vertex_array(this: &WebGL2RenderingContext, vertex_array: &WebGLVertexArrayObject);
 
     /// The `WebGL2RenderingContext.bindVertexArray()` method of the WebGL 2 API binds a passed WebGLVertexArrayObject
     /// object to the buffer.
@@ -1783,7 +1791,7 @@ extern "C" {
     pub fn bind_vertex_array(this: &WebGL2RenderingContext, vertex_array: &WebGLVertexArrayObject);
 }
 
-/// WebGLContextAttributes
+// WebGLContextAttributes
 /* FIXME: not found when exported
 #[derive(Clone, Copy)]
 #[wasm_bindgen]
