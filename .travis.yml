@@ -1,6 +1,7 @@
 language: rust
 rust: nightly
 deploy:
+  cache: cargo
   provider: pages
   script: cargo +nightly doc --no-deps
   local-dir: target/doc
