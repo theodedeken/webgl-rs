@@ -4,7 +4,7 @@ before_deploy: cargo +nightly doc --no-deps
 deploy:
   cache: cargo
   provider: pages
-  local-dir: target/doc/webgl-rs
+  local-dir: target/doc/webgl_rs
   skip-cleanup: true
   github-token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
   keep-history: true
