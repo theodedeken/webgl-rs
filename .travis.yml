@@ -1,10 +1,10 @@
 language: rust
 rust: nightly
-before_deploy:  cargo +nightly doc --no-deps
+before_deploy: cargo +nightly doc --no-deps
 deploy:
   cache: cargo
   provider: pages
-  local-dir: target/doc
+  local-dir: target/doc/webgl-rs
   skip-cleanup: true
   github-token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
   keep-history: true
