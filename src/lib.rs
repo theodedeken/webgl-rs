@@ -10,6 +10,8 @@ extern crate wasm_bindgen;
 //TODO: all pub types in function to references
 //TODO: possible solution of different getParameter methods is to add accessors on different types
 //TODO: safety with methods that can throw
+//TODO: JsString?
+//TODO: js-sys objects?
 pub mod glenum;
 
 pub use glenum::*;

@@ -27,4 +27,10 @@ Please note that last three extensions were promoted with caveats. Extension EXT
 So ideally the api of WebGl1 and Webgl2 should be as equal as possible using these extensions to fill in the gaps in webgl1. This way we can use traits for shared functionality and provide custom implementation where necessary. 
 
 ## Parameter methods
-These methods have polymorphic return values, but they are based on the enum value provided. So I'm thinking to do something with implementation on the enum.
+Prerequisites:
+* Splitting of the different objects by making custom structs with reference to context
+* methods working on these objects are implemented straight on these custom structs
+* Separate into modules but pub use in root
+Idea:
+* for context state info split the get parameter methods all up in their own separate methods
+* for parameters of related opbject split into methods of these objects 
