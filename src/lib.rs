@@ -1,5 +1,3 @@
-//! COPY of file in crate webgl2_bindgen, currently necessary to make the bindings work.
-//!
 //! Bindings for all objects and method associated with WebGL2
 //!
 //! Documentation taken straight from https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext
@@ -12,6 +10,8 @@ extern crate wasm_bindgen;
 //TODO: all pub types in function to references
 //TODO: possible solution of different getParameter methods is to add accessors on different types
 //TODO: safety with methods that can throw
+//TODO: JsString?
+//TODO: js-sys objects?
 pub mod glenum;
 
 pub use glenum::*;
