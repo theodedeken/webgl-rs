@@ -13,7 +13,6 @@ from an answer on stackoverflow, the promoted extensions:
   'OES_standard_derivatives',
   'OES_texture_float',
   'OES_texture_half_float',
-  'OES_vertex_array_object',
   'WEBGL_depth_texture',
   'WEBGL_draw_buffers',
   /* with caveats */
@@ -25,6 +24,8 @@ from an answer on stackoverflow, the promoted extensions:
 Please note that last three extensions were promoted with caveats. Extension EXT_sRGB lost a constant SRGB_ALPHA. Extension OES_texture_half_float_linear was promoted while analogous OES_texture_float_linear was not. Extension EXT_disjoint_timer_query promoted partially. Some properties of that extension appeared in WebGL2 context, while other properties were moved to EXT_disjoint_timer_query_webgl2 extension. Also, currently ( 2017.05.16 ) Firefox WebGL2 context still has EXT_disjoint_timer_query extensions and no EXT_disjoint_timer_query_webgl2 extension.
 
 So ideally the api of WebGl1 and Webgl2 should be as equal as possible using these extensions to fill in the gaps in webgl1. This way we can use traits for shared functionality and provide custom implementation where necessary. 
+### OES_vertex_array_object
+provides the vertexarray interface
 
 ## Parameter methods
 Prerequisites:

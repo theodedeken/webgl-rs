@@ -324,10 +324,6 @@ extern "C" {
         zpass: StencilAction,
     );
 
-    /// The `WebGLRenderingContext.bindBuffer()` method of the WebGL API binds a given WebGLBuffer to a target.
-    #[wasm_bindgen(method, js_name = bindBuffer)]
-    pub fn bind_buffer(this: &WebGL2RenderingContext, target: BufferKind, buffer: &WebGLBuffer);
-
     /// TODO maybe add a method for every buffer type
 
     /// The `WebGLRenderingContext.bufferData()` method of the WebGL API initializes and creates the
@@ -354,16 +350,6 @@ extern "C" {
         length: u32,
     );
 
-    /// The `WebGLRenderingContext.createBuffer()` method of the WebGL API creates and initializes a
-    /// WebGLBuffer storing data such as vertices or colors.
-    #[wasm_bindgen(method, js_name = createBuffer)]
-    pub fn create_buffer(this: &WebGL2RenderingContext) -> WebGLBuffer;
-
-    /// The `WebGLRenderingContext.deleteBuffer()` method of the WebGL API deletes a given WebGLBuffer.
-    /// This method has no effect if the buffer has already been deleted.
-    #[wasm_bindgen(method, js_name = deleteBuffer)]
-    pub fn delete_buffer(this: &WebGL2RenderingContext, buffer: &WebGLBuffer);
-
     /// The `WebGLRenderingContext.getBufferParameter()` method of the WebGL API returns information about the buffer.
     #[wasm_bindgen(method, js_name = getBufferParameter)]
     fn _get_buffer_size(
@@ -377,11 +363,6 @@ extern "C" {
         target: BufferKind,
         pname: BufferParameter,
     ) -> DataHint;
-
-    /// The `WebGLRenderingContext.isBuffer()` method of the WebGL API returns true if the passed
-    /// WebGLBuffer is valid and false otherwise.
-    #[wasm_bindgen(method, js_name = isBuffer)]
-    pub fn is_buffer(this: &WebGL2RenderingContext, buffer: &WebGLBuffer) -> bool;
 
     /// The WebGLRenderingContext.bindFramebuffer() method of the WebGL API binds a given
     /// WebGLFramebuffer to a target.
@@ -1691,28 +1672,6 @@ extern "C" {
     #[wasm_bindgen(method, js_name = resumeTransformFeedback)]
     pub fn resume_transform_feedback(this: &WebGL2RenderingContext);
 
-    /// The `WebGL2RenderingContext.bindBufferBase()` method of the WebGL 2 API binds a given WebGLBuffer to a given binding
-    /// point (target) at a given index.
-    #[wasm_bindgen(method, js_name = bindBufferBase)]
-    pub fn bind_buffer_base(
-        this: &WebGL2RenderingContext,
-        target: BufferBase,
-        index: u32,
-        buffer: &WebGLBuffer,
-    );
-
-    /// The `WebGL2RenderingContext.bindBufferRange()` method of the WebGL 2 API binds a range of a given WebGLBuffer to a given
-    /// binding point (target) at a given index.
-    #[wasm_bindgen(method, js_name = bindBufferRange)]
-    pub fn bind_buffer_range(
-        this: &WebGL2RenderingContext,
-        target: BufferBase,
-        index: u32,
-        buffer: &WebGLBuffer,
-        offset: u32,
-        size: u32,
-    );
-
     /// The `WebGL2RenderingContext.getUniformIndices()` method of the WebGL 2 API retrieves the indices of a number of uniforms
     /// within a WebGLProgram.
     /* FIXME: vec<string> not yet supported
@@ -1778,13 +1737,6 @@ extern "C" {
     pub fn power_preference(this: &WebGLContextAttributes) -> String;
 }
 */
-
-/// WebGLBuffer
-#[derive(Clone, Copy)]
-#[wasm_bindgen]
-extern "C" {
-    pub type WebGLBuffer;
-}
 
 /// WebGLFramebuffer
 #[derive(Clone, Copy)]

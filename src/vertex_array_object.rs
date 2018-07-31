@@ -3,9 +3,8 @@ use rendering_context::WebGL2RenderingContext;
 use wasm_bindgen::prelude::*;
 
 impl WebGL2RenderingContext {
-    /// The `WebGL2RenderingContext.createVertexArray()` method of the WebGL 2 API creates and initializes a
-    /// WebGLVertexArrayObject object that represents a vertex array object (VAO) pointing to vertex array
-    /// data and which provides names for different sets of vertex data.
+    /// Creates and initializes a WebGLRSVertexArrayObject object that represents a vertex array object
+    /// (VAO) pointing to vertex array data and which provides names for different sets of vertex data.
     pub fn create_vertex_array(&self) -> WebGLRSVertexArrayObject {
         WebGLRSVertexArrayObject {
             context: self,
@@ -40,7 +39,6 @@ impl<'ctx> WebGLRSVertexArrayObject<'ctx> {
     }
 }
 
-#[derive(Clone, Copy)]
 #[wasm_bindgen]
 extern "C" {
     type WebGLVertexArrayObject;

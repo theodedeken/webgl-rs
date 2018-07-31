@@ -8,10 +8,12 @@ extern crate wasm_bindgen;
 //TODO: safety with methods that can throw
 //TODO: JsString?
 //TODO: js-sys objects?
+pub mod buffer;
 pub mod glenum;
 pub mod rendering_context;
 pub mod vertex_array_object;
 
+pub use buffer::*;
 pub use glenum::*;
 pub use rendering_context::*;
 pub use vertex_array_object::*;
