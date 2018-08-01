@@ -63,7 +63,7 @@ impl<'ctx> WebGLRSBuffer<'ctx> {
     }
 }
 
-/// WebGLBuffer
+/// WebGLBuffer bindings
 #[derive(Clone, Copy)]
 #[wasm_bindgen]
 extern "C" {

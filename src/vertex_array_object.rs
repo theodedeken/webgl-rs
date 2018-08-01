@@ -39,6 +39,7 @@ impl<'ctx> WebGLRSVertexArrayObject<'ctx> {
     }
 }
 
+/// WebGLVerterArrayObject bindings
 #[wasm_bindgen]
 extern "C" {
     type WebGLVertexArrayObject;

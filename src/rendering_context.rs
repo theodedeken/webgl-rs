@@ -364,29 +364,10 @@ extern "C" {
         pname: BufferParameter,
     ) -> DataHint;
 
-    /// The WebGLRenderingContext.bindFramebuffer() method of the WebGL API binds a given
-    /// WebGLFramebuffer to a target.
-    #[wasm_bindgen(method, js_name = bindFramebuffer)]
-    pub fn bind_framebuffer(
-        this: &WebGL2RenderingContext,
-        target: FramebufferKind,
-        framebuffer: &WebGLFramebuffer,
-    );
-
     /// The `WebGLRenderingContext.checkFramebufferStatus()` method of the WebGL API returns the completeness
     /// status of the WebGLFramebuffer object.
     #[wasm_bindgen(method, js_name = checkFramebufferStatus)]
     pub fn check_framebuffer_status(this: &WebGL2RenderingContext, target: FramebufferKind);
-
-    /// The `WebGLRenderingContext.createFramebuffer()` method of the WebGL API creates and initializes a
-    /// WebGLFramebuffer object.
-    #[wasm_bindgen(method, js_name = createFramebuffer)]
-    pub fn create_framebuffer(this: &WebGL2RenderingContext) -> WebGLFramebuffer;
-
-    /// The `WebGLRenderingContext.deleteFramebuffer()` method of the WebGL API deletes a given WebGLFramebuffer object.
-    /// This method has no effect if the frame buffer has already been deleted.
-    #[wasm_bindgen(method, js_name = deleteFramebuffer)]
-    pub fn delete_framebuffer(this: &WebGL2RenderingContext, framebuffer: &WebGLFramebuffer);
 
     /// The `WebGLRenderingContext.framebufferRenderbuffer()` method of the WebGL API attaches a WebGLRenderbuffer object
     /// to a WebGLFramebuffer object.
@@ -413,11 +394,6 @@ extern "C" {
 
     // TODO getFramebufferAttachmentParameter()
     // later because of awful return structure
-
-    /// The `WebGLRenderingContext.isFramebuffer()` method of the WebGL API returns true if the passed
-    /// WebGLFramebuffer is valid and false otherwise.
-    #[wasm_bindgen(method, js_name = isFramebuffer)]
-    pub fn is_framebuffer(this: &WebGL2RenderingContext, framebuffer: &WebGLFramebuffer) -> bool;
 
     /// The `WebGLRenderingContext.readPixels()` method of the WebGL API reads a block of pixels from a
     /// specified rectangle of the current color framebuffer into an ArrayBufferView object.
@@ -1737,13 +1713,6 @@ extern "C" {
     pub fn power_preference(this: &WebGLContextAttributes) -> String;
 }
 */
-
-/// WebGLFramebuffer
-#[derive(Clone, Copy)]
-#[wasm_bindgen]
-extern "C" {
-    pub type WebGLFramebuffer;
-}
 
 /// WebGLRenderbuffer
 #[derive(Clone, Copy)]
