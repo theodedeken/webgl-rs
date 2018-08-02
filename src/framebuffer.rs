@@ -46,7 +46,7 @@ impl<'ctx> WebGLRSFramebuffer<'ctx> {
 #[derive(Clone, Copy)]
 #[wasm_bindgen]
 extern "C" {
-    pub type WebGLFramebuffer;
+    type WebGLFramebuffer;
     /// Binding for `WebGLRenderingContext.createFramebuffer()`
     #[wasm_bindgen(method, js_name = createFramebuffer)]
     fn _create_framebuffer(this: &WebGL2RenderingContext) -> WebGLFramebuffer;

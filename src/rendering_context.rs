@@ -369,17 +369,6 @@ extern "C" {
     #[wasm_bindgen(method, js_name = checkFramebufferStatus)]
     pub fn check_framebuffer_status(this: &WebGL2RenderingContext, target: FramebufferKind);
 
-    /// The `WebGLRenderingContext.framebufferRenderbuffer()` method of the WebGL API attaches a WebGLRenderbuffer object
-    /// to a WebGLFramebuffer object.
-    #[wasm_bindgen(method, js_name = framebufferRenderbuffer)]
-    pub fn framebuffer_renderbuffer(
-        this: &WebGL2RenderingContext,
-        target: FramebufferKind,
-        attachment: Attachment,
-        renderbuffertarget: RenderbufferKind,
-        renderbuffer: &WebGLRenderbuffer,
-    );
-
     /// The `WebGLRenderingContext.framebufferTexture2D()` method of the WebGL API attaches a texture to a
     /// WebGLFramebuffer.
     #[wasm_bindgen(method, js_name = framebufferTexture2D)]
@@ -411,25 +400,6 @@ extern "C" {
         dstOffset: i32,
     );
 
-    /// The `WebGLRenderingContext.bindRenderbuffer()` method of the WebGL API binds a given WebGLRenderbuffer
-    /// to a target, which must be `gl.RENDERBUFFER`.
-    #[wasm_bindgen(method, js_name = bindRenderbuffer)]
-    pub fn bind_renderbuffer(
-        this: &WebGL2RenderingContext,
-        target: RenderbufferKind,
-        renderbuffer: &WebGLRenderbuffer,
-    );
-
-    /// The `WebGLRenderingContext.createRenderbuffer()` method of the WebGL API creates and initializes
-    /// a WebGLRenderbuffer object.
-    #[wasm_bindgen(method, js_name = createRenderbuffer)]
-    pub fn create_renderbuffer(this: &WebGL2RenderingContext) -> WebGLRenderbuffer;
-
-    /// The `WebGLRenderingContext.deleteRenderbuffer()` method of the WebGL API deletes a given WebGLRenderbuffer
-    /// object. This method has no effect if the render buffer has already been deleted.
-    #[wasm_bindgen(method, js_name = deleteRenderbuffer)]
-    pub fn delete_renderbuffer(this: &WebGL2RenderingContext, renderbuffer: &WebGLRenderbuffer);
-
     /// The `WebGLRenderingContext.getRenderbufferParameter()` method of the WebGL API returns information
     /// about the renderbuffer.
     #[wasm_bindgen(method, js_name = getRenderbufferParameter)]
@@ -444,12 +414,6 @@ extern "C" {
         target: RenderbufferKind,
         pname: i32,
     ) -> RenderbufferFormat;
-
-    /// The `WebGLRenderingContext.isRenderbuffer()` method of the WebGL API returns true if the passed
-    /// WebGLRenderbuffer is valid and false otherwise.
-    #[wasm_bindgen(method, js_name = isRenderbuffer)]
-    pub fn is_renderbuffer(this: &WebGL2RenderingContext, renderbuffer: &WebGLRenderbuffer)
-        -> bool;
 
     /// The `WebGLRenderingContext.renderbufferStorage()` method of the WebGL API creates and initializes
     /// a renderbuffer object's data store.
@@ -1713,13 +1677,6 @@ extern "C" {
     pub fn power_preference(this: &WebGLContextAttributes) -> String;
 }
 */
-
-/// WebGLRenderbuffer
-#[derive(Clone, Copy)]
-#[wasm_bindgen]
-extern "C" {
-    pub type WebGLRenderbuffer;
-}
 
 /// WebGLTexture
 #[derive(Clone, Copy)]

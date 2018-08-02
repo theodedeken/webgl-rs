@@ -67,7 +67,7 @@ impl<'ctx> WebGLRSBuffer<'ctx> {
 #[derive(Clone, Copy)]
 #[wasm_bindgen]
 extern "C" {
-    pub type WebGLBuffer;
+    type WebGLBuffer;
     /// Binding for `WebGLRenderingContext.createBuffer()`
     #[wasm_bindgen(method, js_name = createBuffer)]
     fn _create_buffer(this: &WebGL2RenderingContext) -> WebGLBuffer;

@@ -11,11 +11,13 @@ extern crate wasm_bindgen;
 pub mod buffer;
 pub mod framebuffer;
 pub mod glenum;
+pub mod renderbuffer;
 pub mod rendering_context;
 pub mod vertex_array_object;
 
 pub use buffer::*;
 pub use framebuffer::*;
 pub use glenum::*;
+pub use renderbuffer::*;
 pub use rendering_context::*;
 pub use vertex_array_object::*;
