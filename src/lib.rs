@@ -13,11 +13,13 @@ pub mod framebuffer;
 pub mod glenum;
 pub mod renderbuffer;
 pub mod rendering_context;
+pub mod texture;
 pub mod vertex_array_object;
 
-pub use buffer::*;
-pub use framebuffer::*;
+pub use buffer::WebGLRSBuffer;
+pub use framebuffer::WebGLRSFramebuffer;
 pub use glenum::*;
-pub use renderbuffer::*;
+pub use renderbuffer::WebGLRSRenderbuffer;
 pub use rendering_context::*;
-pub use vertex_array_object::*;
+pub use texture::WebGLRSTexture;
+pub use vertex_array_object::WebGLRSVertexArrayObject;

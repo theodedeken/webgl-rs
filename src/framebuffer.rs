@@ -1,4 +1,4 @@
-//! Framebuffer and methods
+//! WebGLFramebuffer and methods
 use glenum::FramebufferKind;
 use rendering_context::WebGL2RenderingContext;
 use wasm_bindgen::prelude::*;

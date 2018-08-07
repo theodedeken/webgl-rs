@@ -45,7 +45,7 @@ impl<'ctx> WebGLRSRenderbuffer<'ctx> {
     /// * `fb_target` - specifying the binding point (target) for the framebuffer.
     /// * `attachment` - specifying the attachment point for the render buffer.
     /// * `rb_target` - specifying the binding point (target) for the render buffer.
-    pub fn framebuffer(
+    pub fn attach_framebuffer(
         &self,
         fb_target: FramebufferKind,
         attachment: Attachment,

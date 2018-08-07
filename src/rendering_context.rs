@@ -369,18 +369,6 @@ extern "C" {
     #[wasm_bindgen(method, js_name = checkFramebufferStatus)]
     pub fn check_framebuffer_status(this: &WebGL2RenderingContext, target: FramebufferKind);
 
-    /// The `WebGLRenderingContext.framebufferTexture2D()` method of the WebGL API attaches a texture to a
-    /// WebGLFramebuffer.
-    #[wasm_bindgen(method, js_name = framebufferTexture2D)]
-    pub fn framebuffer_texture_2d(
-        this: &WebGL2RenderingContext,
-        target: FramebufferKind,
-        attachment: Attachment,
-        textarget: TextureBindPoint,
-        texture: &WebGLTexture,
-        level: i32,
-    );
-
     // TODO getFramebufferAttachmentParameter()
     // later because of awful return structure
 
@@ -426,11 +414,6 @@ extern "C" {
         height: u32,
     );
 
-    /// The `WebGLRenderingContext.bindTexture()` method of the WebGL API binds a given WebGLTexture to a
-    /// target (binding point).
-    #[wasm_bindgen(method, js_name = bindTexture)]
-    pub fn bind_texture(this: &WebGL2RenderingContext, target: TextureKind, texture: &WebGLTexture);
-
     /// The `WebGLRenderingContext.copyTexImage2D()` method of the WebGL API copies pixels from the current
     /// WebGLFramebuffer into a 2D texture image.
     #[wasm_bindgen(method, js_name = copyTexImage2D)]
@@ -461,15 +444,6 @@ extern "C" {
         height: u32,
     );
 
-    /// The `WebGLRenderingContext.createTexture()` method of the WebGL API creates and initializes a WebGLTexture object.
-    #[wasm_bindgen(method, js_name = createTexture)]
-    pub fn create_texture(this: &WebGL2RenderingContext) -> WebGLTexture;
-
-    /// The `WebGLRenderingContext.deleteTexture()` method of the WebGL API deletes a given WebGLTexture object.
-    /// This method has no effect if the texture has already been deleted.
-    #[wasm_bindgen(method, js_name = deleteTexture)]
-    pub fn delete_texture(this: &WebGL2RenderingContext, texture: &WebGLTexture);
-
     /// The `WebGLRenderingContext.generateMipmap()` method of the WebGL API generates a set of mipmaps for a
     /// WebGLTexture object.
     ///
@@ -480,11 +454,6 @@ extern "C" {
     pub fn generate_mipmap(this: &WebGL2RenderingContext, target: TextureKind);
 
     //TODO getTexParameter
-
-    /// The `WebGLRenderingContext.isTexture()` method of the WebGL API returns true if the passed WebGLTexture
-    /// is valid and false otherwise.
-    #[wasm_bindgen(method, js_name = isTexture)]
-    pub fn is_texture(this: &WebGL2RenderingContext, texture: &WebGLTexture);
 
     /// The `WebGLRenderingContext.texImage2D()` method of the WebGL API specifies a two-dimensional texture image.
     /// FIXME type safety for format, polymorphism of original, srcdata type, webgl2 extensions
@@ -1005,21 +974,6 @@ extern "C" {
         dstY1: i32,
         mask: BufferBit,
         filter: TextureMagFilter,
-    );
-
-    /// The `WebGL2RenderingContext.framebufferTextureLayer()` method of the WebGL 2 API attaches a single layer
-    /// of a texture to a framebuffer.
-    ///
-    /// This method is similar to WebGLRenderingContext.framebufferTexture2D(), but only a given single layer of
-    /// the texture level is attached to the attachment point.
-    #[wasm_bindgen(method, js_name = framebufferTextureLayer)]
-    pub fn framebuffer_texture_layer(
-        this: &WebGL2RenderingContext,
-        target: FramebufferKind,
-        attachment: Attachment,
-        texture: &WebGLTexture,
-        level: i32,
-        layer: i32,
     );
 
     /// The `WebGL2RenderingContext.invalidateFramebuffer()` method of the WebGL 2 API invalidates the contents
@@ -1677,13 +1631,6 @@ extern "C" {
     pub fn power_preference(this: &WebGLContextAttributes) -> String;
 }
 */
-
-/// WebGLTexture
-#[derive(Clone, Copy)]
-#[wasm_bindgen]
-extern "C" {
-    pub type WebGLTexture;
-}
 
 /// WebGLProgram
 #[derive(Clone, Copy)]
