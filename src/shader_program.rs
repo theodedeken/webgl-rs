@@ -1,7 +1,9 @@
 //! WebGLProgram and WebGLShader and methods
-use glenum::ShaderKind;
+use glenum::{ProgramParameter, ShaderKind, ShaderParameter, TransformFeedbackBufferMode};
 use rendering_context::{WebGL2RenderingContext, WebGLUniformLocation};
 use wasm_bindgen::prelude::*;
+
+// TODO WebGLRenderingContext.getAttachedShaders()
 
 /// WebGLRSProgram
 
@@ -174,6 +176,60 @@ impl<'ctx> WebGLRSProgram<'ctx> {
             uniform_block_binding,
         );
     }
+
+    /// Indicates whether or not the program is flagged for deletion.
+    pub fn delete_status(&self) -> bool {
+        self.context
+            ._get_program_parameter_bool(&self.inner, ProgramParameter::DeleteStatus)
+    }
+
+    /// Indicates whether or not the last link operation was successful.
+    pub fn link_status(&self) -> bool {
+        self.context
+            ._get_program_parameter_bool(&self.inner, ProgramParameter::LinkStatus)
+    }
+
+    /// Indicates whether or not the last validation operation was successful.
+    pub fn validate_status(&self) -> bool {
+        self.context
+            ._get_program_parameter_bool(&self.inner, ProgramParameter::ValidateStatus)
+    }
+
+    /// Returns the number of attached shaders to a program.
+    pub fn attached_shaders(&self) -> i32 {
+        self.context
+            ._get_program_parameter_i32(&self.inner, ProgramParameter::AttachedShaders)
+    }
+
+    /// Returns the number of active attribute variables to a program.
+    pub fn active_attributes(&self) -> i32 {
+        self.context
+            ._get_program_parameter_i32(&self.inner, ProgramParameter::ActiveAttributes)
+    }
+
+    /// Returns the number of active uniform variables to a program.
+    pub fn active_uniforms(&self) -> i32 {
+        self.context
+            ._get_program_parameter_i32(&self.inner, ProgramParameter::ActiveUniforms)
+    }
+
+    /// Returns the buffer mode when transform feedback is active. May be `SeparateAttribs` or `InterleavedAttribs`.
+    pub fn transform_feedback_buffer_mode(&self) -> TransformFeedbackBufferMode {
+        self.context
+            ._get_program_parameter_enum(&self.inner, ProgramParameter::TransformFeedbackBufferMode)
+    }
+
+    /// Returns the number of varying variables to capture in transform feedback mode.
+    pub fn transform_feedback_varyings(&self) -> i32 {
+        self.context
+            ._get_program_parameter_i32(&self.inner, ProgramParameter::TransformFeedbackVaryings)
+    }
+
+    // Returns the number of uniform blocks containing active uniforms.
+    pub fn active_uniform_blocks(&self) -> i32 {
+        self.context
+            ._get_program_parameter_i32(&self.inner, ProgramParameter::ActiveUniformBlocks)
+    }
 }
 
 /// Bindings for WebGLProgram
@@ -299,6 +355,28 @@ extern "C" {
         uniform_block_index: u32,
         uniform_block_binding: u32,
     );
+
+    /// Binding for `WebGL2RenderingContext.getProgramParameter()` when return type is i32
+    #[wasm_bindgen(method, js_name = getProgramParameter)]
+    fn _get_program_parameter_i32(
+        this: &WebGL2RenderingContext,
+        program: &WebGLProgram,
+        pname: ProgramParameter,
+    ) -> i32;
+    /// Binding for `WebGL2RenderingContext.getProgramParameter()` when return type is bool
+    #[wasm_bindgen(method, js_name = getProgramParameter)]
+    fn _get_program_parameter_bool(
+        this: &WebGL2RenderingContext,
+        program: &WebGLProgram,
+        pname: ProgramParameter,
+    ) -> bool;
+    /// Binding for `WebGL2RenderingContext.getProgramParameter()` when return type is enum
+    #[wasm_bindgen(method, js_name = getProgramParameter)]
+    fn _get_program_parameter_enum(
+        this: &WebGL2RenderingContext,
+        program: &WebGLProgram,
+        pname: ProgramParameter,
+    ) -> TransformFeedbackBufferMode;
 }
 
 // WebGLRSShader
@@ -354,6 +432,24 @@ impl<'ctx> WebGLRSShader<'ctx> {
     pub fn set_shader_source(&self, source: &str) {
         self.context._shader_source(&self.inner, source);
     }
+
+    /// Returns a bool indicating whether or not the `WebGLRSShader` is flagged for deletion.
+    pub fn delete_status(&self) -> bool {
+        self.context
+            ._get_shader_parameter_bool(&self.inner, ShaderParameter::DeleteStatus)
+    }
+
+    /// Returns a bool indicating whether or not the last compilation was successful.
+    pub fn compile_status(&self) -> bool {
+        self.context
+            ._get_shader_parameter_bool(&self.inner, ShaderParameter::CompileStatus)
+    }
+
+    /// Returns a `ShaderKind` value indicating whether the shader is a vertex shader or fragment shader.
+    pub fn kind(&self) -> ShaderKind {
+        self.context
+            ._get_shader_parameter_enum(&self.inner, ShaderParameter::ShaderType)
+    }
 }
 
 /// Bindings for WebGLShader
@@ -389,6 +485,21 @@ extern "C" {
     /// Binding for `WebGLRenderingContext.shaderSource()`.
     #[wasm_bindgen(method, js_name = shaderSource)]
     fn _shader_source(this: &WebGL2RenderingContext, shader: &WebGLShader, source: &str);
+
+    /// Binding for `WebGLRenderingContext.getShaderParameter()` if return type is bool
+    #[wasm_bindgen(method, js_name = getShaderParameter)]
+    fn _get_shader_parameter_bool(
+        this: &WebGL2RenderingContext,
+        shader: &WebGLShader,
+        pname: ShaderParameter,
+    ) -> bool;
+    /// Binding for `WebGLRenderingContext.getShaderParameter()` if return type is enum
+    #[wasm_bindgen(method, js_name = getShaderParameter)]
+    fn _get_shader_parameter_enum(
+        this: &WebGL2RenderingContext,
+        shader: &WebGLShader,
+        pname: ShaderParameter,
+    ) -> ShaderKind;
 }
 
 /// WebGLActiveInfo

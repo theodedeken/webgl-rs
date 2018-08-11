@@ -492,22 +492,6 @@ extern "C" {
         param: i32,
     );
 
-    /// The `WebGLRenderingContext.getAttachedShaders()` method of the WebGL API returns a list of WebGLShader objects
-    /// attached to a WebGLProgram.
-    /* FIXME: this is not possible in wasm_bindgen atm
-    #[wasm_bindgen(method, js_name = getAttachedShaders)]
-    pub fn get_attached_shaders(
-        this: &WebGL2RenderingContext,
-        program: WebGLProgram,
-    ) -> Vec<WebGLShader>;
-    */
-
-    //TODO getProgramParameter
-
-
-
-    //TODO getShaderParameter
-
     /// The `WebGLRenderingContext.getShaderPrecisionFormat()` method of the WebGL API returns a new WebGLShaderPrecisionFormat
     /// object describing the range and precision for the specified shader numeric format.
     #[wasm_bindgen(method, js_name = getShaderPrecisionFormat)]
