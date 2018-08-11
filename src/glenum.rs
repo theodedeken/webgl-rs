@@ -1135,7 +1135,7 @@ pub enum GPUState {
 /// Constants passed to clientWaitSync
 #[wasm_bindgen]
 #[derive(Debug, Clone, Copy)]
-pub enum SyncStatus {
+pub enum WaitStatus {
     /// Indicates that the sync object was signaled when this method was called.
     AlreadySignaled = 0x911A,
     /// Indicates that the timeout time passed and that the sync object did not become signaled.
@@ -1146,7 +1146,24 @@ pub enum SyncStatus {
     WaitFailed = 0x911D,
 }
 
-/// Constant passed to bindTransformFeedback
+#[wasm_bindgen]
+#[derive(Debug, Clone, Copy)]
+pub enum SyncStatus {
+    Signaled = 0x9119,
+    Unsignaled = 0x9118,
+}
+
+/// Constants passed to getSyncParameter
+#[wasm_bindgen]
+#[derive(Debug, Clone, Copy)]
+pub enum SyncParameter {
+    Type = 0x9112,
+    Status = 0x9114,
+    Condition = 0x9113,
+    Flags = 0x9115,
+}
+
+/// Constants passed to bindTransformFeedback
 #[wasm_bindgen]
 #[derive(Debug, Clone, Copy)]
 pub enum TransformFeedback {

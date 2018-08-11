@@ -918,41 +918,6 @@ extern "C" {
         stencil: i32,
     );
 
-    /// The `WebGL2RenderingContext.fenceSync()` method of the WebGL 2 API creates a new WebGLSync object and inserts
-    /// it into the GL command stream.
-    #[wasm_bindgen(method, js_name = fenceSync)]
-    pub fn fence_sync(this: &WebGL2RenderingContext, conditions: GPUState, flags: u32)
-        -> WebGLSync;
-
-    /// The `WebGL2RenderingContext.isSync()` method of the WebGL 2 API returns true if the passed object is a valid
-    /// WebGLSync object.
-    #[wasm_bindgen(method, js_name = isSync)]
-    pub fn is_sync(this: &WebGL2RenderingContext, sync: &WebGLSync) -> bool;
-
-    /// The WebGL2RenderingContext.deleteSync() method of the WebGL 2 API deletes a given WebGLSync object.
-    #[wasm_bindgen(method, js_name = deleteSync)]
-    pub fn delete_sync(this: &WebGL2RenderingContext, sync: &WebGLSync);
-
-    /// The `WebGL2RenderingContext.clientWaitSync()` method of the WebGL 2 API blocks and waits for a WebGLSync object to
-    /// become signaled or a given timeout to be passed.
-    #[wasm_bindgen(method, js_name = clientWaitSync)]
-    pub fn client_wait_sync(
-        this: &WebGL2RenderingContext,
-        sync: &WebGLSync,
-        flags: u32,
-        timeout: i64,
-    ) -> SyncStatus;
-
-    /// The WebGL2RenderingContext.waitSync() method of the WebGL 2 API returns immediately, but waits on the GL server
-    /// until the given WebGLSync object is signaled.
-    ///
-    /// The method is a no-op in the absence of the possibility of synchronizing between multiple GL contexts.
-    /// FIXME: timeout must be gl.TIMEOUT_IGNORED.
-    #[wasm_bindgen(method, js_name = waitSync)]
-    pub fn wait_sync(this: &WebGL2RenderingContext, sync: &WebGLSync, flags: u32, timeout: i64);
-
-    //TODO: getSyncParameter
-
     /// The `WebGL2RenderingContext.createTransformFeedback()` method of the WebGL 2 API creates and initializes
     /// WebGLTransformFeedback objects.
     #[wasm_bindgen(method, js_name = createTransformFeedback)]
@@ -1073,13 +1038,6 @@ extern "C" {
     /// The number of bits of precision that can be represented. For integer formats this value is always 0.
     #[wasm_bindgen(method, getter)]
     pub fn precision(this: &WebGLShaderPrecisionFormat) -> u32;
-}
-
-/// WebGLSync
-#[derive(Clone, Copy)]
-#[wasm_bindgen]
-extern "C" {
-    pub type WebGLSync;
 }
 
 /// WebGLTransformFeedback
