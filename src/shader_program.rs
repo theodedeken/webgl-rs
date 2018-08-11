@@ -1,9 +1,17 @@
 //! WebGLProgram and WebGLShader and methods
 use glenum::{ProgramParameter, ShaderKind, ShaderParameter, TransformFeedbackBufferMode};
-use rendering_context::{WebGL2RenderingContext, WebGLUniformLocation};
+use rendering_context::WebGL2RenderingContext;
+use uniform_location::{WebGLRSUniformLocation, WebGLUniformLocation};
 use wasm_bindgen::prelude::*;
 
 // TODO WebGLRenderingContext.getAttachedShaders()
+// TODO WebGLRenderingContext.getUniform()
+// The `WebGLRenderingContext.getUniform()` method of the WebGL API returns the value of a uniform variable
+    // at a given location.
+    /* FIXME: this method can have a lot of different return types -> figure out what to do
+    #[wasm_bindgen(method, js_name = getUniform)]
+    pub fn get_uniform(this: &WebGL2RenderingContext, program: WebGLProgram, location: WebGLUniformLocation)
+    */
 
 /// WebGLRSProgram
 
@@ -121,8 +129,12 @@ impl<'ctx> WebGLRSProgram<'ctx> {
     /// * `name`- specifying the name of the uniform variable whose location is to be returned. The name can't
     ///         have any whitespace in it, and you can't use this function to get the location of any uniforms
     ///         starting with the reserved string "gl_", since those are internal to the WebGL layer.
-    pub fn uniform_location(&self, name: &str) -> WebGLUniformLocation {
-        self.context._get_uniform_location(&self.inner, name)
+    // FIXME: can be null
+    pub fn uniform_location(&self, name: &str) -> WebGLRSUniformLocation {
+        WebGLRSUniformLocation {
+            context: &self.context,
+            inner: self.context._get_uniform_location(&self.inner, name),
+        }
     }
 
     /// Returns the binding of color numbers to user-defined varying out variables.
