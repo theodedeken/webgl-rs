@@ -38,16 +38,6 @@ impl WebGL2RenderingContext {
     pub fn get_renderbuffer_format(&self, target: RenderbufferKind) -> RenderbufferFormat {
         self._get_renderbuffer_format(target, 0x8D44)
     }
-
-    /// Maps to `WebGL2RenderingContext.getQueryParameter()` when pname equals QUERY_RESULT_AVAILABLE
-    pub fn get_query_status(self, query: &WebGLQuery) -> bool {
-        self._get_query_status(query, QueryParameter::ResultAvailable)
-    }
-
-    /// Maps to `WebGL2RenderingContext.getQueryParameter()` when pname equals QUERY_RESULT
-    pub fn get_query_result(&self, query: &WebGLQuery) -> u32 {
-        self._get_query_result(query, QueryParameter::Result)
-    }
 }
 
 /// WebGL2RenderingContext
@@ -1237,53 +1227,6 @@ extern "C" {
         stencil: i32,
     );
 
-    /// The `WebGL2RenderingContext.createQuery()` method of the WebGL 2 API creates and initializes WebGLQuery objects,
-    /// which provide ways to asynchronously query for information.
-    #[wasm_bindgen(method, js_name = createQuery)]
-    pub fn create_query(this: &WebGL2RenderingContext) -> WebGLQuery;
-
-    /// The `WebGL2RenderingContext.deleteQuery()` method of the WebGL 2 API deletes a given WebGLQuery object.
-    #[wasm_bindgen(method, js_name = deleteQuery)]
-    pub fn delete_query(this: &WebGL2RenderingContext, query: &WebGLQuery);
-
-    /// The `WebGL2RenderingContext.isQuery()` method of the WebGL 2 API returns true if the passed object is a valid
-    /// WebGLQuery object.
-    #[wasm_bindgen(method, js_name = isQuery)]
-    pub fn is_query(this: &WebGL2RenderingContext, query: &WebGLQuery);
-
-    /// The `WebGL2RenderingContext.beginQuery()` method of the WebGL 2 API starts an asynchronous query. The target
-    /// parameter indicates which kind of query to begin.
-    #[wasm_bindgen(method, js_name = beginQuery)]
-    pub fn begin_query(this: &WebGL2RenderingContext, target: QueryTarget, query: &WebGLQuery);
-
-    /// The `WebGL2RenderingContext.endQuery()` method of the WebGL 2 API marks the end of a given query target.
-    #[wasm_bindgen(method, js_name = endQuery)]
-    pub fn end_query(this: &WebGL2RenderingContext, target: QueryTarget);
-
-    /// The `WebGL2RenderingContext.getQuery()` method of the WebGL 2 API returns the currently active WebGLQuery for the
-    /// target, or null.
-    #[wasm_bindgen(method, js_name = getQuery)]
-    pub fn get_query(
-        this: &WebGL2RenderingContext,
-        target: QueryTarget,
-        pname: Query,
-    ) -> WebGLQuery;
-
-    /// The `WebGL2RenderingContext.getQueryParameter()` method of the WebGL 2 API returns parameter information
-    /// of a WebGLQuery object
-    #[wasm_bindgen(method, js_name = getQueryParameter)]
-    fn _get_query_status(
-        this: &WebGL2RenderingContext,
-        query: &WebGLQuery,
-        pname: QueryParameter,
-    ) -> bool;
-    #[wasm_bindgen(method, js_name = getQueryParameter)]
-    fn _get_query_result(
-        this: &WebGL2RenderingContext,
-        query: &WebGLQuery,
-        pname: QueryParameter,
-    ) -> u32;
-
     /// The `WebGL2RenderingContext.createSampler()` method of the WebGL 2 API creates and initializes
     /// WebGLSampler objects.
     #[wasm_bindgen(method, js_name = createSampler)]
@@ -1401,6 +1344,11 @@ extern "C" {
     #[wasm_bindgen(method, js_name = resumeTransformFeedback)]
     pub fn resume_transform_feedback(this: &WebGL2RenderingContext);
 
+    /// The `WebGL2RenderingContext.endQuery()` method of the WebGL 2 API marks the end of a given
+    /// query target.
+    #[wasm_bindgen(method, js_name = endQuery)]
+    pub fn end_query(this: &WebGL2RenderingContext, target: QueryTarget);
+
 // The `WebGL2RenderingContext.getUniformIndices()` method of the WebGL 2 API retrieves the indices of a number of uniforms
     // within a WebGLProgram.
     /* FIXME: vec<string> not yet supported
@@ -1463,13 +1411,6 @@ extern "C" {
 #[wasm_bindgen]
 extern "C" {
     pub type WebGLUniformLocation;
-}
-
-/// WebGLQuery
-#[derive(Clone, Copy)]
-#[wasm_bindgen]
-extern "C" {
-    pub type WebGLQuery;
 }
 
 /// WebGLSampler
