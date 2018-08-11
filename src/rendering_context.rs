@@ -492,60 +492,6 @@ extern "C" {
         param: i32,
     );
 
-    /// The `WebGLRenderingContext.attachShader()`  method of the WebGL API attaches either a fragment or
-    /// vertex WebGLShader to a WebGLProgram.
-    #[wasm_bindgen(method, js_name = attachShader)]
-    pub fn attach_shader(
-        this: &WebGL2RenderingContext,
-        program: &WebGLProgram,
-        shader: &WebGLShader,
-    );
-
-    /// The `WebGLRenderingContext.bindAttribLocation()` method of the WebGL API binds a generic vertex index
-    /// to an attribute variable.
-    #[wasm_bindgen(method, js_name = bindAttribLocation)]
-    pub fn bind_attrib_location(
-        this: &WebGL2RenderingContext,
-        program: &WebGLProgram,
-        index: u32,
-        name: &str,
-    );
-
-    /// The `WebGLRenderingContext.compileShader()` method of the WebGL API compiles a GLSL shader into binary
-    /// data so that it can be used by a WebGLProgram.
-    #[wasm_bindgen(method, js_name = compileShader)]
-    pub fn compile_shader(this: &WebGL2RenderingContext, shader: &WebGLShader);
-
-    /// The `WebGLRenderingContext.createProgram()` method of the WebGL API creates and initializes a WebGLProgram object.
-    #[wasm_bindgen(method, js_name = createProgram)]
-    pub fn create_program(this: &WebGL2RenderingContext) -> WebGLProgram;
-
-    /// The `WebGLRenderingContext.createShader()` method of the WebGL API creates a WebGLShader that can then be configured
-    /// further using `WebGLRenderingContext.shaderSource()` and `WebGLRenderingContext.compileShader()`.
-    #[wasm_bindgen(method, js_name = createShader)]
-    pub fn create_shader(this: &WebGL2RenderingContext, kind: ShaderKind) -> WebGLShader;
-
-    /// The `WebGLRenderingContext.deleteProgram()` method of the WebGL API deletes a given WebGLProgram object. This method
-    /// has no effect if the program has already been deleted.
-    #[wasm_bindgen(method, js_name = deleteProgram)]
-    pub fn delete_program(this: &WebGL2RenderingContext, program: &WebGLProgram);
-
-    /// The `WebGLRenderingContext.deleteShader()` method of the WebGL API marks a given WebGLShader object for deletion.
-    /// It will then be deleted whenever the shader is no longer in use. This method has no effect if the shader
-    /// has already been deleted, and the WebGLShader is automatically marked for deletion when it is destroyed by the
-    /// garbage collector.
-    #[wasm_bindgen(method, js_name = deleteShader)]
-    pub fn delete_shader(this: &WebGL2RenderingContext, shader: &WebGLShader);
-
-    /// The `WebGLRenderingContext.detachShader()` method of the WebGL API detaches a previously attached WebGLShader
-    /// from a WebGLProgram.
-    #[wasm_bindgen(method, js_name = detachShader)]
-    pub fn detach_shader(
-        this: &WebGL2RenderingContext,
-        program: &WebGLProgram,
-        shader: &WebGLShader,
-    );
-
     /// The `WebGLRenderingContext.getAttachedShaders()` method of the WebGL API returns a list of WebGLShader objects
     /// attached to a WebGLProgram.
     /* FIXME: this is not possible in wasm_bindgen atm
@@ -558,10 +504,7 @@ extern "C" {
 
     //TODO getProgramParameter
 
-    /// The `WebGLRenderingContext.getProgramInfoLog` returns the information log for the specified WebGLProgram object.
-    /// It contains errors that occurred during failed linking or validation of WebGLProgram objects.
-    #[wasm_bindgen(method, js_name = getProgramInfoLog)]
-    pub fn get_program_info_log(this: &WebGL2RenderingContext, program: &WebGLProgram) -> String;
+
 
     //TODO getShaderParameter
 
@@ -574,40 +517,6 @@ extern "C" {
         precision_type: ShaderPrecision,
     ) -> WebGLShaderPrecisionFormat;
 
-    /// The `WebGLRenderingContext.getShaderInfoLog` returns the information log for the specified WebGLShader object. It contains
-    /// warnings, debugging and compile information.
-    #[wasm_bindgen(method, js_name = getShaderInfoLog)]
-    pub fn get_shader_info_log(this: &WebGL2RenderingContext, shader: &WebGLShader) -> String;
-
-    /// The `WebGLRenderingContext.getShaderSource()` method of the WebGL API returns the source code of a WebGLShader as a DOMString.
-    #[wasm_bindgen(method, js_name = getShaderSource)]
-    pub fn get_shader_source(this: &WebGL2RenderingContext, shader: &WebGLShader) -> String;
-
-    /// The `WebGLRenderingContext.isProgram()` method of the WebGL API returns true if the passed WebGLProgram is valid, false otherwise.
-    #[wasm_bindgen(method, js_name = isProgram)]
-    pub fn is_program(this: &WebGL2RenderingContext, program: &WebGLProgram) -> bool;
-
-    /// The `WebGLRenderingContext.isShader()` method of the WebGL API returns true if the passed WebGLShader is valid, false otherwise.
-    #[wasm_bindgen(method, js_name = isShader)]
-    pub fn is_shader(this: &WebGL2RenderingContext, shader: &WebGLShader) -> bool;
-
-    /// The `WebGLRenderingContext.linkProgram()` method of the WebGL API links a given WebGLProgram to the attached vertex and fragment shaders.
-    #[wasm_bindgen(method, js_name = linkProgram)]
-    pub fn link_program(this: &WebGL2RenderingContext, program: &WebGLProgram);
-
-    /// The `WebGLRenderingContext.shaderSource()` method of the WebGL API sets the source code of a WebGLShader.
-    #[wasm_bindgen(method, js_name = shaderSource)]
-    pub fn shader_source(this: &WebGL2RenderingContext, shader: &WebGLShader, source: &str);
-
-    /// The `WebGLRenderingContext.useProgram()` method of the WebGL API sets the specified WebGLProgram as part of the current rendering state.
-    #[wasm_bindgen(method, js_name = useProgram)]
-    pub fn use_program(this: &WebGL2RenderingContext, program: &WebGLProgram);
-
-    /// The `WebGLRenderingContext.validateProgram()` method of the WebGL API validates a WebGLProgram.
-    /// It checks if it is successfully linked and if it can be used in the current WebGL state.
-    #[wasm_bindgen(method, js_name = validateProgram)]
-    pub fn validate_program(this: &WebGL2RenderingContext, program: &WebGLProgram);
-
     /// The `WebGLRenderingContext.disableVertexAttribArray()` method of the WebGL API turns the generic
     /// vertex attribute array off at a given index position.
     #[wasm_bindgen(method, js_name = disableVertexAttribArray)]
@@ -618,52 +527,12 @@ extern "C" {
     #[wasm_bindgen(method, js_name = enableVertexAttribArray)]
     pub fn enable_vertex_attrib_array(this: &WebGL2RenderingContext, index: u32);
 
-    /// The `WebGLRenderingContext.getActiveAttrib()` method of the WebGL API returns a WebGLActiveInfo object
-    /// containing size, type, and name of a vertex attribute. It is generally used when querying unknown uniforms
-    /// either for debugging or generic library creation.
-    #[wasm_bindgen(method, js_name = getActiveAttrib)]
-    pub fn get_active_attrib(
-        this: &WebGL2RenderingContext,
-        program: &WebGLProgram,
-        index: u32,
-    ) -> WebGLActiveInfo;
-
-    /// The `WebGLRenderingContext.getActiveUniform()` method of the WebGL API returns a WebGLActiveInfo object
-    /// containing size, type, and name of a uniform attribute. It is generally used when querying unknown uniforms
-    /// either for debugging or generic library creation.
-    #[wasm_bindgen(method, js_name = getActiveUniform)]
-    pub fn get_active_uniform(
-        this: &WebGL2RenderingContext,
-        program: &WebGLProgram,
-        index: u32,
-    ) -> WebGLActiveInfo;
-
-    /// The `WebGLRenderingContext.getAttribLocation()` method of the WebGL API returns the location of an attribute
-    /// variable in a given WebGLProgram.
-    #[wasm_bindgen(method, js_name = getAttribLocation)]
-    pub fn get_attrib_location(
-        this: &WebGL2RenderingContext,
-        program: &WebGLProgram,
-        name: &str,
-    ) -> u32;
-
     /// The `WebGLRenderingContext.getUniform()` method of the WebGL API returns the value of a uniform variable
     /// at a given location.
     /* FIXME: this method can have a lot of different return types -> figure out what to do
     #[wasm_bindgen(method, js_name = getUniform)]
     pub fn get_uniform(this: &WebGL2RenderingContext, program: WebGLProgram, location: WebGLUniformLocation)
     */
-
-    /// Part of the WebGL API, the `WebGLRenderingContext method getUniformLocation()` returns the location of
-    /// a specific uniform variable which is part of a given WebGLProgram. The uniform variable is returned as
-    /// a WebGLUniformLocation object, which is an opaque identifier used to specify where in the GPU's memory
-    /// that uniform variable is located.
-    #[wasm_bindgen(method, js_name = getUniformLocation)]
-    pub fn get_uniform_location(
-        this: &WebGL2RenderingContext,
-        program: &WebGLProgram,
-        name: &str,
-    ) -> WebGLUniformLocation;
 
     /// The `WebGLRenderingContext.getVertexAttrib()` method of the WebGL API returns information about a vertex
     /// attribute at a given position.
@@ -1098,15 +967,6 @@ extern "C" {
         width: u32,
         height: u32,
     );
-
-    /// The `WebGL2RenderingContext.getFragDataLocation()` method of the WebGL 2 API returns the binding of color numbers
-    /// to user-defined varying out variables.
-    #[wasm_bindgen(method, js_name = getFragDataLocation)]
-    pub fn get_frag_data_location(
-        this: &WebGL2RenderingContext,
-        program: &WebGLProgram,
-        name: &str,
-    ) -> i32;
 
     /// The `WebGL2RenderingContext.uniform[1234][uif][v]()` methods of the WebGL API specify values of uniform variables.
     #[wasm_bindgen(method, js_name = uniform1ui)]
@@ -1549,15 +1409,6 @@ extern "C" {
         buffer_mode: TransformFeedbackBufferMode,
     );*/
 
-    /// The `WebGL2RenderingContext.getTransformFeedbackVarying()` method of the WebGL 2 API returns information about varying
-    /// variables from WebGLTransformFeedback buffers.
-    #[wasm_bindgen(method, js_name = getTransfromFeedbackVarying)]
-    pub fn get_transform_feedback_varying(
-        this: &WebGL2RenderingContext,
-        program: &WebGLProgram,
-        index: u32,
-    ) -> WebGLActiveInfo;
-
     /// The WebGL2RenderingContext.pauseTransformFeedback() method of the WebGL 2 API pauses a transform feedback operation.
     #[wasm_bindgen(method, js_name = pauseTransformFeedback)]
     pub fn pause_transform_feedback(this: &WebGL2RenderingContext);
@@ -1566,44 +1417,16 @@ extern "C" {
     #[wasm_bindgen(method, js_name = resumeTransformFeedback)]
     pub fn resume_transform_feedback(this: &WebGL2RenderingContext);
 
-    /// The `WebGL2RenderingContext.getUniformIndices()` method of the WebGL 2 API retrieves the indices of a number of uniforms
-    /// within a WebGLProgram.
+// The `WebGL2RenderingContext.getUniformIndices()` method of the WebGL 2 API retrieves the indices of a number of uniforms
+    // within a WebGLProgram.
     /* FIXME: vec<string> not yet supported
     #[wasm_bindgen(method, js_name = getUniformIndices)]
     pub fn get_uniform_indices(this: &WebGL2RenderingContext, program: WebGLProgram, uniformNames: Vec<String>);
     */
 
-    // TODO getActiveUniforms
+// TODO getActiveUniforms
 
-    /// The `WebGL2RenderingContext.getUniformBlockIndex()` method of the WebGL 2 API retrieves the index of a uniform block
-    /// within a WebGLProgram.
-    #[wasm_bindgen(method, js_name = getUniformBlockIndex)]
-    pub fn get_uniform_block_index(
-        this: &WebGL2RenderingContext,
-        program: &WebGLProgram,
-        uniform_block_name: &str,
-    ) -> u32;
-
-    // TODO getAcitveUniformBlockParameter
-
-    /// The `WebGL2RenderingContext.getActiveUniformBlockName()` method of the WebGL 2 API retrieves the name of the active
-    /// uniform block at a given index within a WebGLProgram.
-    #[wasm_bindgen(method, js_name = getActiveUniformBlockName)]
-    pub fn get_active_uniform_block_name(
-        this: &WebGL2RenderingContext,
-        program: &WebGLProgram,
-        uniform_block_index: u32,
-    ) -> String;
-
-    /// The `WebGL2RenderingContext.uniformBlockBinding()` method of the WebGL 2 API assigns binding points for active
-    /// uniform blocks.
-    #[wasm_bindgen(method, js_name = uniformBlockBinding)]
-    pub fn uniform_block_binding(
-        this: &WebGL2RenderingContext,
-        program: &WebGLProgram,
-        uniform_block_index: u32,
-        uniform_block_binding: u32,
-    );
+// TODO getAcitveUniformBlockParameter
 
 }
 
@@ -1632,20 +1455,6 @@ extern "C" {
 }
 */
 
-/// WebGLProgram
-#[derive(Clone, Copy)]
-#[wasm_bindgen]
-extern "C" {
-    pub type WebGLProgram;
-}
-
-/// WebGLShader
-#[derive(Clone, Copy)]
-#[wasm_bindgen]
-extern "C" {
-    pub type WebGLShader;
-}
-
 /// WebGLShaderPrecisionFormat;
 #[derive(Clone, Copy)]
 #[wasm_bindgen]
@@ -1663,25 +1472,6 @@ extern "C" {
     /// The number of bits of precision that can be represented. For integer formats this value is always 0.
     #[wasm_bindgen(method, getter)]
     pub fn precision(this: &WebGLShaderPrecisionFormat) -> u32;
-}
-
-/// WebGLActiveInfo
-#[derive(Clone, Copy)]
-#[wasm_bindgen]
-extern "C" {
-    pub type WebGLActiveInfo;
-
-    /// The read-only name of the requested variable.
-    #[wasm_bindgen(method, getter)]
-    pub fn name(this: &WebGLActiveInfo) -> String;
-
-    /// The read-only size of the requested variable.
-    #[wasm_bindgen(method, getter)]
-    pub fn size(this: &WebGLActiveInfo) -> u32;
-
-    /// The read-only type of the requested variable.
-    #[wasm_bindgen(method, getter = type)]
-    pub fn data_type(this: &WebGLActiveInfo) -> u32;
 }
 
 /// WebGLUniformLocation
