@@ -1028,6 +1028,7 @@ pub enum RenderbufferParameter {
     StencilSize = 0x8D55,
     /// Returns a GLint indicating the number of samples of the image of the currently bound renderbuffer.
     Samples = 0x8CAB,
+    Format = 0x8D44,
 }
 
 // TODO extend with https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/renderbufferStorage

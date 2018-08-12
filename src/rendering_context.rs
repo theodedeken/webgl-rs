@@ -24,19 +24,100 @@ impl WebGL2RenderingContext {
         document.get_element_by_id(id).get_context("webgl2")
     }
 
-    /// Maps to `get_buffer_parameter` when return type is `i32`
-    pub fn get_buffer_size(&self, target: BufferKind) -> i32 {
-        self._get_buffer_size(target, BufferParameter::Size)
+    /// Returns the size of the currently bound buffer in bytes
+    ///
+    /// # Arguments
+    /// * `target` - specifying the target buffer object.
+    pub fn buffer_size(&self, target: BufferKind) -> i32 {
+        self._get_buffer_parameter_i32(target, BufferParameter::Size)
     }
 
-    /// Maps to `get_buffer_parameter` when return type is `DataHint`
-    pub fn get_buffer_usage(&self, target: BufferKind) -> DataHint {
-        self._get_buffer_usage(target, BufferParameter::Usage)
+    /// Returns the usage of the currently bound buffer
+    ///     
+    /// # Arguments
+    /// * `target` - specifying the target buffer object.
+    pub fn buffer_usage(&self, target: BufferKind) -> DataHint {
+        self._get_buffer_parameter_enum(target, BufferParameter::Usage)
     }
 
-    /// Maps to `get_renderbuffer_parameter` when the parameter is format. This way the constant attribute pname does not need to be given.
-    pub fn get_renderbuffer_format(&self, target: RenderbufferKind) -> RenderbufferFormat {
-        self._get_renderbuffer_format(target, 0x8D44)
+    /// Returns the internal format of the currently bound renderbuffer
+    ///
+    /// # Arguments
+    /// * `target` - specifying the target renderbuffer object.
+    pub fn renderbuffer_internal_format(&self, target: RenderbufferKind) -> RenderbufferFormat {
+        self._get_renderbuffer_parameter_enum(target, RenderbufferParameter::Format)
+    }
+
+    /// Returns the width of the image of the currently bound renderbuffer.
+    ///
+    /// # Arguments
+    /// * `target` - specifying the target renderbuffer object.
+    pub fn renderbuffer_width(&self, target: RenderbufferKind) -> i32 {
+        self._get_renderbuffer_parameter_i32(target, RenderbufferParameter::Width)
+    }
+
+    /// Returns the height of the image of the currently bound renderbuffer.
+    ///
+    /// # Arguments
+    /// * `target` - specifying the target renderbuffer object.
+    pub fn renderbuffer_height(&self, target: RenderbufferKind) -> i32 {
+        self._get_renderbuffer_parameter_i32(target, RenderbufferParameter::Height)
+    }
+
+    /// Returns the resolution size (in bits) for the green color.
+    ///
+    /// # Arguments
+    /// * `target` - specifying the target renderbuffer object.
+    pub fn renderbuffer_green_size(&self, target: RenderbufferKind) -> i32 {
+        self._get_renderbuffer_parameter_i32(target, RenderbufferParameter::GreenSize)
+    }
+
+    /// Returns the resolution size (in bits) for the blue color.
+    ///
+    /// # Arguments
+    /// * `target` - specifying the target renderbuffer object.
+    pub fn renderbuffer_blue_size(&self, target: RenderbufferKind) -> i32 {
+        self._get_renderbuffer_parameter_i32(target, RenderbufferParameter::BlueSize)
+    }
+
+    /// Returns the resolution size (in bits) for the red color.
+    ///
+    /// # Arguments
+    /// * `target` - specifying the target renderbuffer object.
+    pub fn renderbuffer_red_size(&self, target: RenderbufferKind) -> i32 {
+        self._get_renderbuffer_parameter_i32(target, RenderbufferParameter::RedSize)
+    }
+
+    /// Returns the resolution size (in bits) for the alpha component.
+    ///
+    /// # Arguments
+    /// * `target` - specifying the target renderbuffer object.
+    pub fn renderbuffer_alpha_size(&self, target: RenderbufferKind) -> i32 {
+        self._get_renderbuffer_parameter_i32(target, RenderbufferParameter::AlphaSize)
+    }
+
+    /// Returns the resolution size (in bits) for the depth component.
+    ///
+    /// # Arguments
+    /// * `target` - specifying the target renderbuffer object.
+    pub fn renderbuffer_depth_size(&self, target: RenderbufferKind) -> i32 {
+        self._get_renderbuffer_parameter_i32(target, RenderbufferParameter::DepthSize)
+    }
+
+    /// Returns the resolution size (in bits) for the stencil component.
+    ///
+    /// # Arguments
+    /// * `target` - specifying the target renderbuffer object.
+    pub fn renderbuffer_stencil_size(&self, target: RenderbufferKind) -> i32 {
+        self._get_renderbuffer_parameter_i32(target, RenderbufferParameter::StencilSize)
+    }
+
+    /// Returns the number of samples of the image of the currently bound renderbuffer.
+    ///
+    /// # Arguments
+    /// * `target` - specifying the target renderbuffer object.
+    pub fn renderbuffer_samples(&self, target: RenderbufferKind) -> i32 {
+        self._get_renderbuffer_parameter_i32(target, RenderbufferParameter::Samples)
     }
 }
 
@@ -340,15 +421,16 @@ extern "C" {
         length: u32,
     );
 
-    /// The `WebGLRenderingContext.getBufferParameter()` method of the WebGL API returns information about the buffer.
+    /// Binding for `WebGLRenderingContext.getBufferParameter()` when return type is `i32`
     #[wasm_bindgen(method, js_name = getBufferParameter)]
-    fn _get_buffer_size(
+    fn _get_buffer_parameter_i32(
         this: &WebGL2RenderingContext,
         target: BufferKind,
         pname: BufferParameter,
     ) -> i32;
+    /// Binding for `WebGLRenderingContext.getBufferParameter()` when return type is `enum`
     #[wasm_bindgen(method, js_name = getBufferParameter)]
-    fn _get_buffer_usage(
+    fn _get_buffer_parameter_enum(
         this: &WebGL2RenderingContext,
         target: BufferKind,
         pname: BufferParameter,
@@ -378,19 +460,19 @@ extern "C" {
         dstOffset: i32,
     );
 
-    /// The `WebGLRenderingContext.getRenderbufferParameter()` method of the WebGL API returns information
-    /// about the renderbuffer.
+    /// Binding for `WebGLRenderingContext.getRenderbufferParameter()` when return type is `i32`
     #[wasm_bindgen(method, js_name = getRenderbufferParameter)]
-    pub fn get_renderbuffer_parameter(
+    fn _get_renderbuffer_parameter_i32(
         this: &WebGL2RenderingContext,
         target: RenderbufferKind,
         pname: RenderbufferParameter,
     ) -> i32;
+    /// Binding for `WebGLRenderingContext.getRenderbufferParameter()` when return type is `i32`
     #[wasm_bindgen(method, js_name = getRenderbufferParameter)]
-    fn _get_renderbuffer_format(
+    fn _get_renderbuffer_parameter_enum(
         this: &WebGL2RenderingContext,
         target: RenderbufferKind,
-        pname: i32,
+        pname: RenderbufferParameter,
     ) -> RenderbufferFormat;
 
     /// The `WebGLRenderingContext.renderbufferStorage()` method of the WebGL API creates and initializes
