@@ -3,7 +3,6 @@
 extern crate wasm_bindgen;
 
 //TODO: arraybufferview as enum and impl method to map to different functions
-//TODO: all pub types in function to references
 //TODO: possible solution of different getParameter methods is to add accessors on different types
 //TODO: safety with methods that can throw
 //TODO: JsString?

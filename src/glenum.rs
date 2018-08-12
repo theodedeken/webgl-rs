@@ -644,7 +644,6 @@ pub enum Texture3DKind {
 /// WebGLRenderingContext.texParameter[fi]() "pname" parameter
 #[wasm_bindgen]
 #[derive(Debug, Clone, Copy)]
-//TODO extend with webgl2 constants
 pub enum TextureParameter {
     ///
     MagFilter = 0x2800,
