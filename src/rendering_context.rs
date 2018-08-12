@@ -918,36 +918,6 @@ extern "C" {
         stencil: i32,
     );
 
-    /// The `WebGL2RenderingContext.createTransformFeedback()` method of the WebGL 2 API creates and initializes
-    /// WebGLTransformFeedback objects.
-    #[wasm_bindgen(method, js_name = createTransformFeedback)]
-    pub fn create_transform_feedback(this: &WebGL2RenderingContext) -> WebGLTransformFeedback;
-
-    /// The `WebGL2RenderingContext.deleteTransformFeedback()` method of the WebGL 2 API deletes a given WebGLTransformFeedback
-    /// object.
-    #[wasm_bindgen(method, js_name = deleteTransformFeedback)]
-    pub fn delete_transform_feedback(
-        this: &WebGL2RenderingContext,
-        transform_feedback: &WebGLTransformFeedback,
-    );
-
-    /// The `WebGL2RenderingContext.isTransformFeedback()` method of the WebGL 2 API returns true if the passed object is a
-    /// valid WebGLTransformFeedback object.
-    #[wasm_bindgen(method, js_name = isTransformFeedback)]
-    pub fn is_transform_feedback(
-        this: &WebGL2RenderingContext,
-        transform_feedback: &WebGLTransformFeedback,
-    ) -> bool;
-
-    /// The `WebGL2RenderingContext.bindTransformFeedback()` method of the WebGL 2 API binds a passed WebGLTransformFeedback
-    /// object to the current GL state.
-    #[wasm_bindgen(method, js_name = bindTransformFeedback)]
-    pub fn bind_transform_feedback(
-        this: &WebGL2RenderingContext,
-        target: TransformFeedback,
-        transform_feedback: &WebGLTransformFeedback,
-    );
-
     /// The WebGL2RenderingContext.beginTransformFeedback() method of the WebGL 2 API starts a transform feedback operation.
     #[wasm_bindgen(method, js_name = beginTransformFeedback)]
     pub fn begin_transform_feedback(
@@ -1038,11 +1008,4 @@ extern "C" {
     /// The number of bits of precision that can be represented. For integer formats this value is always 0.
     #[wasm_bindgen(method, getter)]
     pub fn precision(this: &WebGLShaderPrecisionFormat) -> u32;
-}
-
-/// WebGLTransformFeedback
-#[derive(Clone, Copy)]
-#[wasm_bindgen]
-extern "C" {
-    pub type WebGLTransformFeedback;
 }
