@@ -647,14 +647,31 @@ pub enum Texture3DKind {
 //TODO extend with webgl2 constants
 pub enum TextureParameter {
     ///
-    TextureMagFilter = 0x2800,
+    MagFilter = 0x2800,
     ///
-    TextureMinFilter = 0x2801,
+    MinFilter = 0x2801,
     ///
-    TextureWrapS = 0x2802,
+    WrapS = 0x2802,
     ///
-    TextureWrapT = 0x2803,
-    //BorderColor = 0x1004,
+    WrapT = 0x2803,
+    /// Texture mipmap level
+    BaseLevel = 0x813C,
+    /// Comparison function
+    CompareFunc = 0x884D,
+    /// Texture comparison mode
+    CompareMode = 0x884C,
+    /// Immutability of the texture format and size
+    ImmutableFormat = 0x912F,
+    ///
+    ImmutableLevels = 0x82DF,
+    /// Maximum texture mipmap array level
+    MaxLevel = 0x813D,
+    /// Texture maximum level-of-detail value
+    MaxLod = 0x813B,
+    /// Texture minimum level-of-detail value
+    MinLod = 0x813A,
+    /// gl.TEXTURE_WRAP_R Wrapping function for texture coordinate r
+    WrapR = 0x8072,
 }
 
 /// WebGLRenderingContext.texImage2D() "target" parameter
@@ -1199,4 +1216,11 @@ pub enum BufferBase {
     TransformFeedbackBuffer = 0x8C8E,
     /// Buffer used for storing uniform blocks.
     UniformBuffer = 0x8A11,
+}
+
+#[wasm_bindgen]
+#[derive(Debug, Clone, Copy)]
+pub enum CompareMode {
+    None = 0,
+    CompareRefToTexture = 0x884E,
 }

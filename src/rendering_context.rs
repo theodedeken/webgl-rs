@@ -119,6 +119,110 @@ impl WebGL2RenderingContext {
     pub fn renderbuffer_samples(&self, target: RenderbufferKind) -> i32 {
         self._get_renderbuffer_parameter_i32(target, RenderbufferParameter::Samples)
     }
+
+    /// Returns the texture magnification filter
+    ///
+    /// # Arguments
+    /// * `target` - specifying the binding point (target).
+    pub fn texture_mag_filter(&self, target: TextureKind) -> TextureMagFilter {
+        self._get_tex_parameter_enum1(target, TextureParameter::MagFilter)
+    }
+
+    /// Returns the texture minification filter
+    ///
+    /// # Arguments
+    /// * `target` - specifying the binding point (target).
+    pub fn texture_min_filter(&self, target: TextureKind) -> TextureMinFilter {
+        self._get_tex_parameter_enum2(target, TextureParameter::MinFilter)
+    }
+
+    /// Returns the wrapping function for texture coordinate s
+    ///
+    /// # Arguments
+    /// * `target` - specifying the binding point (target).
+    pub fn texture_wrap_s(&self, target: TextureKind) -> TextureWrap {
+        self._get_tex_parameter_enum3(target, TextureParameter::WrapS)
+    }
+
+    /// Returns the wrapping function for texture coordinate t
+    ///
+    /// # Arguments
+    /// * `target` - specifying the binding point (target).
+    pub fn texture_wrap_t(&self, target: TextureKind) -> TextureWrap {
+        self._get_tex_parameter_enum3(target, TextureParameter::WrapS)
+    }
+
+    /// Returns the texture mipmap level
+    ///
+    /// # Arguments
+    /// * `target` - specifying the binding point (target).
+    pub fn texture_base_level(&self, target: TextureKind) -> i32 {
+        self._get_tex_parameter_i32(target, TextureParameter::BaseLevel)
+    }
+
+    /// Returns the texture comparison function
+    ///
+    /// # Arguments
+    /// * `target` - specifying the binding point (target).
+    pub fn texture_compare_func(&self, target: TextureKind) -> DepthTest {
+        self._get_tex_parameter_enum4(target, TextureParameter::CompareFunc)
+    }
+
+    /// Returns the texture comparison mode
+    ///
+    /// # Arguments
+    /// * `target` - specifying the binding point (target).
+    pub fn texture_compare_mode(&self, target: TextureKind) -> CompareMode {
+        self._get_tex_parameter_enum5(target, TextureParameter::CompareMode)
+    }
+
+    /// Returns whether the texture format and size is immutable
+    ///
+    /// # Arguments
+    /// * `target` - specifying the binding point (target).
+    pub fn texture_immutable_format(&self, target: TextureKind) -> bool {
+        self._get_tex_parameter_bool(target, TextureParameter::ImmutableFormat)
+    }
+
+    /// Returns the immutable levels for a texture
+    ///
+    /// # Arguments
+    /// * `target` - specifying the binding point (target).
+    pub fn texture_immutable_levels(&self, target: TextureKind) -> u32 {
+        self._get_tex_parameter_u32(target, TextureParameter::ImmutableLevels)
+    }
+
+    /// Returns the maximum texture mipmap array level
+    ///
+    /// # Arguments
+    /// * `target` - specifying the binding point (target).
+    pub fn texture_max_level(&self, target: TextureKind) -> i32 {
+        self._get_tex_parameter_i32(target, TextureParameter::MaxLevel)
+    }
+
+    /// Returns the texture maximum level-of-detail value
+    ///
+    /// # Arguments
+    /// * `target` - specifying the binding point (target).
+    pub fn texture_max_lod(&self, target: TextureKind) -> f32 {
+        self._get_tex_parameter_f32(target, TextureParameter::MaxLod)
+    }
+
+    /// Returns the texture minimum level-of-detail value
+    ///
+    /// # Arguments
+    /// * `target` - specifying the binding point (target).
+    pub fn texture_min_lod(&self, target: TextureKind) -> f32 {
+        self._get_tex_parameter_f32(target, TextureParameter::MinLod)
+    }
+
+    /// Returns the wrapping function for texture coordinate r
+    ///
+    /// # Arguments
+    /// * `target` - specifying the binding point (target).
+    pub fn texture_wrap_r(&self, target: TextureKind) -> TextureWrap {
+        self._get_tex_parameter_enum3(target, TextureParameter::WrapS)
+    }
 }
 
 /// WebGL2RenderingContext
@@ -439,7 +543,8 @@ extern "C" {
     /// The `WebGLRenderingContext.checkFramebufferStatus()` method of the WebGL API returns the completeness
     /// status of the WebGLFramebuffer object.
     #[wasm_bindgen(method, js_name = checkFramebufferStatus)]
-    pub fn check_framebuffer_status(this: &WebGL2RenderingContext, target: FramebufferKind);
+    pub fn check_framebuffer_status(this: &WebGL2RenderingContext, target: FramebufferKind)
+        -> bool;
 
     // TODO getFramebufferAttachmentParameter()
     // later because of awful return structure
@@ -525,7 +630,69 @@ extern "C" {
     #[wasm_bindgen(method, js_name = generateMipmap)]
     pub fn generate_mipmap(this: &WebGL2RenderingContext, target: TextureKind);
 
-    //TODO getTexParameter
+    /// Binding for `WebGLRenderingContext.getTexParameter` when return type is `i32`
+    #[wasm_bindgen(method, js_name = getTexParameter)]
+    fn _get_tex_parameter_i32(
+        this: &WebGL2RenderingContext,
+        target: TextureKind,
+        pname: TextureParameter,
+    ) -> i32;
+    /// Binding for `WebGLRenderingContext.getTexParameter` when return type is `u32`
+    #[wasm_bindgen(method, js_name = getTexParameter)]
+    fn _get_tex_parameter_u32(
+        this: &WebGL2RenderingContext,
+        target: TextureKind,
+        pname: TextureParameter,
+    ) -> u32;
+    /// Binding for `WebGLRenderingContext.getTexParameter` when return type is `f32`
+    #[wasm_bindgen(method, js_name = getTexParameter)]
+    fn _get_tex_parameter_f32(
+        this: &WebGL2RenderingContext,
+        target: TextureKind,
+        pname: TextureParameter,
+    ) -> f32;
+    /// Binding for `WebGLRenderingContext.getTexParameter` when return type is `bool`
+    #[wasm_bindgen(method, js_name = getTexParameter)]
+    fn _get_tex_parameter_bool(
+        this: &WebGL2RenderingContext,
+        target: TextureKind,
+        pname: TextureParameter,
+    ) -> bool;
+    /// Binding for `WebGLRenderingContext.getTexParameter` when return type is `TextureMagFilter`
+    #[wasm_bindgen(method, js_name = getTexParameter)]
+    fn _get_tex_parameter_enum1(
+        this: &WebGL2RenderingContext,
+        target: TextureKind,
+        pname: TextureParameter,
+    ) -> TextureMagFilter;
+    /// Binding for `WebGLRenderingContext.getTexParameter` when return type is `TextureMinFilter`
+    #[wasm_bindgen(method, js_name = getTexParameter)]
+    fn _get_tex_parameter_enum2(
+        this: &WebGL2RenderingContext,
+        target: TextureKind,
+        pname: TextureParameter,
+    ) -> TextureMinFilter;
+    /// Binding for `WebGLRenderingContext.getTexParameter` when return type is `TextureWrap`
+    #[wasm_bindgen(method, js_name = getTexParameter)]
+    fn _get_tex_parameter_enum3(
+        this: &WebGL2RenderingContext,
+        target: TextureKind,
+        pname: TextureParameter,
+    ) -> TextureWrap;
+    /// Binding for `WebGLRenderingContext.getTexParameter` when return type is `DepthTest`
+    #[wasm_bindgen(method, js_name = getTexParameter)]
+    fn _get_tex_parameter_enum4(
+        this: &WebGL2RenderingContext,
+        target: TextureKind,
+        pname: TextureParameter,
+    ) -> DepthTest;
+    /// Binding for `WebGLRenderingContext.getTexParameter` when return type is `CompareMode`
+    #[wasm_bindgen(method, js_name = getTexParameter)]
+    fn _get_tex_parameter_enum5(
+        this: &WebGL2RenderingContext,
+        target: TextureKind,
+        pname: TextureParameter,
+    ) -> CompareMode;
 
     /// The `WebGLRenderingContext.texImage2D()` method of the WebGL API specifies a two-dimensional texture image.
     /// FIXME type safety for format, polymorphism of original, srcdata type, webgl2 extensions
@@ -547,6 +714,7 @@ extern "C" {
     // TODO texSubImage2d
 
     /// The `WebGLRenderingContext.texParameter[fi]()` methods of the WebGL API set texture parameters.
+    // FIXME: not idiomatic needs set_ prefix
     #[wasm_bindgen(method, js_name = texParameterf)]
     pub fn tex_parameter_f(
         this: &WebGL2RenderingContext,
