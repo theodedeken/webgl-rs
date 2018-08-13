@@ -27,24 +27,8 @@ pub enum ShaderKind {
     Vertex = 0x8B31,
 }
 
-/// Constants passed to WebGLRenderingContext.createShader()
-#[wasm_bindgen]
-#[derive(Debug, Clone, Copy)]
-pub enum ShaderParameter {
-    /// Passed to getShaderParamter to get the status of the compilation. Returns false if the shader was not compiled. You can then query getShaderInfoLog to find the exact error
-    CompileStatus = 0x8B81,
-    /// Passed to getShaderParamter to determine if a shader was deleted via deleteShader. Returns true if it was, false otherwise.
-    DeleteStatus = 0x8B80,
-    /// Passed to getProgramParameter after calling linkProgram to determine if a program was linked correctly. Returns false if there were errors. Use getProgramInfoLog to find the exact error.
-    LinkStatus = 0x8B82,
-    /// Passed to getProgramParameter after calling validateProgram to determine if it is valid. Returns false if errors were found.
-    ValidateStatus = 0x8B83,
-    /// Passed to getProgramParameter after calling attachShader to determine if the shader was attached correctly. Returns false if errors occurred.
-    AttachedShaders = 0x8B85,
-    /// Passed to getProgramParameter to get the number of attributes active in a program.
-    ActiveAttributes = 0x8B89,
-    /// Passed to getProgramParamter to get the number of uniforms active in a program.
-    ActiveUniforms = 0x8B86,
+///FIXME categorize values elsewhere
+pub enum NotProgramParameter {
     /// The maximum number of entries possible in the vertex attribute list.
     MaxVertexAttribs = 0x8869,
     ///
@@ -60,11 +44,47 @@ pub enum ShaderParameter {
     ///
     MaxFragmentUniformVectors = 0x8DFD,
     ///
-    ShaderType = 0x8B4F,
-    ///
     ShadingLanguageVersion = 0x8B8C,
     ///
     CurrentProgram = 0x8B8D,
+}
+
+/// Constants passed to WebGLRenderingContext.getProgramParameter()
+/// TODO decide if im keeping it public or move to shader_program as it is only used internally i think
+#[wasm_bindgen]
+#[derive(Debug, Clone, Copy)]
+pub enum ProgramParameter {
+    /// Passed to getProgramParameter to determine if a shader was deleted via deleteProgram. Returns true if it was, false otherwise.
+    DeleteStatus = 0x8B80,
+    /// Passed to getProgramParameter after calling linkProgram to determine if a program was linked correctly. Returns false if there were errors. Use getProgramInfoLog to find the exact error.
+    LinkStatus = 0x8B82,
+    /// Passed to getProgramParameter after calling validateProgram to determine if it is valid. Returns false if errors were found.
+    ValidateStatus = 0x8B83,
+    /// Passed to getProgramParameter after calling attachShader to determine if the shader was attached correctly. Returns false if errors occurred.
+    AttachedShaders = 0x8B85,
+    /// Passed to getProgramParameter to get the number of attributes active in a program.
+    ActiveAttributes = 0x8B89,
+    /// Passed to getProgramParameter to get the number of uniforms active in a program.
+    ActiveUniforms = 0x8B86,
+    /// Passed to getProgramParameter to get the buffer mode when transform feedback is active.
+    TransformFeedbackBufferMode = 0x8C7F,
+    /// Passed to getProgramParameter to get the number of varying variables to capture in transform feedback mode
+    TransformFeedbackVaryings = 0x8C83,
+    /// Passed to getProgramParameter to get the number of uniform blocks containing active uniforms
+    ActiveUniformBlocks = 0x8A36,
+}
+
+/// Constants passed to WebGLRenderingContext.getShaderParameter()
+/// TODO decide if im keeping it public or move to shader_program as it is only used internally i think
+#[wasm_bindgen]
+#[derive(Debug, Clone, Copy)]
+pub enum ShaderParameter {
+    /// Passed to getShaderParameter to get the status of the compilation. Returns false if the shader was not compiled. You can then query getShaderInfoLog to find the exact error
+    CompileStatus = 0x8B81,
+    /// Passed to getShaderParameter to determine if a shader was deleted via deleteShader. Returns true if it was, false otherwise.
+    DeleteStatus = 0x8B80,
+    /// Passed to getShaderParameter to get the shader type.
+    ShaderType = 0x8B4F,
 }
 
 /// Passed to bindBuffer or bufferData to specify the type of buffer being used.
@@ -624,17 +644,33 @@ pub enum Texture3DKind {
 /// WebGLRenderingContext.texParameter[fi]() "pname" parameter
 #[wasm_bindgen]
 #[derive(Debug, Clone, Copy)]
-//TODO extend with webgl2 constants
 pub enum TextureParameter {
     ///
-    TextureMagFilter = 0x2800,
+    MagFilter = 0x2800,
     ///
-    TextureMinFilter = 0x2801,
+    MinFilter = 0x2801,
     ///
-    TextureWrapS = 0x2802,
+    WrapS = 0x2802,
     ///
-    TextureWrapT = 0x2803,
-    //BorderColor = 0x1004,
+    WrapT = 0x2803,
+    /// Texture mipmap level
+    BaseLevel = 0x813C,
+    /// Comparison function
+    CompareFunc = 0x884D,
+    /// Texture comparison mode
+    CompareMode = 0x884C,
+    /// Immutability of the texture format and size
+    ImmutableFormat = 0x912F,
+    ///
+    ImmutableLevels = 0x82DF,
+    /// Maximum texture mipmap array level
+    MaxLevel = 0x813D,
+    /// Texture maximum level-of-detail value
+    MaxLod = 0x813B,
+    /// Texture minimum level-of-detail value
+    MinLod = 0x813A,
+    /// gl.TEXTURE_WRAP_R Wrapping function for texture coordinate r
+    WrapR = 0x8072,
 }
 
 /// WebGLRenderingContext.texImage2D() "target" parameter
@@ -1008,6 +1044,7 @@ pub enum RenderbufferParameter {
     StencilSize = 0x8D55,
     /// Returns a GLint indicating the number of samples of the image of the currently bound renderbuffer.
     Samples = 0x8CAB,
+    Format = 0x8D44,
 }
 
 // TODO extend with https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/renderbufferStorage
@@ -1115,7 +1152,7 @@ pub enum GPUState {
 /// Constants passed to clientWaitSync
 #[wasm_bindgen]
 #[derive(Debug, Clone, Copy)]
-pub enum SyncStatus {
+pub enum WaitStatus {
     /// Indicates that the sync object was signaled when this method was called.
     AlreadySignaled = 0x911A,
     /// Indicates that the timeout time passed and that the sync object did not become signaled.
@@ -1126,7 +1163,24 @@ pub enum SyncStatus {
     WaitFailed = 0x911D,
 }
 
-/// Constant passed to bindTransformFeedback
+#[wasm_bindgen]
+#[derive(Debug, Clone, Copy)]
+pub enum SyncStatus {
+    Signaled = 0x9119,
+    Unsignaled = 0x9118,
+}
+
+/// Constants passed to getSyncParameter
+#[wasm_bindgen]
+#[derive(Debug, Clone, Copy)]
+pub enum SyncParameter {
+    Type = 0x9112,
+    Status = 0x9114,
+    Condition = 0x9113,
+    Flags = 0x9115,
+}
+
+/// Constants passed to bindTransformFeedback
 #[wasm_bindgen]
 #[derive(Debug, Clone, Copy)]
 pub enum TransformFeedback {
@@ -1161,4 +1215,11 @@ pub enum BufferBase {
     TransformFeedbackBuffer = 0x8C8E,
     /// Buffer used for storing uniform blocks.
     UniformBuffer = 0x8A11,
+}
+
+#[wasm_bindgen]
+#[derive(Debug, Clone, Copy)]
+pub enum CompareMode {
+    None = 0,
+    CompareRefToTexture = 0x884E,
 }
