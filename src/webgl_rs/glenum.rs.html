@@ -1162,6 +1162,67 @@
 <span id="1162">1162</span>
 <span id="1163">1163</span>
 <span id="1164">1164</span>
+<span id="1165">1165</span>
+<span id="1166">1166</span>
+<span id="1167">1167</span>
+<span id="1168">1168</span>
+<span id="1169">1169</span>
+<span id="1170">1170</span>
+<span id="1171">1171</span>
+<span id="1172">1172</span>
+<span id="1173">1173</span>
+<span id="1174">1174</span>
+<span id="1175">1175</span>
+<span id="1176">1176</span>
+<span id="1177">1177</span>
+<span id="1178">1178</span>
+<span id="1179">1179</span>
+<span id="1180">1180</span>
+<span id="1181">1181</span>
+<span id="1182">1182</span>
+<span id="1183">1183</span>
+<span id="1184">1184</span>
+<span id="1185">1185</span>
+<span id="1186">1186</span>
+<span id="1187">1187</span>
+<span id="1188">1188</span>
+<span id="1189">1189</span>
+<span id="1190">1190</span>
+<span id="1191">1191</span>
+<span id="1192">1192</span>
+<span id="1193">1193</span>
+<span id="1194">1194</span>
+<span id="1195">1195</span>
+<span id="1196">1196</span>
+<span id="1197">1197</span>
+<span id="1198">1198</span>
+<span id="1199">1199</span>
+<span id="1200">1200</span>
+<span id="1201">1201</span>
+<span id="1202">1202</span>
+<span id="1203">1203</span>
+<span id="1204">1204</span>
+<span id="1205">1205</span>
+<span id="1206">1206</span>
+<span id="1207">1207</span>
+<span id="1208">1208</span>
+<span id="1209">1209</span>
+<span id="1210">1210</span>
+<span id="1211">1211</span>
+<span id="1212">1212</span>
+<span id="1213">1213</span>
+<span id="1214">1214</span>
+<span id="1215">1215</span>
+<span id="1216">1216</span>
+<span id="1217">1217</span>
+<span id="1218">1218</span>
+<span id="1219">1219</span>
+<span id="1220">1220</span>
+<span id="1221">1221</span>
+<span id="1222">1222</span>
+<span id="1223">1223</span>
+<span id="1224">1224</span>
+<span id="1225">1225</span>
 </pre><pre class="rust ">
 <span class="comment">/*
     Credits to https://github.com/oussama/glenum-rs/ for the major part of these enums
@@ -1192,24 +1253,8 @@
     <span class="ident">Vertex</span> <span class="op">=</span> <span class="number">0x8B31</span>,
 }
 
-<span class="doccomment">/// Constants passed to WebGLRenderingContext.createShader()</span>
-<span class="attribute">#[<span class="ident">wasm_bindgen</span>]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">ShaderParameter</span> {
-    <span class="doccomment">/// Passed to getShaderParamter to get the status of the compilation. Returns false if the shader was not compiled. You can then query getShaderInfoLog to find the exact error</span>
-    <span class="ident">CompileStatus</span> <span class="op">=</span> <span class="number">0x8B81</span>,
-    <span class="doccomment">/// Passed to getShaderParamter to determine if a shader was deleted via deleteShader. Returns true if it was, false otherwise.</span>
-    <span class="ident">DeleteStatus</span> <span class="op">=</span> <span class="number">0x8B80</span>,
-    <span class="doccomment">/// Passed to getProgramParameter after calling linkProgram to determine if a program was linked correctly. Returns false if there were errors. Use getProgramInfoLog to find the exact error.</span>
-    <span class="ident">LinkStatus</span> <span class="op">=</span> <span class="number">0x8B82</span>,
-    <span class="doccomment">/// Passed to getProgramParameter after calling validateProgram to determine if it is valid. Returns false if errors were found.</span>
-    <span class="ident">ValidateStatus</span> <span class="op">=</span> <span class="number">0x8B83</span>,
-    <span class="doccomment">/// Passed to getProgramParameter after calling attachShader to determine if the shader was attached correctly. Returns false if errors occurred.</span>
-    <span class="ident">AttachedShaders</span> <span class="op">=</span> <span class="number">0x8B85</span>,
-    <span class="doccomment">/// Passed to getProgramParameter to get the number of attributes active in a program.</span>
-    <span class="ident">ActiveAttributes</span> <span class="op">=</span> <span class="number">0x8B89</span>,
-    <span class="doccomment">/// Passed to getProgramParamter to get the number of uniforms active in a program.</span>
-    <span class="ident">ActiveUniforms</span> <span class="op">=</span> <span class="number">0x8B86</span>,
+<span class="doccomment">///FIXME categorize values elsewhere</span>
+<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">NotProgramParameter</span> {
     <span class="doccomment">/// The maximum number of entries possible in the vertex attribute list.</span>
     <span class="ident">MaxVertexAttribs</span> <span class="op">=</span> <span class="number">0x8869</span>,
     <span class="doccomment">///</span>
@@ -1225,11 +1270,47 @@
     <span class="doccomment">///</span>
     <span class="ident">MaxFragmentUniformVectors</span> <span class="op">=</span> <span class="number">0x8DFD</span>,
     <span class="doccomment">///</span>
-    <span class="ident">ShaderType</span> <span class="op">=</span> <span class="number">0x8B4F</span>,
-    <span class="doccomment">///</span>
     <span class="ident">ShadingLanguageVersion</span> <span class="op">=</span> <span class="number">0x8B8C</span>,
     <span class="doccomment">///</span>
     <span class="ident">CurrentProgram</span> <span class="op">=</span> <span class="number">0x8B8D</span>,
+}
+
+<span class="doccomment">/// Constants passed to WebGLRenderingContext.getProgramParameter()</span>
+<span class="doccomment">/// TODO decide if im keeping it public or move to shader_program as it is only used internally i think</span>
+<span class="attribute">#[<span class="ident">wasm_bindgen</span>]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
+<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">ProgramParameter</span> {
+    <span class="doccomment">/// Passed to getProgramParameter to determine if a shader was deleted via deleteProgram. Returns true if it was, false otherwise.</span>
+    <span class="ident">DeleteStatus</span> <span class="op">=</span> <span class="number">0x8B80</span>,
+    <span class="doccomment">/// Passed to getProgramParameter after calling linkProgram to determine if a program was linked correctly. Returns false if there were errors. Use getProgramInfoLog to find the exact error.</span>
+    <span class="ident">LinkStatus</span> <span class="op">=</span> <span class="number">0x8B82</span>,
+    <span class="doccomment">/// Passed to getProgramParameter after calling validateProgram to determine if it is valid. Returns false if errors were found.</span>
+    <span class="ident">ValidateStatus</span> <span class="op">=</span> <span class="number">0x8B83</span>,
+    <span class="doccomment">/// Passed to getProgramParameter after calling attachShader to determine if the shader was attached correctly. Returns false if errors occurred.</span>
+    <span class="ident">AttachedShaders</span> <span class="op">=</span> <span class="number">0x8B85</span>,
+    <span class="doccomment">/// Passed to getProgramParameter to get the number of attributes active in a program.</span>
+    <span class="ident">ActiveAttributes</span> <span class="op">=</span> <span class="number">0x8B89</span>,
+    <span class="doccomment">/// Passed to getProgramParameter to get the number of uniforms active in a program.</span>
+    <span class="ident">ActiveUniforms</span> <span class="op">=</span> <span class="number">0x8B86</span>,
+    <span class="doccomment">/// Passed to getProgramParameter to get the buffer mode when transform feedback is active.</span>
+    <span class="ident">TransformFeedbackBufferMode</span> <span class="op">=</span> <span class="number">0x8C7F</span>,
+    <span class="doccomment">/// Passed to getProgramParameter to get the number of varying variables to capture in transform feedback mode</span>
+    <span class="ident">TransformFeedbackVaryings</span> <span class="op">=</span> <span class="number">0x8C83</span>,
+    <span class="doccomment">/// Passed to getProgramParameter to get the number of uniform blocks containing active uniforms</span>
+    <span class="ident">ActiveUniformBlocks</span> <span class="op">=</span> <span class="number">0x8A36</span>,
+}
+
+<span class="doccomment">/// Constants passed to WebGLRenderingContext.getShaderParameter()</span>
+<span class="doccomment">/// TODO decide if im keeping it public or move to shader_program as it is only used internally i think</span>
+<span class="attribute">#[<span class="ident">wasm_bindgen</span>]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
+<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">ShaderParameter</span> {
+    <span class="doccomment">/// Passed to getShaderParameter to get the status of the compilation. Returns false if the shader was not compiled. You can then query getShaderInfoLog to find the exact error</span>
+    <span class="ident">CompileStatus</span> <span class="op">=</span> <span class="number">0x8B81</span>,
+    <span class="doccomment">/// Passed to getShaderParameter to determine if a shader was deleted via deleteShader. Returns true if it was, false otherwise.</span>
+    <span class="ident">DeleteStatus</span> <span class="op">=</span> <span class="number">0x8B80</span>,
+    <span class="doccomment">/// Passed to getShaderParameter to get the shader type.</span>
+    <span class="ident">ShaderType</span> <span class="op">=</span> <span class="number">0x8B4F</span>,
 }
 
 <span class="doccomment">/// Passed to bindBuffer or bufferData to specify the type of buffer being used.</span>
@@ -1789,17 +1870,33 @@
 <span class="doccomment">/// WebGLRenderingContext.texParameter[fi]() &quot;pname&quot; parameter</span>
 <span class="attribute">#[<span class="ident">wasm_bindgen</span>]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
-<span class="comment">//TODO extend with webgl2 constants</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">TextureParameter</span> {
     <span class="doccomment">///</span>
-    <span class="ident">TextureMagFilter</span> <span class="op">=</span> <span class="number">0x2800</span>,
+    <span class="ident">MagFilter</span> <span class="op">=</span> <span class="number">0x2800</span>,
     <span class="doccomment">///</span>
-    <span class="ident">TextureMinFilter</span> <span class="op">=</span> <span class="number">0x2801</span>,
+    <span class="ident">MinFilter</span> <span class="op">=</span> <span class="number">0x2801</span>,
     <span class="doccomment">///</span>
-    <span class="ident">TextureWrapS</span> <span class="op">=</span> <span class="number">0x2802</span>,
+    <span class="ident">WrapS</span> <span class="op">=</span> <span class="number">0x2802</span>,
     <span class="doccomment">///</span>
-    <span class="ident">TextureWrapT</span> <span class="op">=</span> <span class="number">0x2803</span>,
-    <span class="comment">//BorderColor = 0x1004,</span>
+    <span class="ident">WrapT</span> <span class="op">=</span> <span class="number">0x2803</span>,
+    <span class="doccomment">/// Texture mipmap level</span>
+    <span class="ident">BaseLevel</span> <span class="op">=</span> <span class="number">0x813C</span>,
+    <span class="doccomment">/// Comparison function</span>
+    <span class="ident">CompareFunc</span> <span class="op">=</span> <span class="number">0x884D</span>,
+    <span class="doccomment">/// Texture comparison mode</span>
+    <span class="ident">CompareMode</span> <span class="op">=</span> <span class="number">0x884C</span>,
+    <span class="doccomment">/// Immutability of the texture format and size</span>
+    <span class="ident">ImmutableFormat</span> <span class="op">=</span> <span class="number">0x912F</span>,
+    <span class="doccomment">///</span>
+    <span class="ident">ImmutableLevels</span> <span class="op">=</span> <span class="number">0x82DF</span>,
+    <span class="doccomment">/// Maximum texture mipmap array level</span>
+    <span class="ident">MaxLevel</span> <span class="op">=</span> <span class="number">0x813D</span>,
+    <span class="doccomment">/// Texture maximum level-of-detail value</span>
+    <span class="ident">MaxLod</span> <span class="op">=</span> <span class="number">0x813B</span>,
+    <span class="doccomment">/// Texture minimum level-of-detail value</span>
+    <span class="ident">MinLod</span> <span class="op">=</span> <span class="number">0x813A</span>,
+    <span class="doccomment">/// gl.TEXTURE_WRAP_R Wrapping function for texture coordinate r</span>
+    <span class="ident">WrapR</span> <span class="op">=</span> <span class="number">0x8072</span>,
 }
 
 <span class="doccomment">/// WebGLRenderingContext.texImage2D() &quot;target&quot; parameter</span>
@@ -2173,6 +2270,7 @@
     <span class="ident">StencilSize</span> <span class="op">=</span> <span class="number">0x8D55</span>,
     <span class="doccomment">/// Returns a GLint indicating the number of samples of the image of the currently bound renderbuffer.</span>
     <span class="ident">Samples</span> <span class="op">=</span> <span class="number">0x8CAB</span>,
+    <span class="ident">Format</span> <span class="op">=</span> <span class="number">0x8D44</span>,
 }
 
 <span class="comment">// TODO extend with https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/renderbufferStorage</span>
@@ -2280,7 +2378,7 @@
 <span class="doccomment">/// Constants passed to clientWaitSync</span>
 <span class="attribute">#[<span class="ident">wasm_bindgen</span>]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">SyncStatus</span> {
+<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">WaitStatus</span> {
     <span class="doccomment">/// Indicates that the sync object was signaled when this method was called.</span>
     <span class="ident">AlreadySignaled</span> <span class="op">=</span> <span class="number">0x911A</span>,
     <span class="doccomment">/// Indicates that the timeout time passed and that the sync object did not become signaled.</span>
@@ -2291,7 +2389,24 @@
     <span class="ident">WaitFailed</span> <span class="op">=</span> <span class="number">0x911D</span>,
 }
 
-<span class="doccomment">/// Constant passed to bindTransformFeedback</span>
+<span class="attribute">#[<span class="ident">wasm_bindgen</span>]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
+<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">SyncStatus</span> {
+    <span class="ident">Signaled</span> <span class="op">=</span> <span class="number">0x9119</span>,
+    <span class="ident">Unsignaled</span> <span class="op">=</span> <span class="number">0x9118</span>,
+}
+
+<span class="doccomment">/// Constants passed to getSyncParameter</span>
+<span class="attribute">#[<span class="ident">wasm_bindgen</span>]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
+<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">SyncParameter</span> {
+    <span class="ident">Type</span> <span class="op">=</span> <span class="number">0x9112</span>,
+    <span class="ident">Status</span> <span class="op">=</span> <span class="number">0x9114</span>,
+    <span class="ident">Condition</span> <span class="op">=</span> <span class="number">0x9113</span>,
+    <span class="ident">Flags</span> <span class="op">=</span> <span class="number">0x9115</span>,
+}
+
+<span class="doccomment">/// Constants passed to bindTransformFeedback</span>
 <span class="attribute">#[<span class="ident">wasm_bindgen</span>]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">TransformFeedback</span> {
@@ -2326,6 +2441,13 @@
     <span class="ident">TransformFeedbackBuffer</span> <span class="op">=</span> <span class="number">0x8C8E</span>,
     <span class="doccomment">/// Buffer used for storing uniform blocks.</span>
     <span class="ident">UniformBuffer</span> <span class="op">=</span> <span class="number">0x8A11</span>,
+}
+
+<span class="attribute">#[<span class="ident">wasm_bindgen</span>]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
+<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">CompareMode</span> {
+    <span class="prelude-val">None</span> <span class="op">=</span> <span class="number">0</span>,
+    <span class="ident">CompareRefToTexture</span> <span class="op">=</span> <span class="number">0x884E</span>,
 }
 </pre>
 </section><section id="search" class="content hidden"></section><section class="footer"></section><aside id="help" class="hidden"><div><h1 class="hidden">Help</h1><div class="shortcuts"><h2>Keyboard Shortcuts</h2><dl><dt><kbd>?</kbd></dt><dd>Show this help dialog</dd><dt><kbd>S</kbd></dt><dd>Focus the search field</dd><dt><kbd>↑</kbd></dt><dd>Move up in search results</dd><dt><kbd>↓</kbd></dt><dd>Move down in search results</dd><dt><kbd>↹</kbd></dt><dd>Switch tab</dd><dt><kbd>&#9166;</kbd></dt><dd>Go to active search result</dd><dt><kbd>+</kbd></dt><dd>Expand all sections</dd><dt><kbd>-</kbd></dt><dd>Collapse all sections</dd></dl></div><div class="infos"><h2>Search Tricks</h2><p>Prefix searches with a type followed by a colon (e.g. <code>fn:</code>) to restrict the search to a given type.</p><p>Accepted types are: <code>fn</code>, <code>mod</code>, <code>struct</code>, <code>enum</code>, <code>trait</code>, <code>type</code>, <code>macro</code>, and <code>const</code>.</p><p>Search functions by type signature (e.g. <code>vec -> usize</code> or <code>* -> vec</code>)</p><p>Search multiple things at once by splitting your query with comma (e.g. <code>str,u8</code> or <code>String,struct:Vec,test</code>)</p></div></div></aside><script>window.rootPath = "../../";window.currentCrate = "webgl_rs";</script><script src="../../aliases.js"></script><script src="../../main.js"></script><script defer src="../../search-index.js"></script></body></html>

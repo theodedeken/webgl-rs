@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["WebGLRSUniformLocation",""],["WebGLUniformLocation","FIXME: would prefer this to be pub(crate) but does not seem to work, not sure if it is a limitation of wasm_bindgen or if it is just not possible in rust."]]});

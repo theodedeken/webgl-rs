@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["WebGLRSFramebuffer","Collection of buffers to be used as a rendering destination"]]});

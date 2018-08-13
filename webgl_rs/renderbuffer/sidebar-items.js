@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["WebGLRSRenderbuffer","The `WebGLRenderbuffer` interface is represents a buffer that can contain an image, or can be source or target of an rendering operation."]]});
