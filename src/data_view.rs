@@ -19,6 +19,18 @@ pub trait Image {
         format: PixelCopyFormat,
         pixel_type: PixelType,
     ) -> Result<(), JsValue>;
+    fn tex_sub_image_2d(
+        &self,
+        context: &WebGL2RenderingContext,
+        target: TextureBindPoint,
+        level: u32,
+        xoffset: u32,
+        yoffset: u32,
+        width: u32,
+        height: u32,
+        format: PixelCopyFormat,
+        pixel_type: PixelType,
+    ) -> Result<(), JsValue>;
 }
 
 impl Buffer for Vec<u8> {
@@ -52,6 +64,22 @@ impl Image for Vec<u8> {
             format,
             pixel_type,
             self,
+        )
+    }
+    fn tex_sub_image_2d(
+        &self,
+        context: &WebGL2RenderingContext,
+        target: TextureBindPoint,
+        level: u32,
+        xoffset: u32,
+        yoffset: u32,
+        width: u32,
+        height: u32,
+        format: PixelCopyFormat,
+        pixel_type: PixelType,
+    ) -> Result<(), JsValue> {
+        context._tex_sub_image_2d_u8(
+            target, level, xoffset, yoffset, width, height, format, pixel_type, self,
         )
     }
 }
@@ -89,6 +117,22 @@ impl Image for Vec<i8> {
             self,
         )
     }
+    fn tex_sub_image_2d(
+        &self,
+        context: &WebGL2RenderingContext,
+        target: TextureBindPoint,
+        level: u32,
+        xoffset: u32,
+        yoffset: u32,
+        width: u32,
+        height: u32,
+        format: PixelCopyFormat,
+        pixel_type: PixelType,
+    ) -> Result<(), JsValue> {
+        context._tex_sub_image_2d_i8(
+            target, level, xoffset, yoffset, width, height, format, pixel_type, self,
+        )
+    }
 }
 
 impl Buffer for Vec<u16> {
@@ -122,6 +166,22 @@ impl Image for Vec<u16> {
             format,
             pixel_type,
             self,
+        )
+    }
+    fn tex_sub_image_2d(
+        &self,
+        context: &WebGL2RenderingContext,
+        target: TextureBindPoint,
+        level: u32,
+        xoffset: u32,
+        yoffset: u32,
+        width: u32,
+        height: u32,
+        format: PixelCopyFormat,
+        pixel_type: PixelType,
+    ) -> Result<(), JsValue> {
+        context._tex_sub_image_2d_u16(
+            target, level, xoffset, yoffset, width, height, format, pixel_type, self,
         )
     }
 }
@@ -159,6 +219,22 @@ impl Image for Vec<i16> {
             self,
         )
     }
+    fn tex_sub_image_2d(
+        &self,
+        context: &WebGL2RenderingContext,
+        target: TextureBindPoint,
+        level: u32,
+        xoffset: u32,
+        yoffset: u32,
+        width: u32,
+        height: u32,
+        format: PixelCopyFormat,
+        pixel_type: PixelType,
+    ) -> Result<(), JsValue> {
+        context._tex_sub_image_2d_i16(
+            target, level, xoffset, yoffset, width, height, format, pixel_type, self,
+        )
+    }
 }
 
 impl Buffer for Vec<u32> {
@@ -192,6 +268,22 @@ impl Image for Vec<u32> {
             format,
             pixel_type,
             self,
+        )
+    }
+    fn tex_sub_image_2d(
+        &self,
+        context: &WebGL2RenderingContext,
+        target: TextureBindPoint,
+        level: u32,
+        xoffset: u32,
+        yoffset: u32,
+        width: u32,
+        height: u32,
+        format: PixelCopyFormat,
+        pixel_type: PixelType,
+    ) -> Result<(), JsValue> {
+        context._tex_sub_image_2d_u32(
+            target, level, xoffset, yoffset, width, height, format, pixel_type, self,
         )
     }
 }
@@ -229,6 +321,22 @@ impl Image for Vec<i32> {
             self,
         )
     }
+    fn tex_sub_image_2d(
+        &self,
+        context: &WebGL2RenderingContext,
+        target: TextureBindPoint,
+        level: u32,
+        xoffset: u32,
+        yoffset: u32,
+        width: u32,
+        height: u32,
+        format: PixelCopyFormat,
+        pixel_type: PixelType,
+    ) -> Result<(), JsValue> {
+        context._tex_sub_image_2d_i32(
+            target, level, xoffset, yoffset, width, height, format, pixel_type, self,
+        )
+    }
 }
 
 impl Buffer for Vec<f32> {
@@ -262,6 +370,22 @@ impl Image for Vec<f32> {
             format,
             pixel_type,
             self,
+        )
+    }
+    fn tex_sub_image_2d(
+        &self,
+        context: &WebGL2RenderingContext,
+        target: TextureBindPoint,
+        level: u32,
+        xoffset: u32,
+        yoffset: u32,
+        width: u32,
+        height: u32,
+        format: PixelCopyFormat,
+        pixel_type: PixelType,
+    ) -> Result<(), JsValue> {
+        context._tex_sub_image_2d_f32(
+            target, level, xoffset, yoffset, width, height, format, pixel_type, self,
         )
     }
 }

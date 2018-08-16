@@ -235,6 +235,12 @@ impl WebGL2RenderingContext {
         src_data.buffer_data(self, target, usage);
     }
 
+    /// Updates a subset of a buffer object's data store.
+    ///
+    /// # Arguments
+    /// * `target` - specifying the binding point (target)
+    /// * `offset` - specifying an offset in bytes where the data replacement will start.
+    /// * `src_data` - the source data to be stored in the buffer
     pub fn buffer_sub_data<B: Buffer>(&self, target: BufferKind, offset: i64, src_data: B) {
         src_data.buffer_sub_data(self, target, offset);
     }
@@ -275,7 +281,38 @@ impl WebGL2RenderingContext {
         )
     }
 
-    // TODO loading -> buffer_sub_data, tex_sub_image_2d, tex_image_3d, tex_sub_image_3d, clear_buffer_uiv, clear_buffer_iv, clear_buffer_fv
+    /// Specifies a sub-rectangle of the current texture.
+    ///
+    /// # Arguments
+    /// * `target` - specifying the binding point (target) of the active texture.
+    /// * `level` - specifying the level of detail. Level 0 is the base image level and level n is the nth
+    ///         mipmap reduction level.
+    /// * `xoffset` - specifying the lower left texel x coordinate of a width-wide by height-wide rectangular subregion of the texture array.
+    /// * `yoffset` -     specifying the lower left texel y coordinate of a width-wide by height-wide rectangular subregion of the texture array.
+    /// * `width` - specifying the width of the texture.
+    /// * `height` - specifying the height of the texture.
+    /// * `format` - specifying the format of the texel data. To view the combinations possible see
+    ///         https://www.khronos.org/registry/OpenGL-Refpages/es3.0/html/glTexImage2D.xhtml
+    /// * `pixel_type` - specifying the data type of the texel data.
+    /// * `pixels` - pixel source for the texture
+    pub fn tex_sub_image_2d<I: Image>(
+        &self,
+        target: TextureBindPoint,
+        level: u32,
+        xoffset: u32,
+        yoffset: u32,
+        width: u32,
+        height: u32,
+        format: PixelCopyFormat,
+        pixel_type: PixelType,
+        pixels: I,
+    ) -> Result<(), JsValue> {
+        pixels.tex_sub_image_2d(
+            self, target, level, xoffset, yoffset, width, height, format, pixel_type,
+        )
+    }
+
+    // TODO loading -> tex_image_3d, tex_sub_image_3d, clear_buffer_uiv, clear_buffer_iv, clear_buffer_fv
     // TODO reading -> read_pixels, get_buffer_sub_data
 }
 
@@ -953,7 +990,104 @@ extern "C" {
         src_data: &[f32],
     ) -> Result<(), JsValue>;
 
-    // TODO texSubImage2d
+    // Binding for `WebGLRenderingContext.texSubImage2D()` if data has type `[u8]`.
+    #[wasm_bindgen(method, js_name = texSubImage2D, catch)]
+    pub(crate) fn _tex_sub_image_2d_u8(
+        this: &WebGL2RenderingContext,
+        target: TextureBindPoint,
+        level: u32,
+        xoffset: u32,
+        yoffset: u32,
+        width: u32,
+        height: u32,
+        format: PixelCopyFormat,
+        pixel_type: PixelType,
+        pixels: &[u8],
+    ) -> Result<(), JsValue>;
+    // Binding for `WebGLRenderingContext.texSubImage2D()` if data has type `[i8]`.
+    #[wasm_bindgen(method, js_name = texSubImage2D, catch)]
+    pub(crate) fn _tex_sub_image_2d_i8(
+        this: &WebGL2RenderingContext,
+        target: TextureBindPoint,
+        level: u32,
+        xoffset: u32,
+        yoffset: u32,
+        width: u32,
+        height: u32,
+        format: PixelCopyFormat,
+        pixel_type: PixelType,
+        pixels: &[i8],
+    ) -> Result<(), JsValue>;
+    // Binding for `WebGLRenderingContext.texSubImage2D()` if data has type `[u16]`.
+    #[wasm_bindgen(method, js_name = texSubImage2D, catch)]
+    pub(crate) fn _tex_sub_image_2d_u16(
+        this: &WebGL2RenderingContext,
+        target: TextureBindPoint,
+        level: u32,
+        xoffset: u32,
+        yoffset: u32,
+        width: u32,
+        height: u32,
+        format: PixelCopyFormat,
+        pixel_type: PixelType,
+        pixels: &[u16],
+    ) -> Result<(), JsValue>;
+    // Binding for `WebGLRenderingContext.texSubImage2D()` if data has type `[i16]`.
+    #[wasm_bindgen(method, js_name = texSubImage2D, catch)]
+    pub(crate) fn _tex_sub_image_2d_i16(
+        this: &WebGL2RenderingContext,
+        target: TextureBindPoint,
+        level: u32,
+        xoffset: u32,
+        yoffset: u32,
+        width: u32,
+        height: u32,
+        format: PixelCopyFormat,
+        pixel_type: PixelType,
+        pixels: &[i16],
+    ) -> Result<(), JsValue>;
+    // Binding for `WebGLRenderingContext.texSubImage2D()` if data has type `[u32]`.
+    #[wasm_bindgen(method, js_name = texSubImage2D, catch)]
+    pub(crate) fn _tex_sub_image_2d_u32(
+        this: &WebGL2RenderingContext,
+        target: TextureBindPoint,
+        level: u32,
+        xoffset: u32,
+        yoffset: u32,
+        width: u32,
+        height: u32,
+        format: PixelCopyFormat,
+        pixel_type: PixelType,
+        pixels: &[u32],
+    ) -> Result<(), JsValue>;
+    // Binding for `WebGLRenderingContext.texSubImage2D()` if data has type `[i32]`.
+    #[wasm_bindgen(method, js_name = texSubImage2D, catch)]
+    pub(crate) fn _tex_sub_image_2d_i32(
+        this: &WebGL2RenderingContext,
+        target: TextureBindPoint,
+        level: u32,
+        xoffset: u32,
+        yoffset: u32,
+        width: u32,
+        height: u32,
+        format: PixelCopyFormat,
+        pixel_type: PixelType,
+        pixels: &[i32],
+    ) -> Result<(), JsValue>;
+    // Binding for `WebGLRenderingContext.texSubImage2D()` if data has type `[f32]`.
+    #[wasm_bindgen(method, js_name = texSubImage2D, catch)]
+    pub(crate) fn _tex_sub_image_2d_f32(
+        this: &WebGL2RenderingContext,
+        target: TextureBindPoint,
+        level: u32,
+        xoffset: u32,
+        yoffset: u32,
+        width: u32,
+        height: u32,
+        format: PixelCopyFormat,
+        pixel_type: PixelType,
+        pixels: &[f32],
+    ) -> Result<(), JsValue>;
 
     /// The `WebGLRenderingContext.texParameter[fi]()` methods of the WebGL API set texture parameters.
     // FIXME: not idiomatic needs set_ prefix
