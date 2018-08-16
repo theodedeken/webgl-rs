@@ -4,6 +4,7 @@ use wasm_bindgen::JsValue;
 
 pub trait Buffer {
     fn buffer_data(&self, context: &WebGL2RenderingContext, target: BufferKind, usage: DataHint);
+    fn buffer_sub_data(&self, context: &WebGL2RenderingContext, target: BufferKind, offset: i64);
 }
 
 pub trait Image {
@@ -23,6 +24,9 @@ pub trait Image {
 impl Buffer for Vec<u8> {
     fn buffer_data(&self, context: &WebGL2RenderingContext, target: BufferKind, usage: DataHint) {
         context._buffer_data_u8(target, self, usage);
+    }
+    fn buffer_sub_data(&self, context: &WebGL2RenderingContext, target: BufferKind, offset: i64) {
+        context._buffer_sub_data_u8(target, offset, self);
     }
 }
 
@@ -56,6 +60,9 @@ impl Buffer for Vec<i8> {
     fn buffer_data(&self, context: &WebGL2RenderingContext, target: BufferKind, usage: DataHint) {
         context._buffer_data_i8(target, self, usage);
     }
+    fn buffer_sub_data(&self, context: &WebGL2RenderingContext, target: BufferKind, offset: i64) {
+        context._buffer_sub_data_i8(target, offset, self);
+    }
 }
 
 impl Image for Vec<i8> {
@@ -87,6 +94,9 @@ impl Image for Vec<i8> {
 impl Buffer for Vec<u16> {
     fn buffer_data(&self, context: &WebGL2RenderingContext, target: BufferKind, usage: DataHint) {
         context._buffer_data_u16(target, self, usage);
+    }
+    fn buffer_sub_data(&self, context: &WebGL2RenderingContext, target: BufferKind, offset: i64) {
+        context._buffer_sub_data_u16(target, offset, self);
     }
 }
 
@@ -120,6 +130,9 @@ impl Buffer for Vec<i16> {
     fn buffer_data(&self, context: &WebGL2RenderingContext, target: BufferKind, usage: DataHint) {
         context._buffer_data_i16(target, self, usage);
     }
+    fn buffer_sub_data(&self, context: &WebGL2RenderingContext, target: BufferKind, offset: i64) {
+        context._buffer_sub_data_i16(target, offset, self);
+    }
 }
 
 impl Image for Vec<i16> {
@@ -151,6 +164,9 @@ impl Image for Vec<i16> {
 impl Buffer for Vec<u32> {
     fn buffer_data(&self, context: &WebGL2RenderingContext, target: BufferKind, usage: DataHint) {
         context._buffer_data_u32(target, self, usage);
+    }
+    fn buffer_sub_data(&self, context: &WebGL2RenderingContext, target: BufferKind, offset: i64) {
+        context._buffer_sub_data_u32(target, offset, self);
     }
 }
 
@@ -184,6 +200,9 @@ impl Buffer for Vec<i32> {
     fn buffer_data(&self, context: &WebGL2RenderingContext, target: BufferKind, usage: DataHint) {
         context._buffer_data_i32(target, self, usage);
     }
+    fn buffer_sub_data(&self, context: &WebGL2RenderingContext, target: BufferKind, offset: i64) {
+        context._buffer_sub_data_i32(target, offset, self);
+    }
 }
 
 impl Image for Vec<i32> {
@@ -216,6 +235,9 @@ impl Buffer for Vec<f32> {
     fn buffer_data(&self, context: &WebGL2RenderingContext, target: BufferKind, usage: DataHint) {
         context._buffer_data_f32(target, self, usage);
     }
+    fn buffer_sub_data(&self, context: &WebGL2RenderingContext, target: BufferKind, offset: i64) {
+        context._buffer_sub_data_f32(target, offset, self);
+    }
 }
 
 impl Image for Vec<f32> {
@@ -247,5 +269,8 @@ impl Image for Vec<f32> {
 impl Buffer for Vec<f64> {
     fn buffer_data(&self, context: &WebGL2RenderingContext, target: BufferKind, usage: DataHint) {
         context._buffer_data_f64(target, self, usage);
+    }
+    fn buffer_sub_data(&self, context: &WebGL2RenderingContext, target: BufferKind, offset: i64) {
+        context._buffer_sub_data_f64(target, offset, self);
     }
 }

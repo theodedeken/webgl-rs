@@ -235,6 +235,10 @@ impl WebGL2RenderingContext {
         src_data.buffer_data(self, target, usage);
     }
 
+    pub fn buffer_sub_data<B: Buffer>(&self, target: BufferKind, offset: i64, src_data: B) {
+        src_data.buffer_sub_data(self, target, offset);
+    }
+
     /// Specifies and loads a two-dimensional texture image.
     ///
     /// # Arguments
@@ -271,7 +275,8 @@ impl WebGL2RenderingContext {
         )
     }
 
-    // TODO buffer_sub_data
+    // TODO loading -> buffer_sub_data, tex_sub_image_2d, tex_image_3d, tex_sub_image_3d, clear_buffer_uiv, clear_buffer_iv, clear_buffer_fv
+    // TODO reading -> read_pixels, get_buffer_sub_data
 }
 
 /// WebGL2RenderingContext
@@ -613,18 +618,71 @@ extern "C" {
         usage: DataHint,
     );
 
-    //TODO buffer_data with offset
+    //TODO buffer_data, buffer_sub_data with offset
 
-    /// The `WebGLRenderingContext.bufferSubData()` method of the WebGL API updates a subset of a
-    /// buffer object's data store.
+    /// Binding for `WebGLRenderingContext.bufferSubData()` when data type is `[u8]`
     #[wasm_bindgen(method, js_name = bufferSubData)]
-    pub fn buffer_sub_data(
+    pub(crate) fn _buffer_sub_data_u8(
         this: &WebGL2RenderingContext,
         target: BufferKind,
-        dst_byte_offset: u32,
-        srcData: Vec<u8>,
-        srcOffset: u32,
-        length: u32,
+        offset: i64,
+        srcData: &[u8],
+    );
+    /// Binding for `WebGLRenderingContext.bufferSubData()` when data type is `[i8]`
+    #[wasm_bindgen(method, js_name = bufferSubData)]
+    pub(crate) fn _buffer_sub_data_i8(
+        this: &WebGL2RenderingContext,
+        target: BufferKind,
+        offset: i64,
+        srcData: &[i8],
+    );
+    /// Binding for `WebGLRenderingContext.bufferSubData()` when data type is `[u16]`
+    #[wasm_bindgen(method, js_name = bufferSubData)]
+    pub(crate) fn _buffer_sub_data_u16(
+        this: &WebGL2RenderingContext,
+        target: BufferKind,
+        offset: i64,
+        srcData: &[u16],
+    );
+    /// Binding for `WebGLRenderingContext.bufferSubData()` when data type is `[i16]`
+    #[wasm_bindgen(method, js_name = bufferSubData)]
+    pub(crate) fn _buffer_sub_data_i16(
+        this: &WebGL2RenderingContext,
+        target: BufferKind,
+        offset: i64,
+        srcData: &[i16],
+    );
+    /// Binding for `WebGLRenderingContext.bufferSubData()` when data type is `[u32]`
+    #[wasm_bindgen(method, js_name = bufferSubData)]
+    pub(crate) fn _buffer_sub_data_u32(
+        this: &WebGL2RenderingContext,
+        target: BufferKind,
+        offset: i64,
+        srcData: &[u32],
+    );
+    /// Binding for `WebGLRenderingContext.bufferSubData()` when data type is `[i32]`
+    #[wasm_bindgen(method, js_name = bufferSubData)]
+    pub(crate) fn _buffer_sub_data_i32(
+        this: &WebGL2RenderingContext,
+        target: BufferKind,
+        offset: i64,
+        srcData: &[i32],
+    );
+    /// Binding for `WebGLRenderingContext.bufferSubData()` when data type is `[f32]`
+    #[wasm_bindgen(method, js_name = bufferSubData)]
+    pub(crate) fn _buffer_sub_data_f32(
+        this: &WebGL2RenderingContext,
+        target: BufferKind,
+        offset: i64,
+        srcData: &[f32],
+    );
+    /// Binding for `WebGLRenderingContext.bufferSubData()` when data type is `[f64]`
+    #[wasm_bindgen(method, js_name = bufferSubData)]
+    pub(crate) fn _buffer_sub_data_f64(
+        this: &WebGL2RenderingContext,
+        target: BufferKind,
+        offset: i64,
+        srcData: &[f64],
     );
 
     /// Binding for `WebGLRenderingContext.getBufferParameter()` when return type is `i32`
