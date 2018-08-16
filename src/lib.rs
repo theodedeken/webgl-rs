@@ -2,12 +2,13 @@
 
 extern crate wasm_bindgen;
 
-//TODO: arraybufferview as enum and impl method to map to different functions
+//TODO: Buffer as enum and impl method to map to different functions
 //TODO: possible solution of different getParameter methods is to add accessors on different types
 //TODO: safety with methods that can throw
 //TODO: JsString?
 //TODO: js-sys objects?
 pub mod buffer;
+pub mod data_view;
 pub mod framebuffer;
 pub mod glenum;
 pub mod query;
@@ -22,6 +23,7 @@ pub mod uniform_location;
 pub mod vertex_array_object;
 
 pub use buffer::WebGLRSBuffer;
+pub use data_view::Buffer;
 pub use framebuffer::WebGLRSFramebuffer;
 pub use glenum::*;
 pub use query::WebGLRSQuery;

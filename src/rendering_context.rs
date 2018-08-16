@@ -2,6 +2,7 @@
 //!
 //! Documentation taken straight from https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext
 //! and https://developer.mozilla.org/en-US/docs/Web/API/WebGL2RenderingContext
+use data_view::{Buffer, Image};
 use glenum::*;
 use wasm_bindgen::prelude::*;
 
@@ -223,6 +224,54 @@ impl WebGL2RenderingContext {
     pub fn texture_wrap_r(&self, target: TextureKind) -> TextureWrap {
         self._get_tex_parameter_enum3(target, TextureParameter::WrapS)
     }
+
+    /// Initializes and creates the buffer object's data store.
+    ///
+    /// # Arguments
+    /// * `target` - specifying the binding point (target)
+    /// * `src_data` - the source data to be stored in the buffer
+    /// * `usage` - specifying the usage pattern of the data store.
+    pub fn buffer_data<B: Buffer>(&self, target: BufferKind, src_data: B, usage: DataHint) {
+        src_data.buffer_data(self, target, usage);
+    }
+
+    /// Specifies and loads a two-dimensional texture image.
+    ///
+    /// # Arguments
+    /// * `target` - specifying the binding point (target) of the active texture.
+    /// * `level` - specifying the level of detail. Level 0 is the base image level and level n is the nth
+    ///         mipmap reduction level.
+    /// * `internalformat` - specifying the color components in the texture.
+    /// * `width` - specifying the width of the texture.
+    /// * `height` - specifying the height of the texture.
+    /// * `format` - specifying the format of the texel data. To view the combinations possible see
+    ///         https://www.khronos.org/registry/OpenGL-Refpages/es3.0/html/glTexImage2D.xhtml
+    /// * `pixel_type` - specifying the data type of the texel data.
+    /// * `src_data` - pixel source for the texture
+    pub fn tex_image_2d<I: Image>(
+        &self,
+        target: TextureBindPoint,
+        level: u32,
+        internalformat: PixelCopyFormat,
+        width: u32,
+        height: u32,
+        format: PixelCopyFormat,
+        pixel_type: PixelType,
+        src_data: I,
+    ) -> Result<(), JsValue> {
+        src_data.tex_image_2d(
+            self,
+            target,
+            level,
+            internalformat,
+            width,
+            height,
+            format,
+            pixel_type,
+        )
+    }
+
+    // TODO buffer_sub_data
 }
 
 /// WebGL2RenderingContext
@@ -499,15 +548,68 @@ extern "C" {
         zpass: StencilAction,
     );
 
-    /// TODO maybe add a method for every buffer type
-
-    /// The `WebGLRenderingContext.bufferData()` method of the WebGL API initializes and creates the
-    /// buffer object's data store.
+    /// Binding for `WebGLRenderingContext.bufferData()` when data has type `[u8]`
     #[wasm_bindgen(method, js_name = bufferData)]
-    pub fn buffer_data(
+    pub(crate) fn _buffer_data_u8(
         this: &WebGL2RenderingContext,
         target: BufferKind,
-        srcData: Vec<u8>,
+        src_data: &[u8],
+        usage: DataHint,
+    );
+    /// Binding for `WebGLRenderingContext.bufferData()` when data has type `[i8]`
+    #[wasm_bindgen(method, js_name = bufferData)]
+    pub(crate) fn _buffer_data_i8(
+        this: &WebGL2RenderingContext,
+        target: BufferKind,
+        src_data: &[i8],
+        usage: DataHint,
+    );
+    /// Binding for `WebGLRenderingContext.bufferData()` when data has type `[u16]`
+    #[wasm_bindgen(method, js_name = bufferData)]
+    pub(crate) fn _buffer_data_u16(
+        this: &WebGL2RenderingContext,
+        target: BufferKind,
+        src_data: &[u16],
+        usage: DataHint,
+    );
+    /// Binding for `WebGLRenderingContext.bufferData()` when data has type `[i16]`
+    #[wasm_bindgen(method, js_name = bufferData)]
+    pub(crate) fn _buffer_data_i16(
+        this: &WebGL2RenderingContext,
+        target: BufferKind,
+        src_data: &[i16],
+        usage: DataHint,
+    );
+    /// Binding for `WebGLRenderingContext.bufferData()` when data has type `[u32]`
+    #[wasm_bindgen(method, js_name = bufferData)]
+    pub(crate) fn _buffer_data_u32(
+        this: &WebGL2RenderingContext,
+        target: BufferKind,
+        src_data: &[u32],
+        usage: DataHint,
+    );
+    /// Binding for `WebGLRenderingContext.bufferData()` when data has type `[i32]`
+    #[wasm_bindgen(method, js_name = bufferData)]
+    pub(crate) fn _buffer_data_i32(
+        this: &WebGL2RenderingContext,
+        target: BufferKind,
+        src_data: &[i32],
+        usage: DataHint,
+    );
+    /// Binding for `WebGLRenderingContext.bufferData()` when data has type `[f32]`
+    #[wasm_bindgen(method, js_name = bufferData)]
+    pub(crate) fn _buffer_data_f32(
+        this: &WebGL2RenderingContext,
+        target: BufferKind,
+        src_data: &[f32],
+        usage: DataHint,
+    );
+    /// Binding for `WebGLRenderingContext.bufferData()` when data has type `[f64]`
+    #[wasm_bindgen(method, js_name = bufferData)]
+    pub(crate) fn _buffer_data_f64(
+        this: &WebGL2RenderingContext,
+        target: BufferKind,
+        src_data: &[f64],
         usage: DataHint,
     );
 
@@ -550,8 +652,8 @@ extern "C" {
     // later because of awful return structure
 
     /// The `WebGLRenderingContext.readPixels()` method of the WebGL API reads a block of pixels from a
-    /// specified rectangle of the current color framebuffer into an ArrayBufferView object.
-    // TODO rework because of variability of pixels datatype
+    /// specified rectangle of the current color framebuffer into an Buffer object.
+    // TODO rework because of variability of pixels datatype and the fact that it get written too
     #[wasm_bindgen(method, js_name = readPixels)]
     pub fn read_pixels(
         this: &WebGL2RenderingContext,
@@ -694,10 +796,9 @@ extern "C" {
         pname: TextureParameter,
     ) -> CompareMode;
 
-    /// The `WebGLRenderingContext.texImage2D()` method of the WebGL API specifies a two-dimensional texture image.
-    /// FIXME type safety for format, polymorphism of original, srcdata type, webgl2 extensions
-    #[wasm_bindgen(method, js_name = texImage2D)]
-    pub fn tex_image_2d(
+    /// Binding for `WebGLRenderingContext.texImage2D()` if data has type `[u8]`.
+    #[wasm_bindgen(method, js_name = texImage2D, catch)]
+    pub(crate) fn _tex_image_2d_u8(
         this: &WebGL2RenderingContext,
         target: TextureBindPoint,
         level: u32,
@@ -707,9 +808,92 @@ extern "C" {
         border: u32,
         format: PixelCopyFormat,
         pixel_type: PixelType,
-        srcData: Vec<u8>,
-        srcOffset: u32,
-    );
+        src_data: &[u8],
+    ) -> Result<(), JsValue>;
+    /// Binding for `WebGLRenderingContext.texImage2D()` if data has type `[8]`.
+    #[wasm_bindgen(method, js_name = texImage2D, catch)]
+    pub(crate) fn _tex_image_2d_i8(
+        this: &WebGL2RenderingContext,
+        target: TextureBindPoint,
+        level: u32,
+        internalformat: PixelCopyFormat,
+        width: u32,
+        height: u32,
+        border: u32,
+        format: PixelCopyFormat,
+        pixel_type: PixelType,
+        src_data: &[i8],
+    ) -> Result<(), JsValue>;
+    /// Binding for `WebGLRenderingContext.texImage2D()` if data has type `[u16]`.
+    #[wasm_bindgen(method, js_name = texImage2D, catch)]
+    pub(crate) fn _tex_image_2d_u16(
+        this: &WebGL2RenderingContext,
+        target: TextureBindPoint,
+        level: u32,
+        internalformat: PixelCopyFormat,
+        width: u32,
+        height: u32,
+        border: u32,
+        format: PixelCopyFormat,
+        pixel_type: PixelType,
+        src_data: &[u16],
+    ) -> Result<(), JsValue>;
+    /// Binding for `WebGLRenderingContext.texImage2D()` if data has type `[i16]`.
+    #[wasm_bindgen(method, js_name = texImage2D, catch)]
+    pub(crate) fn _tex_image_2d_i16(
+        this: &WebGL2RenderingContext,
+        target: TextureBindPoint,
+        level: u32,
+        internalformat: PixelCopyFormat,
+        width: u32,
+        height: u32,
+        border: u32,
+        format: PixelCopyFormat,
+        pixel_type: PixelType,
+        src_data: &[i16],
+    ) -> Result<(), JsValue>;
+    /// Binding for `WebGLRenderingContext.texImage2D()` if data has type `[u32]`.
+    #[wasm_bindgen(method, js_name = texImage2D, catch)]
+    pub(crate) fn _tex_image_2d_u32(
+        this: &WebGL2RenderingContext,
+        target: TextureBindPoint,
+        level: u32,
+        internalformat: PixelCopyFormat,
+        width: u32,
+        height: u32,
+        border: u32,
+        format: PixelCopyFormat,
+        pixel_type: PixelType,
+        src_data: &[u32],
+    ) -> Result<(), JsValue>;
+    /// Binding for `WebGLRenderingContext.texImage2D()` if data has type `[i32]`.
+    #[wasm_bindgen(method, js_name = texImage2D, catch)]
+    pub(crate) fn _tex_image_2d_i32(
+        this: &WebGL2RenderingContext,
+        target: TextureBindPoint,
+        level: u32,
+        internalformat: PixelCopyFormat,
+        width: u32,
+        height: u32,
+        border: u32,
+        format: PixelCopyFormat,
+        pixel_type: PixelType,
+        src_data: &[i32],
+    ) -> Result<(), JsValue>;
+    /// Binding for `WebGLRenderingContext.texImage2D()` if data has type `[f32]`.
+    #[wasm_bindgen(method, js_name = texImage2D, catch)]
+    pub(crate) fn _tex_image_2d_f32(
+        this: &WebGL2RenderingContext,
+        target: TextureBindPoint,
+        level: u32,
+        internalformat: PixelCopyFormat,
+        width: u32,
+        height: u32,
+        border: u32,
+        format: PixelCopyFormat,
+        pixel_type: PixelType,
+        src_data: &[f32],
+    ) -> Result<(), JsValue>;
 
     // TODO texSubImage2d
 
