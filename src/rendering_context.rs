@@ -281,6 +281,19 @@ impl WebGL2RenderingContext {
         )
     }
 
+    /* FIXME save for later
+    pub fn compressed_tex_image_2d(
+        &self,
+        target: TextureBindPoint,
+        level: u32,
+        internalformat: CompressedFormat,
+        width: u32,
+        height: u32,
+        pixels: I,
+    ) -> Result<(), JsValue> {
+        pixels.compressed_tex_image_2d(self, target, level, internalformat, width, height)
+    }*/
+
     /// Specifies a sub-rectangle of the current texture.
     ///
     /// # Arguments
@@ -1760,6 +1773,20 @@ extern "C" {
 
 // TODO getAcitveUniformBlockParameter
 
+// Binding for `WebGLRenderingContext.compressedTexImage2D` when data type is `[u8]`
+    /* FIXME save for later
+    #[wasm_bindgen(method, js_name = compressedTexImage2D, catch)]
+    pub(crate) fn _compressed_tex_image_2d_u8(
+        this: &WebGL2RenderingContext,
+        target: TextureBindPoint,
+        level: u32,
+        internalformat: CompressedFormat,
+        width: u32,
+        height: u32,
+        border: u32,
+        pixels: &[u8],
+    ) -> Result<(), JsValue>;
+*/
 }
 
 // WebGLContextAttributes

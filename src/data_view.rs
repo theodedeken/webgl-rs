@@ -27,6 +27,17 @@ pub trait Image {
         format: PixelCopyFormat,
         pixel_type: PixelType,
     ) -> Result<(), JsValue>;
+    /* FIXME save for later
+    fn compressed_tex_image_2d(
+        &self,
+        context: WebGL2RenderingContext,
+        target: TextureBindPoint,
+        level: u32,
+        internalformat: CompressedFormat,
+        width: u32,
+        height: u32,
+    ) -> Result<(), JsValue>;
+    */
     fn tex_sub_image_2d(
         &self,
         context: &WebGL2RenderingContext,
@@ -39,6 +50,7 @@ pub trait Image {
         format: PixelCopyFormat,
         pixel_type: PixelType,
     ) -> Result<(), JsValue>;
+
     fn read_pixels(
         &mut self,
         context: &WebGL2RenderingContext,
