@@ -231,7 +231,7 @@ impl WebGL2RenderingContext {
     /// * `target` - specifying the binding point (target)
     /// * `src_data` - the source data to be stored in the buffer
     /// * `usage` - specifying the usage pattern of the data store.
-    pub fn buffer_data<B: Buffer>(&self, target: BufferKind, src_data: B, usage: DataHint) {
+    pub fn buffer_data<B: Buffer>(&self, target: BufferKind, src_data: &B, usage: DataHint) {
         src_data.buffer_data(self, target, usage);
     }
 
@@ -241,7 +241,7 @@ impl WebGL2RenderingContext {
     /// * `target` - specifying the binding point (target)
     /// * `offset` - specifying an offset in bytes where the data replacement will start.
     /// * `src_data` - the source data to be stored in the buffer
-    pub fn buffer_sub_data<B: Buffer>(&self, target: BufferKind, offset: i64, src_data: B) {
+    pub fn buffer_sub_data<B: Buffer>(&self, target: BufferKind, offset: i64, src_data: &B) {
         src_data.buffer_sub_data(self, target, offset);
     }
 
@@ -267,7 +267,7 @@ impl WebGL2RenderingContext {
         height: u32,
         format: PixelCopyFormat,
         pixel_type: PixelType,
-        src_data: I,
+        src_data: &I,
     ) -> Result<(), JsValue> {
         src_data.tex_image_2d(
             self,
@@ -305,15 +305,37 @@ impl WebGL2RenderingContext {
         height: u32,
         format: PixelCopyFormat,
         pixel_type: PixelType,
-        pixels: I,
+        pixels: &I,
     ) -> Result<(), JsValue> {
         pixels.tex_sub_image_2d(
             self, target, level, xoffset, yoffset, width, height, format, pixel_type,
         )
     }
 
+    /// Reads a block of pixels from a specified rectangle of the current color framebuffer into an array object.
+    ///
+    /// # Arguments
+    /// * `x` - specifying the first horizontal pixel that is read from the lower left corner of a rectangular block of pixels.
+    /// * `y` - specifying the first vertical pixel that is read from the lower left corner of a rectangular block of pixels.
+    /// * `width` - specifying the width of the rectangle.
+    /// * `height` - specifying the height of the rectangle.
+    /// * `format` - specifying the format of the pixel data.
+    /// * `pixel_type` - specifying the data type of the pixel data.
+    /// * `pixels` - An array object to read data into. The array type must match the type of the type parameter.
+    pub fn read_pixels<I: Image>(
+        &self,
+        x: u32,
+        y: u32,
+        width: u32,
+        height: u32,
+        format: PixelReadFormat,
+        pixel_type: PixelType,
+        pixels: &mut I,
+    ) -> Result<(), JsValue> {
+        pixels.read_pixels(self, x, y, width, height, format, pixel_type)
+    }
     // TODO loading -> tex_image_3d, tex_sub_image_3d, clear_buffer_uiv, clear_buffer_iv, clear_buffer_fv
-    // TODO reading -> read_pixels, get_buffer_sub_data
+    // TODO reading -> get_buffer_sub_data
 }
 
 /// WebGL2RenderingContext
@@ -746,21 +768,90 @@ extern "C" {
     // TODO getFramebufferAttachmentParameter()
     // later because of awful return structure
 
-    /// The `WebGLRenderingContext.readPixels()` method of the WebGL API reads a block of pixels from a
-    /// specified rectangle of the current color framebuffer into an Buffer object.
-    // TODO rework because of variability of pixels datatype and the fact that it get written too
-    #[wasm_bindgen(method, js_name = readPixels)]
-    pub fn read_pixels(
+    /// Binding for `WebGLRenderingContext.readPixels()` when type of data is `[u8]`
+    #[wasm_bindgen(method, js_name = readPixels, catch)]
+    pub(crate) fn _read_pixels_u8(
         this: &WebGL2RenderingContext,
-        x: i32,
-        y: i32,
+        x: u32,
+        y: u32,
         width: u32,
         height: u32,
         format: PixelReadFormat,
         pixel_type: PixelType,
-        pixels: Vec<u8>,
-        dstOffset: i32,
-    );
+        pixels: &mut [u8],
+    ) -> Result<(), JsValue>;
+    /// Binding for `WebGLRenderingContext.readPixels()` when type of data is `[i8]`
+    #[wasm_bindgen(method, js_name = readPixels, catch)]
+    pub(crate) fn _read_pixels_i8(
+        this: &WebGL2RenderingContext,
+        x: u32,
+        y: u32,
+        width: u32,
+        height: u32,
+        format: PixelReadFormat,
+        pixel_type: PixelType,
+        pixels: &mut [i8],
+    ) -> Result<(), JsValue>;
+    /// Binding for `WebGLRenderingContext.readPixels()` when type of data is `[u16]`
+    #[wasm_bindgen(method, js_name = readPixels, catch)]
+    pub(crate) fn _read_pixels_u16(
+        this: &WebGL2RenderingContext,
+        x: u32,
+        y: u32,
+        width: u32,
+        height: u32,
+        format: PixelReadFormat,
+        pixel_type: PixelType,
+        pixels: &mut [u16],
+    ) -> Result<(), JsValue>;
+    /// Binding for `WebGLRenderingContext.readPixels()` when type of data is `[i16]`
+    #[wasm_bindgen(method, js_name = readPixels, catch)]
+    pub(crate) fn _read_pixels_i16(
+        this: &WebGL2RenderingContext,
+        x: u32,
+        y: u32,
+        width: u32,
+        height: u32,
+        format: PixelReadFormat,
+        pixel_type: PixelType,
+        pixels: &mut [i16],
+    ) -> Result<(), JsValue>;
+    /// Binding for `WebGLRenderingContext.readPixels()` when type of data is `[u32]`
+    #[wasm_bindgen(method, js_name = readPixels, catch)]
+    pub(crate) fn _read_pixels_u32(
+        this: &WebGL2RenderingContext,
+        x: u32,
+        y: u32,
+        width: u32,
+        height: u32,
+        format: PixelReadFormat,
+        pixel_type: PixelType,
+        pixels: &mut [u32],
+    ) -> Result<(), JsValue>;
+    /// Binding for `WebGLRenderingContext.readPixels()` when type of data is `[i32]`
+    #[wasm_bindgen(method, js_name = readPixels, catch)]
+    pub(crate) fn _read_pixels_i32(
+        this: &WebGL2RenderingContext,
+        x: u32,
+        y: u32,
+        width: u32,
+        height: u32,
+        format: PixelReadFormat,
+        pixel_type: PixelType,
+        pixels: &mut [i32],
+    ) -> Result<(), JsValue>;
+    /// Binding for `WebGLRenderingContext.readPixels()` when type of data is `[f32]`
+    #[wasm_bindgen(method, js_name = readPixels, catch)]
+    pub(crate) fn _read_pixels_f32(
+        this: &WebGL2RenderingContext,
+        x: u32,
+        y: u32,
+        width: u32,
+        height: u32,
+        format: PixelReadFormat,
+        pixel_type: PixelType,
+        pixels: &mut [f32],
+    ) -> Result<(), JsValue>;
 
     /// Binding for `WebGLRenderingContext.getRenderbufferParameter()` when return type is `i32`
     #[wasm_bindgen(method, js_name = getRenderbufferParameter)]

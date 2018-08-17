@@ -1,4 +1,4 @@
-use glenum::{BufferKind, DataHint, PixelCopyFormat, PixelType, TextureBindPoint};
+use glenum::{BufferKind, DataHint, PixelCopyFormat, PixelReadFormat, PixelType, TextureBindPoint};
 use rendering_context::WebGL2RenderingContext;
 use wasm_bindgen::JsValue;
 
@@ -29,6 +29,16 @@ pub trait Image {
         width: u32,
         height: u32,
         format: PixelCopyFormat,
+        pixel_type: PixelType,
+    ) -> Result<(), JsValue>;
+    fn read_pixels(
+        &mut self,
+        context: &WebGL2RenderingContext,
+        x: u32,
+        y: u32,
+        width: u32,
+        height: u32,
+        format: PixelReadFormat,
         pixel_type: PixelType,
     ) -> Result<(), JsValue>;
 }
@@ -82,6 +92,18 @@ impl Image for Vec<u8> {
             target, level, xoffset, yoffset, width, height, format, pixel_type, self,
         )
     }
+    fn read_pixels(
+        &mut self,
+        context: &WebGL2RenderingContext,
+        x: u32,
+        y: u32,
+        width: u32,
+        height: u32,
+        format: PixelReadFormat,
+        pixel_type: PixelType,
+    ) -> Result<(), JsValue> {
+        context._read_pixels_u8(x, y, width, height, format, pixel_type, self)
+    }
 }
 
 impl Buffer for Vec<i8> {
@@ -132,6 +154,18 @@ impl Image for Vec<i8> {
         context._tex_sub_image_2d_i8(
             target, level, xoffset, yoffset, width, height, format, pixel_type, self,
         )
+    }
+    fn read_pixels(
+        &mut self,
+        context: &WebGL2RenderingContext,
+        x: u32,
+        y: u32,
+        width: u32,
+        height: u32,
+        format: PixelReadFormat,
+        pixel_type: PixelType,
+    ) -> Result<(), JsValue> {
+        context._read_pixels_i8(x, y, width, height, format, pixel_type, self)
     }
 }
 
@@ -184,6 +218,18 @@ impl Image for Vec<u16> {
             target, level, xoffset, yoffset, width, height, format, pixel_type, self,
         )
     }
+    fn read_pixels(
+        &mut self,
+        context: &WebGL2RenderingContext,
+        x: u32,
+        y: u32,
+        width: u32,
+        height: u32,
+        format: PixelReadFormat,
+        pixel_type: PixelType,
+    ) -> Result<(), JsValue> {
+        context._read_pixels_u16(x, y, width, height, format, pixel_type, self)
+    }
 }
 
 impl Buffer for Vec<i16> {
@@ -234,6 +280,18 @@ impl Image for Vec<i16> {
         context._tex_sub_image_2d_i16(
             target, level, xoffset, yoffset, width, height, format, pixel_type, self,
         )
+    }
+    fn read_pixels(
+        &mut self,
+        context: &WebGL2RenderingContext,
+        x: u32,
+        y: u32,
+        width: u32,
+        height: u32,
+        format: PixelReadFormat,
+        pixel_type: PixelType,
+    ) -> Result<(), JsValue> {
+        context._read_pixels_i16(x, y, width, height, format, pixel_type, self)
     }
 }
 
@@ -286,6 +344,18 @@ impl Image for Vec<u32> {
             target, level, xoffset, yoffset, width, height, format, pixel_type, self,
         )
     }
+    fn read_pixels(
+        &mut self,
+        context: &WebGL2RenderingContext,
+        x: u32,
+        y: u32,
+        width: u32,
+        height: u32,
+        format: PixelReadFormat,
+        pixel_type: PixelType,
+    ) -> Result<(), JsValue> {
+        context._read_pixels_u32(x, y, width, height, format, pixel_type, self)
+    }
 }
 
 impl Buffer for Vec<i32> {
@@ -337,6 +407,18 @@ impl Image for Vec<i32> {
             target, level, xoffset, yoffset, width, height, format, pixel_type, self,
         )
     }
+    fn read_pixels(
+        &mut self,
+        context: &WebGL2RenderingContext,
+        x: u32,
+        y: u32,
+        width: u32,
+        height: u32,
+        format: PixelReadFormat,
+        pixel_type: PixelType,
+    ) -> Result<(), JsValue> {
+        context._read_pixels_i32(x, y, width, height, format, pixel_type, self)
+    }
 }
 
 impl Buffer for Vec<f32> {
@@ -387,6 +469,18 @@ impl Image for Vec<f32> {
         context._tex_sub_image_2d_f32(
             target, level, xoffset, yoffset, width, height, format, pixel_type, self,
         )
+    }
+    fn read_pixels(
+        &mut self,
+        context: &WebGL2RenderingContext,
+        x: u32,
+        y: u32,
+        width: u32,
+        height: u32,
+        format: PixelReadFormat,
+        pixel_type: PixelType,
+    ) -> Result<(), JsValue> {
+        context._read_pixels_f32(x, y, width, height, format, pixel_type, self)
     }
 }
 
