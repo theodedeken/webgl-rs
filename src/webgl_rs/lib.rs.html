@@ -34,17 +34,18 @@
 <span id="34">34</span>
 <span id="35">35</span>
 <span id="36">36</span>
+<span id="37">37</span>
 </pre><pre class="rust ">
-<span class="attribute">#![<span class="ident">feature</span>(<span class="ident">use_extern_macros</span>, <span class="ident">wasm_import_module</span>)]</span>
+<span class="attribute">#![<span class="ident">feature</span>(<span class="ident">use_extern_macros</span>)]</span>
 
 <span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">wasm_bindgen</span>;
 
-<span class="comment">//TODO: arraybufferview as enum and impl method to map to different functions</span>
 <span class="comment">//TODO: possible solution of different getParameter methods is to add accessors on different types</span>
 <span class="comment">//TODO: safety with methods that can throw</span>
 <span class="comment">//TODO: JsString?</span>
 <span class="comment">//TODO: js-sys objects?</span>
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">buffer</span>;
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">data_view</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">framebuffer</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">glenum</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">query</span>;
@@ -59,6 +60,7 @@
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">vertex_array_object</span>;
 
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">buffer</span>::<span class="ident">WebGLRSBuffer</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">data_view</span>::<span class="ident">Buffer</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">framebuffer</span>::<span class="ident">WebGLRSFramebuffer</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">glenum</span>::<span class="kw-2">*</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">query</span>::<span class="ident">WebGLRSQuery</span>;
