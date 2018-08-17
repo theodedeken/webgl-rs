@@ -2,7 +2,6 @@
 
 extern crate wasm_bindgen;
 
-//TODO: Buffer as enum and impl method to map to different functions
 //TODO: possible solution of different getParameter methods is to add accessors on different types
 //TODO: safety with methods that can throw
 //TODO: JsString?

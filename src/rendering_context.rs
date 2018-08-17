@@ -334,8 +334,19 @@ impl WebGL2RenderingContext {
     ) -> Result<(), JsValue> {
         pixels.read_pixels(self, x, y, width, height, format, pixel_type)
     }
-    // TODO loading -> tex_image_3d, tex_sub_image_3d, clear_buffer_uiv, clear_buffer_iv, clear_buffer_fv
-    // TODO reading -> get_buffer_sub_data
+
+    pub fn get_buffer_sub_data<B: Buffer>(
+        &self,
+        target: BufferKind,
+        src_offset: i64,
+        dst_data: &mut B,
+        dst_offset: u32,
+        length: u32,
+    ) -> Result<(), JsValue> {
+        dst_data.get_buffer_sub_data(self, target, src_offset, dst_offset, length)
+    }
+
+    // TODO loading -> tex_image_3d, tex_sub_image_3d, compressed_tex_image_2d, compressed_tex_sub_image_2d, compressed_tex_image_3d, compressed_tex_sub_image_3d, clear_buffer_uiv, clear_buffer_iv, clear_buffer_fv
 }
 
 /// WebGL2RenderingContext
@@ -1337,18 +1348,86 @@ extern "C" {
         size: u32,
     );
 
-    /// The `WebGL2RenderingContext.getBufferSubData()` method of the WebGL 2 API reads data from a buffer binding
-    /// point and writes them to an ArrayBuffer or SharedArrayBuffer.
-    /// FIXME: dstData prob not correct type
-    #[wasm_bindgen(method, js_name = getBufferSubData)]
-    pub fn get_buffer_sub_data(
+    /// Binding for `WebGL2RenderingContext.getBufferSubData()` when data type is `[u8]`
+    #[wasm_bindgen(method, js_name = getBufferSubData, catch)]
+    pub(crate) fn _get_buffer_sub_data_u8(
         this: &WebGL2RenderingContext,
         target: BufferKind,
-        srcByteOffset: i64,
-        dstData: Vec<u8>,
-        dstOffset: i64,
+        src_offset: i64,
+        dst_data: &mut [u8],
+        dst_offset: u32,
         length: u32,
-    );
+    ) -> Result<(), JsValue>;
+    /// Binding for `WebGL2RenderingContext.getBufferSubData()` when data type is `[i8]`
+    #[wasm_bindgen(method, js_name = getBufferSubData, catch)]
+    pub(crate) fn _get_buffer_sub_data_i8(
+        this: &WebGL2RenderingContext,
+        target: BufferKind,
+        src_offset: i64,
+        dst_data: &mut [i8],
+        dst_offset: u32,
+        length: u32,
+    ) -> Result<(), JsValue>;
+    /// Binding for `WebGL2RenderingContext.getBufferSubData()` when data type is `[u16]`
+    #[wasm_bindgen(method, js_name = getBufferSubData, catch)]
+    pub(crate) fn _get_buffer_sub_data_u16(
+        this: &WebGL2RenderingContext,
+        target: BufferKind,
+        src_offset: i64,
+        dst_data: &mut [u16],
+        dst_offset: u32,
+        length: u32,
+    ) -> Result<(), JsValue>;
+    /// Binding for `WebGL2RenderingContext.getBufferSubData()` when data type is `[i16]`
+    #[wasm_bindgen(method, js_name = getBufferSubData, catch)]
+    pub(crate) fn _get_buffer_sub_data_i16(
+        this: &WebGL2RenderingContext,
+        target: BufferKind,
+        src_offset: i64,
+        dst_data: &mut [i16],
+        dst_offset: u32,
+        length: u32,
+    ) -> Result<(), JsValue>;
+    /// Binding for `WebGL2RenderingContext.getBufferSubData()` when data type is `[u32]`
+    #[wasm_bindgen(method, js_name = getBufferSubData, catch)]
+    pub(crate) fn _get_buffer_sub_data_u32(
+        this: &WebGL2RenderingContext,
+        target: BufferKind,
+        src_offset: i64,
+        dst_data: &mut [u32],
+        dst_offset: u32,
+        length: u32,
+    ) -> Result<(), JsValue>;
+    /// Binding for `WebGL2RenderingContext.getBufferSubData()` when data type is `[i32]`
+    #[wasm_bindgen(method, js_name = getBufferSubData, catch)]
+    pub(crate) fn _get_buffer_sub_data_i32(
+        this: &WebGL2RenderingContext,
+        target: BufferKind,
+        src_offset: i64,
+        dst_data: &mut [i32],
+        dst_offset: u32,
+        length: u32,
+    ) -> Result<(), JsValue>;
+    /// Binding for `WebGL2RenderingContext.getBufferSubData()` when data type is `[f32]`
+    #[wasm_bindgen(method, js_name = getBufferSubData, catch)]
+    pub(crate) fn _get_buffer_sub_data_f32(
+        this: &WebGL2RenderingContext,
+        target: BufferKind,
+        src_offset: i64,
+        dst_data: &mut [f32],
+        dst_offset: u32,
+        length: u32,
+    ) -> Result<(), JsValue>;
+    /// Binding for `WebGL2RenderingContext.getBufferSubData()` when data type is `[f64]`
+    #[wasm_bindgen(method, js_name = getBufferSubData, catch)]
+    pub(crate) fn _get_buffer_sub_data_f64(
+        this: &WebGL2RenderingContext,
+        target: BufferKind,
+        src_offset: i64,
+        dst_data: &mut [f64],
+        dst_offset: u32,
+        length: u32,
+    ) -> Result<(), JsValue>;
 
     /// The `WebGL2RenderingContext.blitFramebuffer()` method of the WebGL 2 API transfers a block of pixels from the
     /// read framebuffer to the draw framebuffer.
