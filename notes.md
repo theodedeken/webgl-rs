@@ -35,3 +35,22 @@ Prerequisites:
 Idea:
 * for context state info split the get parameter methods all up in their own separate methods
 * for parameters of related opbject split into methods of these objects 
+
+## Image loading
+| type of srcData | type                         |
+| --------------- | ---------------------------- |
+| Int8Array       | BYTE                         |
+| Uint8Array      | UNSIGNED_BYTE                |
+| Int16Array      | SHORT                        |
+| Uint16Array     | UNSIGNED_SHORT               |
+| Uint16Array     | UNSIGNED_SHORT_5_6_5         |
+| Uint16Array     | UNSIGNED_SHORT_5_5_5_1       |
+| Uint16Array     | UNSIGNED_SHORT_4_4_4_4       |
+| Int32Array      | INT                          |
+| Uint32Array     | UNSIGNED_INT                 |
+| Uint32Array     | UNSIGNED_INT_5_9_9_9_REV     |
+| Uint32Array     | UNSIGNED_INT_2_10_10_10_REV  |
+| Uint32Array     | UNSIGNED_INT_10F_11F_11F_REV |
+| Uint32Array     | UNSIGNED_INT_24_8            |
+| Uint16Array     | HALF_FLOAT                   |
+| Float32Array    | FLOAT                        |
