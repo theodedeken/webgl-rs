@@ -140,8 +140,8 @@ impl<'ctx> WebGLRSSampler<'ctx> {
 }
 
 /// Bindings for WebGLSampler
-#[derive(Clone, Copy)]
 #[wasm_bindgen]
+#[derive(Clone, Copy)]
 extern "C" {
     type WebGLSampler;
 

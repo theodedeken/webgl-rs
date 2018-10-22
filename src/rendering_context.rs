@@ -6,8 +6,8 @@ use data_view::{Buffer, Image};
 use glenum::*;
 use wasm_bindgen::prelude::*;
 
-#[derive(Clone, Copy)]
 #[wasm_bindgen]
+#[derive(Clone, Copy)]
 extern "C" {
     pub type HTMLDocument;
     static document: HTMLDocument;
@@ -1791,8 +1791,8 @@ extern "C" {
 
 // WebGLContextAttributes
 /* FIXME: not found when exported
-#[derive(Clone, Copy)]
 #[wasm_bindgen]
+#[derive(Clone, Copy)]
 extern "C" {
     pub type WebGLContextAttributes;
     #[wasm_bindgen(method, getter)]
@@ -1815,8 +1815,8 @@ extern "C" {
 */
 
 /// WebGLShaderPrecisionFormat;
-#[derive(Clone, Copy)]
 #[wasm_bindgen]
+#[derive(Clone, Copy)]
 extern "C" {
     pub type WebGLShaderPrecisionFormat;
 

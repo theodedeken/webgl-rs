@@ -57,8 +57,8 @@ impl<'ctx> WebGLRSRenderbuffer<'ctx> {
 }
 
 /// Bindings for WebGLRenderbuffer
-#[derive(Clone, Copy)]
 #[wasm_bindgen]
+#[derive(Clone, Copy)]
 extern "C" {
     type WebGLRenderbuffer;
     /// Binding for `WebGLRenderingContext.createRenderbuffer()`

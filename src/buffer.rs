@@ -64,8 +64,8 @@ impl<'ctx> WebGLRSBuffer<'ctx> {
 }
 
 /// WebGLBuffer bindings
-#[derive(Clone, Copy)]
 #[wasm_bindgen]
+#[derive(Clone, Copy)]
 extern "C" {
     type WebGLBuffer;
     /// Binding for `WebGLRenderingContext.createBuffer()`

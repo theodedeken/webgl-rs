@@ -43,8 +43,8 @@ impl<'ctx> WebGLRSFramebuffer<'ctx> {
 }
 
 /// WebGLFramebuffer bindings
-#[derive(Clone, Copy)]
 #[wasm_bindgen]
+#[derive(Clone, Copy)]
 extern "C" {
     type WebGLFramebuffer;
     /// Binding for `WebGLRenderingContext.createFramebuffer()`

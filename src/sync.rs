@@ -62,8 +62,8 @@ impl<'ctx> WebGLRSSync<'ctx> {
 }
 
 /// Bindings for WebGLSync
-#[derive(Clone, Copy)]
 #[wasm_bindgen]
+#[derive(Clone, Copy)]
 extern "C" {
     pub type WebGLSync;
 

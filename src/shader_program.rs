@@ -245,8 +245,8 @@ impl<'ctx> WebGLRSProgram<'ctx> {
 }
 
 /// Bindings for WebGLProgram
-#[derive(Clone, Copy)]
 #[wasm_bindgen]
+#[derive(Clone, Copy)]
 extern "C" {
     type WebGLProgram;
 
@@ -465,8 +465,8 @@ impl<'ctx> WebGLRSShader<'ctx> {
 }
 
 /// Bindings for WebGLShader
-#[derive(Clone, Copy)]
 #[wasm_bindgen]
+#[derive(Clone, Copy)]
 extern "C" {
     type WebGLShader;
 
@@ -515,8 +515,8 @@ extern "C" {
 }
 
 /// WebGLActiveInfo
-#[derive(Clone, Copy)]
 #[wasm_bindgen]
+#[derive(Clone, Copy)]
 extern "C" {
     pub type WebGLActiveInfo;
 

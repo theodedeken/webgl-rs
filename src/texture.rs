@@ -77,8 +77,8 @@ impl<'ctx> WebGLRSTexture<'ctx> {
 }
 
 /// Bindings for WebGLTexture
-#[derive(Clone, Copy)]
 #[wasm_bindgen]
+#[derive(Clone, Copy)]
 extern "C" {
     type WebGLTexture;
     /// Binding for `WebGLRenderingContext.createTexture()`.

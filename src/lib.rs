@@ -1,5 +1,3 @@
-#![feature(use_extern_macros)]
-
 extern crate wasm_bindgen;
 
 //TODO: possible solution of different getParameter methods is to add accessors on different types

@@ -39,8 +39,8 @@ impl<'ctx> WebGLRSTransformFeedback<'ctx> {
 }
 
 /// Bindings for WebGLTransformFeedback
-#[derive(Clone, Copy)]
 #[wasm_bindgen]
+#[derive(Clone, Copy)]
 extern "C" {
     pub type WebGLTransformFeedback;
 

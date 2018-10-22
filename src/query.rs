@@ -63,8 +63,8 @@ impl<'ctx> WebGLRSQuery<'ctx> {
 }
 
 /// Binding for WebGLQuery
-#[derive(Clone, Copy)]
 #[wasm_bindgen]
+#[derive(Clone, Copy)]
 extern "C" {
     type WebGLQuery;
 
