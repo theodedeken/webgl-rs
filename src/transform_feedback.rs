@@ -13,6 +13,7 @@ impl WebGL2RenderingContext {
     }
 }
 
+#[derive(Clone, Copy, Debug)]
 pub struct WebGLRSTransformFeedback<'ctx> {
     context: &'ctx WebGL2RenderingContext,
     inner: WebGLTransformFeedback,

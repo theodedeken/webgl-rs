@@ -17,6 +17,7 @@ impl WebGL2RenderingContext {
 ///
 /// The WebGLVertexArrayObject interface is part of the WebGL 2 API, represents vertex array objects (VAOs)
 /// pointing to vertex array data, and provides names for different sets of vertex data.
+#[derive(Clone, Copy, Debug)]
 pub struct WebGLRSVertexArrayObject<'ctx> {
     context: &'ctx WebGL2RenderingContext,
     inner: WebGLVertexArrayObject,

@@ -17,6 +17,7 @@ impl WebGL2RenderingContext {
 ///
 /// The `WebGLFramebuffer` interface is part of the WebGL API and represents a collection of buffers that
 /// serve as a rendering destination.
+#[derive(Clone, Copy, Debug)]
 pub struct WebGLRSFramebuffer<'ctx> {
     context: &'ctx WebGL2RenderingContext,
     inner: WebGLFramebuffer,

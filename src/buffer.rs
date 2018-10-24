@@ -17,6 +17,7 @@ impl WebGL2RenderingContext {
 ///
 /// The `WebGLBuffer` interface is part of the WebGL API and represents an opaque buffer object
 /// storing data such as vertices or colors.
+#[derive(Clone, Copy, Debug)]
 pub struct WebGLRSBuffer<'ctx> {
     context: &'ctx WebGL2RenderingContext,
     inner: WebGLBuffer,

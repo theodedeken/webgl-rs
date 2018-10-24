@@ -18,6 +18,7 @@ impl WebGL2RenderingContext {
     }
 }
 
+#[derive(Clone, Copy, Debug)]
 pub struct WebGLRSSync<'ctx> {
     context: &'ctx WebGL2RenderingContext,
     inner: WebGLSync,

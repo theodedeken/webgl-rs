@@ -28,6 +28,7 @@ impl WebGL2RenderingContext {
 /// The `WebGLRSProgram` is part of the WebGL API and is a combination of two compiled WebGLShaders
 /// consisting of a vertex shader and a fragment shader (both written in GLSL). These are then linked
 /// into a usable program.
+#[derive(Clone, Copy, Debug)]
 pub struct WebGLRSProgram<'ctx> {
     context: &'ctx WebGL2RenderingContext,
     inner: WebGLProgram,
@@ -408,6 +409,7 @@ impl WebGL2RenderingContext {
 
 /// The `WebGLRSShader` is part of the WebGL API and can either be a vertex or a fragment shader.
 /// A `WebGLRSProgram` requires both types of shaders.
+#[derive(Clone, Copy, Debug)]
 pub struct WebGLRSShader<'ctx> {
     context: &'ctx WebGL2RenderingContext,
     inner: WebGLShader,

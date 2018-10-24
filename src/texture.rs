@@ -15,6 +15,7 @@ impl WebGL2RenderingContext {
 
 /// The WebGLTexture interface is part of the WebGL API and represents an opaque texture object providing
 /// storage and state for texturing operations.
+#[derive(Clone, Copy, Debug)]
 pub struct WebGLRSTexture<'ctx> {
     context: &'ctx WebGL2RenderingContext,
     inner: WebGLTexture,

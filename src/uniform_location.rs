@@ -2,6 +2,7 @@
 use rendering_context::WebGL2RenderingContext;
 use wasm_bindgen::prelude::*;
 
+#[derive(Clone, Copy, Debug)]
 pub struct WebGLRSUniformLocation<'ctx> {
     pub(crate) context: &'ctx WebGL2RenderingContext,
     pub(crate) inner: WebGLUniformLocation,

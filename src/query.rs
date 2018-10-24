@@ -25,6 +25,7 @@ impl WebGL2RenderingContext {
     }
 }
 
+#[derive(Clone, Copy, Debug)]
 pub struct WebGLRSQuery<'ctx> {
     context: &'ctx WebGL2RenderingContext,
     inner: WebGLQuery,
