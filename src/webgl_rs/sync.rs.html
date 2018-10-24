@@ -100,6 +100,8 @@
 <span id="100">100</span>
 <span id="101">101</span>
 <span id="102">102</span>
+<span id="103">103</span>
+<span id="104">104</span>
 </pre><pre class="rust ">
 <span class="doccomment">//! WebGLSync and methods</span>
 <span class="kw">use</span> <span class="ident">glenum</span>::{<span class="ident">GPUState</span>, <span class="ident">SyncParameter</span>, <span class="ident">SyncStatus</span>, <span class="ident">WaitStatus</span>};
@@ -121,6 +123,7 @@
     }
 }
 
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">WebGLRSSync</span><span class="op">&lt;</span><span class="lifetime">&#39;ctx</span><span class="op">&gt;</span> {
     <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;ctx</span> <span class="ident">WebGL2RenderingContext</span>,
     <span class="ident">inner</span>: <span class="ident">WebGLSync</span>,
@@ -168,6 +171,7 @@
 <span class="attribute">#[<span class="ident">wasm_bindgen</span>]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
+    <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>)]</span>
     <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">WebGLSync</span>;
 
     <span class="doccomment">/// Binding for `WebGL2RenderingContext.fenceSync()`</span>

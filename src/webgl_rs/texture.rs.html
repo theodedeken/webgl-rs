@@ -119,6 +119,8 @@
 <span id="119">119</span>
 <span id="120">120</span>
 <span id="121">121</span>
+<span id="122">122</span>
+<span id="123">123</span>
 </pre><pre class="rust ">
 <span class="doccomment">//! WebGLTexture and methods</span>
 <span class="kw">use</span> <span class="ident">glenum</span>::{<span class="ident">Attachment</span>, <span class="ident">FramebufferKind</span>, <span class="ident">TextureBindPoint</span>, <span class="ident">TextureKind</span>};
@@ -137,6 +139,7 @@
 
 <span class="doccomment">/// The WebGLTexture interface is part of the WebGL API and represents an opaque texture object providing</span>
 <span class="doccomment">/// storage and state for texturing operations.</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">WebGLRSTexture</span><span class="op">&lt;</span><span class="lifetime">&#39;ctx</span><span class="op">&gt;</span> {
     <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;ctx</span> <span class="ident">WebGL2RenderingContext</span>,
     <span class="ident">inner</span>: <span class="ident">WebGLTexture</span>,
@@ -202,6 +205,7 @@
 <span class="attribute">#[<span class="ident">wasm_bindgen</span>]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
+    <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>)]</span>
     <span class="kw">type</span> <span class="ident">WebGLTexture</span>;
     <span class="doccomment">/// Binding for `WebGLRenderingContext.createTexture()`.</span>
     <span class="attribute">#[<span class="ident">wasm_bindgen</span>(<span class="ident">method</span>, <span class="ident">js_name</span> <span class="op">=</span> <span class="ident">createTexture</span>)]</span>

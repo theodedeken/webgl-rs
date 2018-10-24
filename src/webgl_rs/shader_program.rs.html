@@ -532,6 +532,11 @@
 <span id="532">532</span>
 <span id="533">533</span>
 <span id="534">534</span>
+<span id="535">535</span>
+<span id="536">536</span>
+<span id="537">537</span>
+<span id="538">538</span>
+<span id="539">539</span>
 </pre><pre class="rust ">
 <span class="doccomment">//! WebGLProgram and WebGLShader and methods</span>
 <span class="kw">use</span> <span class="ident">glenum</span>::{<span class="ident">ProgramParameter</span>, <span class="ident">ShaderKind</span>, <span class="ident">ShaderParameter</span>, <span class="ident">TransformFeedbackBufferMode</span>};
@@ -563,6 +568,7 @@
 <span class="doccomment">/// The `WebGLRSProgram` is part of the WebGL API and is a combination of two compiled WebGLShaders</span>
 <span class="doccomment">/// consisting of a vertex shader and a fragment shader (both written in GLSL). These are then linked</span>
 <span class="doccomment">/// into a usable program.</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">WebGLRSProgram</span><span class="op">&lt;</span><span class="lifetime">&#39;ctx</span><span class="op">&gt;</span> {
     <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;ctx</span> <span class="ident">WebGL2RenderingContext</span>,
     <span class="ident">inner</span>: <span class="ident">WebGLProgram</span>,
@@ -783,6 +789,8 @@
 <span class="attribute">#[<span class="ident">wasm_bindgen</span>]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
+
+    <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>)]</span>
     <span class="kw">type</span> <span class="ident">WebGLProgram</span>;
 
     <span class="doccomment">/// Binding for `WebGLRenderingContext.createProgram()`</span>
@@ -943,6 +951,7 @@
 
 <span class="doccomment">/// The `WebGLRSShader` is part of the WebGL API and can either be a vertex or a fragment shader.</span>
 <span class="doccomment">/// A `WebGLRSProgram` requires both types of shaders.</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">WebGLRSShader</span><span class="op">&lt;</span><span class="lifetime">&#39;ctx</span><span class="op">&gt;</span> {
     <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;ctx</span> <span class="ident">WebGL2RenderingContext</span>,
     <span class="ident">inner</span>: <span class="ident">WebGLShader</span>,
@@ -1003,6 +1012,7 @@
 <span class="attribute">#[<span class="ident">wasm_bindgen</span>]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
+    <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>)]</span>
     <span class="kw">type</span> <span class="ident">WebGLShader</span>;
 
     <span class="doccomment">/// Binding for `WebGLRenderingContext.createShader()`</span>

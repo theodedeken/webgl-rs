@@ -319,11 +319,14 @@
 <span id="319">319</span>
 <span id="320">320</span>
 <span id="321">321</span>
+<span id="322">322</span>
+<span id="323">323</span>
 </pre><pre class="rust ">
 <span class="doccomment">//! WebGLUniformLocation and methods</span>
 <span class="kw">use</span> <span class="ident">rendering_context</span>::<span class="ident">WebGL2RenderingContext</span>;
 <span class="kw">use</span> <span class="ident">wasm_bindgen</span>::<span class="ident">prelude</span>::<span class="kw-2">*</span>;
 
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">WebGLRSUniformLocation</span><span class="op">&lt;</span><span class="lifetime">&#39;ctx</span><span class="op">&gt;</span> {
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;ctx</span> <span class="ident">WebGL2RenderingContext</span>,
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">inner</span>: <span class="ident">WebGLUniformLocation</span>,
@@ -337,6 +340,7 @@
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="doccomment">/// FIXME: would prefer this to be pub(crate) but does not seem to work, not sure if it is a limitation of wasm_bindgen</span>
     <span class="doccomment">/// or if it is just not possible in rust.</span>
+    <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>)]</span>
     <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">WebGLUniformLocation</span>;
 
     <span class="doccomment">/// The `WebGLRenderingContext.uniform[1234][fi][v]()` methods of the WebGL API specify values of uniform variables.</span>

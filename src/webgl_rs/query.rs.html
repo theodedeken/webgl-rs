@@ -103,6 +103,8 @@
 <span id="103">103</span>
 <span id="104">104</span>
 <span id="105">105</span>
+<span id="106">106</span>
+<span id="107">107</span>
 </pre><pre class="rust ">
 <span class="doccomment">//! WebGLQuery and methods</span>
 <span class="kw">use</span> <span class="ident">glenum</span>::{<span class="ident">Query</span>, <span class="ident">QueryParameter</span>, <span class="ident">QueryTarget</span>};
@@ -131,6 +133,7 @@
     }
 }
 
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">WebGLRSQuery</span><span class="op">&lt;</span><span class="lifetime">&#39;ctx</span><span class="op">&gt;</span> {
     <span class="ident">context</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;ctx</span> <span class="ident">WebGL2RenderingContext</span>,
     <span class="ident">inner</span>: <span class="ident">WebGLQuery</span>,
@@ -172,6 +175,7 @@
 <span class="attribute">#[<span class="ident">wasm_bindgen</span>]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
+    <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>)]</span>
     <span class="kw">type</span> <span class="ident">WebGLQuery</span>;
 
     <span class="doccomment">/// Binding for `WebGL2RenderingContext.createQuery()`</span>
