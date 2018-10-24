@@ -18,7 +18,7 @@ impl WebGL2RenderingContext {
     }
 }
 
-#[derive(Clone, Copy, Debug)]
+#[derive(Clone)]
 pub struct WebGLRSSync<'ctx> {
     context: &'ctx WebGL2RenderingContext,
     inner: WebGLSync,
@@ -66,6 +66,7 @@ impl<'ctx> WebGLRSSync<'ctx> {
 #[wasm_bindgen]
 #[derive(Clone, Copy)]
 extern "C" {
+    #[derive(Clone)]
     pub type WebGLSync;
 
     /// Binding for `WebGL2RenderingContext.fenceSync()`

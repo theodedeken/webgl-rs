@@ -13,7 +13,7 @@ impl WebGL2RenderingContext {
     }
 }
 
-#[derive(Clone, Copy, Debug)]
+#[derive(Clone)]
 pub struct WebGLRSTransformFeedback<'ctx> {
     context: &'ctx WebGL2RenderingContext,
     inner: WebGLTransformFeedback,
@@ -43,6 +43,7 @@ impl<'ctx> WebGLRSTransformFeedback<'ctx> {
 #[wasm_bindgen]
 #[derive(Clone, Copy)]
 extern "C" {
+    #[derive(Clone)]
     pub type WebGLTransformFeedback;
 
     /// Binding for `WebGL2RenderingContext.createTransformFeedback()`

@@ -15,7 +15,7 @@ impl WebGL2RenderingContext {
     }
 }
 
-#[derive(Clone, Copy, Debug)]
+#[derive(Clone)]
 pub struct WebGLRSSampler<'ctx> {
     context: &'ctx WebGL2RenderingContext,
     inner: WebGLSampler,
@@ -144,6 +144,7 @@ impl<'ctx> WebGLRSSampler<'ctx> {
 #[wasm_bindgen]
 #[derive(Clone, Copy)]
 extern "C" {
+    #[derive(Clone)]
     type WebGLSampler;
 
     /// Binding for `WebGL2RenderingContext.createSampler()`

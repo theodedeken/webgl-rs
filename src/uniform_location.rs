@@ -2,7 +2,7 @@
 use rendering_context::WebGL2RenderingContext;
 use wasm_bindgen::prelude::*;
 
-#[derive(Clone, Copy, Debug)]
+#[derive(Clone)]
 pub struct WebGLRSUniformLocation<'ctx> {
     pub(crate) context: &'ctx WebGL2RenderingContext,
     pub(crate) inner: WebGLUniformLocation,
@@ -16,6 +16,7 @@ impl<'ctx> WebGLRSUniformLocation<'ctx> {}
 extern "C" {
     /// FIXME: would prefer this to be pub(crate) but does not seem to work, not sure if it is a limitation of wasm_bindgen
     /// or if it is just not possible in rust.
+    #[derive(Clone)]
     pub type WebGLUniformLocation;
 
     /// The `WebGLRenderingContext.uniform[1234][fi][v]()` methods of the WebGL API specify values of uniform variables.

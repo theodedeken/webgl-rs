@@ -15,7 +15,7 @@ impl WebGL2RenderingContext {
 
 /// The `WebGLRenderbuffer` interface is represents a buffer that can contain an image, or can be source
 /// or target of an rendering operation.
-#[derive(Clone, Copy, Debug)]
+#[derive(Clone)]
 pub struct WebGLRSRenderbuffer<'ctx> {
     context: &'ctx WebGL2RenderingContext,
     inner: WebGLRenderbuffer,
@@ -61,6 +61,7 @@ impl<'ctx> WebGLRSRenderbuffer<'ctx> {
 #[wasm_bindgen]
 #[derive(Clone, Copy)]
 extern "C" {
+    #[derive(Clone)]
     type WebGLRenderbuffer;
     /// Binding for `WebGLRenderingContext.createRenderbuffer()`
     #[wasm_bindgen(method, js_name = createRenderbuffer)]

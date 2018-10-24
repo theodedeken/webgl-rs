@@ -25,7 +25,7 @@ impl WebGL2RenderingContext {
     }
 }
 
-#[derive(Clone, Copy, Debug)]
+#[derive(Clone)]
 pub struct WebGLRSQuery<'ctx> {
     context: &'ctx WebGL2RenderingContext,
     inner: WebGLQuery,
@@ -67,6 +67,7 @@ impl<'ctx> WebGLRSQuery<'ctx> {
 #[wasm_bindgen]
 #[derive(Clone, Copy)]
 extern "C" {
+    #[derive(Clone)]
     type WebGLQuery;
 
     /// Binding for `WebGL2RenderingContext.createQuery()`

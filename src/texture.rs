@@ -15,7 +15,7 @@ impl WebGL2RenderingContext {
 
 /// The WebGLTexture interface is part of the WebGL API and represents an opaque texture object providing
 /// storage and state for texturing operations.
-#[derive(Clone, Copy, Debug)]
+#[derive(Clone)]
 pub struct WebGLRSTexture<'ctx> {
     context: &'ctx WebGL2RenderingContext,
     inner: WebGLTexture,
@@ -81,6 +81,7 @@ impl<'ctx> WebGLRSTexture<'ctx> {
 #[wasm_bindgen]
 #[derive(Clone, Copy)]
 extern "C" {
+    #[derive(Clone)]
     type WebGLTexture;
     /// Binding for `WebGLRenderingContext.createTexture()`.
     #[wasm_bindgen(method, js_name = createTexture)]

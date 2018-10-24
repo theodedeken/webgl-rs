@@ -17,7 +17,7 @@ impl WebGL2RenderingContext {
 ///
 /// The `WebGLBuffer` interface is part of the WebGL API and represents an opaque buffer object
 /// storing data such as vertices or colors.
-#[derive(Clone, Copy, Debug)]
+#[derive(Clone)]
 pub struct WebGLRSBuffer<'ctx> {
     context: &'ctx WebGL2RenderingContext,
     inner: WebGLBuffer,
@@ -68,6 +68,7 @@ impl<'ctx> WebGLRSBuffer<'ctx> {
 #[wasm_bindgen]
 #[derive(Clone, Copy)]
 extern "C" {
+    #[derive(Clone)]
     type WebGLBuffer;
     /// Binding for `WebGLRenderingContext.createBuffer()`
     #[wasm_bindgen(method, js_name = createBuffer)]
