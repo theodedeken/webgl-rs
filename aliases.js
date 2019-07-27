@@ -1,2 +1,2 @@
 var ALIASES = {};
-ALIASES['webgl_rs'] = {};
+ALIASES["webgl_rs"] = {};
